@@ -22,11 +22,11 @@
       </div>
     </header>
 
-    <!-- Project Overview -->
+    <!-- Overview -->
     <section class="mb-10 bg-slate-900/60 p-6 rounded-xl border border-slate-800">
-      <h2 class="text-lg font-semibold text-white mb-2">Flagship Audit: Is JoSAA Truly Strategy-Proof?</h2>
+      <h2 class="text-lg font-semibold text-white mb-2">Computational Audit of JoSAA Allocation Rules</h2>
       <p class="text-slate-300 text-sm leading-relaxed mb-4">
-        Static Gale-Shapley Deferred Acceptance mathematically guarantees strategy-proofness. However, India's JoSAA seat allocation runs across multiple discrete rounds with <span class="text-indigo-400 font-mono font-medium">Freeze</span>, <span class="text-emerald-400 font-mono font-medium">Float</span>, and <span class="text-amber-400 font-mono font-medium">Slide</span> choices combined with dynamic candidate withdrawals.
+        We formalize and audit the two central pillars of India's Joint Seat Allocation Authority: sequential multi-round clearing under <span class="text-indigo-400 font-mono font-medium">Freeze/Float/Slide</span>, and legally mandated vertical reservation interleaving (<span class="text-emerald-400 font-mono font-medium">Merit-First OPEN seats vs. Category Quotas</span>).
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
         <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
@@ -34,19 +34,19 @@
           <div class="text-white font-medium text-sm mt-0.5">Student-Proposing DA</div>
         </div>
         <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
-          <div class="text-slate-400">Dynamic Actions</div>
-          <div class="text-white font-medium text-sm mt-0.5">Freeze / Float / Slide</div>
+          <div class="text-slate-400">Reservation Framework</div>
+          <div class="text-emerald-400 font-medium text-sm mt-0.5">Sönmez-Yenmez Interleaved</div>
         </div>
         <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
-          <div class="text-slate-400">Core Guarantee</div>
+          <div class="text-slate-400">Dynamic Guarantee</div>
           <div class="text-amber-400 font-medium text-sm mt-0.5">Weakly Strategy-Proof</div>
         </div>
       </div>
     </section>
 
-    <!-- Interactive Simulator Sandbox -->
+    <!-- Module 1: Multi-Round Dynamic Simulator -->
     <section class="mb-10">
-      <h2 class="text-lg font-semibold text-white mb-4">Interactive Round Simulator</h2>
+      <h2 class="text-lg font-semibold text-white mb-4">Module 1: Dynamic Round Simulator & Vacancy Chains</h2>
       <div class="bg-slate-900/40 p-6 rounded-xl border border-slate-800">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
@@ -67,10 +67,9 @@
         </div>
 
         <button onclick="runSimulation()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm px-5 py-2.5 rounded-lg transition shadow-sm">
-          Run 2-Round Simulation
+          Run Dynamic Allocation
         </button>
 
-        <!-- Results Display -->
         <div id="resultsArea" class="mt-6 pt-6 border-t border-slate-800 hidden">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
@@ -86,6 +85,56 @@
         </div>
       </div>
     </section>
+
+    <!-- Module 2: Vertical Reservation Interleaving -->
+    <section class="mb-10">
+      <h2 class="text-lg font-semibold text-white mb-4">Module 2: Vertical Reservation Interleaving Audit</h2>
+      <div class="bg-slate-900/40 p-6 rounded-xl border border-slate-800">
+        <p class="text-xs text-slate-400 mb-4 leading-relaxed font-mono">
+          Under the Supreme Court mandate (Indra Sawhney / Sönmez-Yenmez), reserved category candidates must first consume OPEN merit capacity if their score qualifies, reserving category quotas for subsequent candidates.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs font-mono">
+            <div class="text-slate-400">Rank 1: Candidate A</div>
+            <div class="text-emerald-400 font-medium mt-1">Category: OBC</div>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs font-mono">
+            <div class="text-slate-400">Rank 2: Candidate B</div>
+            <div class="text-slate-200 font-medium mt-1">Category: OPEN</div>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs font-mono">
+            <div class="text-slate-400">Rank 3: Candidate C</div>
+            <div class="text-emerald-400 font-medium mt-1">Category: OBC</div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs font-mono mb-6">
+          <strong>Available Capacity (IITB CSE):</strong> 1 OPEN Seat, 1 OBC Seat
+        </div>
+
+        <button onclick="runQuotaDemo()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm px-5 py-2.5 rounded-lg transition shadow-sm">
+          Run Quota Matching
+        </button>
+
+        <div id="quotaResultsArea" class="mt-6 pt-6 border-t border-slate-800 hidden font-mono text-xs">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+              <div class="text-slate-400 uppercase tracking-wider mb-2">OPEN Merit Seat (Cap: 1)</div>
+              <div id="openSeatResult" class="text-emerald-400 font-semibold text-sm"></div>
+              <div class="text-slate-500 text-[11px] mt-1">Consumed by Rank 1 via CRL merit order</div>
+            </div>
+            <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+              <div class="text-slate-400 uppercase tracking-wider mb-2">OBC Category Seat (Cap: 1)</div>
+              <div id="obcSeatResult" class="text-emerald-400 font-semibold text-sm"></div>
+              <div class="text-slate-500 text-[11px] mt-1">Preserved for next eligible category candidate</div>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-slate-900 border border-slate-700 rounded text-slate-300">
+            <strong>Outcome:</strong> Candidate B (OPEN, Rank 2) is displaced because Candidate A claimed the OPEN seat on pure merit, leaving the OBC quota available for Candidate C.
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script>
@@ -97,13 +146,11 @@
       const r2El = document.getElementById('round2Results');
       const verdictEl = document.getElementById('auditVerdict');
 
-      // Round 1 Baseline
       r1El.innerHTML = `
         <li><span class="text-indigo-400">Applicant 001 (Rank 1)</span> → IIT Bombay CSE</li>
         <li><span class="text-emerald-400">Applicant 002 (Rank 2)</span> → IIT Delhi CSE</li>
       `;
 
-      // Round 2 Dynamic
       let r2Applicant1 = shock === 'WITHDRAW' ? '<span class="text-rose-400">Withdrawn (Seat Released)</span>' : 'IIT Bombay CSE';
       let r2Applicant2 = '';
       let verdict = '';
@@ -131,6 +178,12 @@
 
       verdictEl.innerHTML = verdict;
       resultsArea.classList.remove('hidden');
+    }
+
+    function runQuotaDemo() {
+      document.getElementById('openSeatResult').textContent = "Candidate A (Rank 1, OBC)";
+      document.getElementById('obcSeatResult').textContent = "Candidate C (Rank 3, OBC)";
+      document.getElementById('quotaResultsArea').classList.remove('hidden');
     }
   </script>
 </body>
