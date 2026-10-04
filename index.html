@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalyst Lab | JoSAA Mechanism Design Audit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans">
+  <div class="max-w-5xl mx-auto px-6 py-12">
+    <!-- Header -->
+    <header class="border-b border-slate-800 pb-8 mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight text-white">Catalyst Lab</h1>
+          <p class="text-sm text-slate-400 mt-1">Mechanism Design & Algorithmic Allocation Testbed</p>
+        </div>
+        <a href="https://github.com/thetarocks/catalyst-lab" target="_blank" 
+           class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-lg font-mono transition border border-slate-700">
+          github.com/thetarocks/catalyst-lab ↗
+        </a>
+      </div>
+    </header>
+
+    <!-- Project Overview -->
+    <section class="mb-10 bg-slate-900/60 p-6 rounded-xl border border-slate-800">
+      <h2 class="text-lg font-semibold text-white mb-2">Flagship Audit: Is JoSAA Truly Strategy-Proof?</h2>
+      <p class="text-slate-300 text-sm leading-relaxed mb-4">
+        Static Gale-Shapley Deferred Acceptance mathematically guarantees strategy-proofness. However, India's JoSAA seat allocation runs across multiple discrete rounds with <span class="text-indigo-400 font-mono font-medium">Freeze</span>, <span class="text-emerald-400 font-mono font-medium">Float</span>, and <span class="text-amber-400 font-mono font-medium">Slide</span> choices combined with dynamic candidate withdrawals.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+          <div class="text-slate-400">Baseline Algorithm</div>
+          <div class="text-white font-medium text-sm mt-0.5">Student-Proposing DA</div>
+        </div>
+        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+          <div class="text-slate-400">Dynamic Actions</div>
+          <div class="text-white font-medium text-sm mt-0.5">Freeze / Float / Slide</div>
+        </div>
+        <div class="p-3 bg-slate-950 rounded-lg border border-slate-800">
+          <div class="text-slate-400">Core Guarantee</div>
+          <div class="text-amber-400 font-medium text-sm mt-0.5">Weakly Strategy-Proof</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Simulator Sandbox -->
+    <section class="mb-10">
+      <h2 class="text-lg font-semibold text-white mb-4">Interactive Round Simulator</h2>
+      <div class="bg-slate-900/40 p-6 rounded-xl border border-slate-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">Candidate Action (Applicant 002)</label>
+            <select id="actionSelect" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+              <option value="FLOAT">FLOAT (Hold seat, upgrade anywhere)</option>
+              <option value="FREEZE">FREEZE (Lock seat permanently)</option>
+              <option value="SLIDE">SLIDE (Upgrade only within same institute)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">Upstream Shock (Applicant 001)</label>
+            <select id="shockSelect" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+              <option value="WITHDRAW">Candidate 001 WITHDRAWS in Round 2</option>
+              <option value="STAY">Candidate 001 RETAINS seat</option>
+            </select>
+          </div>
+        </div>
+
+        <button onclick="runSimulation()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm px-5 py-2.5 rounded-lg transition shadow-sm">
+          Run 2-Round Simulation
+        </button>
+
+        <!-- Results Display -->
+        <div id="resultsArea" class="mt-6 pt-6 border-t border-slate-800 hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+              <div class="text-xs font-mono text-slate-400 mb-2">ROUND 1 ALLOCATION</div>
+              <ul id="round1Results" class="text-sm space-y-1 font-mono text-slate-300"></ul>
+            </div>
+            <div class="bg-slate-950 p-4 rounded-lg border border-slate-800">
+              <div class="text-xs font-mono text-slate-400 mb-2">ROUND 2 ALLOCATION (AFTER SHOCKS)</div>
+              <ul id="round2Results" class="text-sm space-y-1 font-mono text-slate-300"></ul>
+            </div>
+          </div>
+          <div id="auditVerdict" class="mt-4 p-4 rounded-lg text-xs leading-relaxed font-mono"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function runSimulation() {
+      const action = document.getElementById('actionSelect').value;
+      const shock = document.getElementById('shockSelect').value;
+      const resultsArea = document.getElementById('resultsArea');
+      const r1El = document.getElementById('round1Results');
+      const r2El = document.getElementById('round2Results');
+      const verdictEl = document.getElementById('auditVerdict');
+
+      // Round 1 Baseline
+      r1El.innerHTML = `
+        <li><span class="text-indigo-400">Applicant 001 (Rank 1)</span> → IIT Bombay CSE</li>
+        <li><span class="text-emerald-400">Applicant 002 (Rank 2)</span> → IIT Delhi CSE</li>
+      `;
+
+      // Round 2 Dynamic
+      let r2Applicant1 = shock === 'WITHDRAW' ? '<span class="text-rose-400">Withdrawn (Seat Released)</span>' : 'IIT Bombay CSE';
+      let r2Applicant2 = '';
+      let verdict = '';
+
+      if (shock === 'WITHDRAW') {
+        if (action === 'FLOAT') {
+          r2Applicant2 = '<span class="text-emerald-300 font-bold">IIT Bombay CSE (Upgraded via Float)</span>';
+          verdict = '<div class="bg-emerald-950/40 border border-emerald-800/60 text-emerald-300 p-3 rounded"><strong>Audit Result:</strong> Floating captured the vacancy cascade. Candidate 002 strictly benefited from multi-round flexibility.</div>';
+        } else if (action === 'FREEZE') {
+          r2Applicant2 = 'IIT Delhi CSE (Locked via Freeze)';
+          verdict = '<div class="bg-amber-950/40 border border-amber-800/60 text-amber-300 p-3 rounded"><strong>Audit Result:</strong> Premature Freeze resulted in an opportunity loss. Candidate 002 was unable to claim the vacant IIT Bombay seat.</div>';
+        } else if (action === 'SLIDE') {
+          r2Applicant2 = 'IIT Delhi CSE (Cannot slide to IIT Bombay)';
+          verdict = '<div class="bg-slate-900 border border-slate-700 text-slate-300 p-3 rounded"><strong>Audit Result:</strong> Slide restricted matching strictly within IIT Delhi. Candidate 002 held their seat despite IIT Bombay opening up.</div>';
+        }
+      } else {
+        r2Applicant2 = 'IIT Delhi CSE (No seat change)';
+        verdict = '<div class="bg-slate-900 border border-slate-700 text-slate-300 p-3 rounded"><strong>Audit Result:</strong> No upstream vacancies occurred; allocations remained stable at equilibrium.</div>';
+      }
+
+      r2El.innerHTML = `
+        <li><span class="text-indigo-400">Applicant 001</span> → ${r2Applicant1}</li>
+        <li><span class="text-emerald-400">Applicant 002</span> → ${r2Applicant2}</li>
+      `;
+
+      verdictEl.innerHTML = verdict;
+      resultsArea.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
