@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+x<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -43,16 +43,16 @@
       </div>
     </header>
 
-    <!-- NEW MODULE: Interactive Personalized Simulator -->
+    <!-- Interactive Simulator (Wide Rank Range) -->
     <section class="bg-slate-900/90 border border-indigo-500/30 rounded-xl p-6 space-y-6 shadow-xl relative overflow-hidden">
       <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none"></div>
       
       <div class="flex items-center justify-between border-b border-slate-800 pb-4">
         <div>
           <h2 class="text-lg font-bold text-white flex items-center gap-2">
-            <span class="text-indigo-400">⚡</span> Interactive Simulator: Test Your Custom Profile
+            <span class="text-indigo-400">⚡</span> Interactive Simulator: Full-Rank Allocation & Regret
           </h2>
-          <p class="text-xs text-slate-400 mt-1">Plug in your rank, order your choices, and simulate multi-round clearing under upstream dropouts.</p>
+          <p class="text-xs text-slate-400 mt-1">Calibrated from Ranks 1 to 25,000+ across top IITs, NITs, and lower-tier branches.</p>
         </div>
         <span class="text-xs px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 font-mono">Live Engine</span>
       </div>
@@ -61,20 +61,21 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
         <div>
           <label class="block text-slate-400 font-mono mb-1.5">Your Merit Rank (CRL)</label>
-          <input id="user-rank" type="number" value="45" min="1" max="1500" 
+          <input id="user-rank" type="number" value="5400" min="1" max="30000" 
                  class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white font-mono focus:outline-none focus:border-indigo-500" />
+          <span class="text-[10px] text-slate-500 mt-1 block">Try 45, 1200, 5400, 11000, or 18000</span>
         </div>
         <div>
           <label class="block text-slate-400 font-mono mb-1.5">Category</label>
           <select id="user-category" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white font-mono focus:outline-none focus:border-indigo-500">
             <option value="OPEN">OPEN (General)</option>
-            <option value="OBC">OBC-NCL</option>
+            <option value="OBC">OBC-NCL (~1.3x rank multiplier)</option>
           </select>
         </div>
         <div>
           <label class="block text-slate-400 font-mono mb-1.5">Round 2 Dynamic Action</label>
           <select id="user-action" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white font-mono focus:outline-none focus:border-indigo-500">
-            <option value="FLOAT">FLOAT (Retain seat, hunt upstream upgrade)</option>
+            <option value="FLOAT">FLOAT (Hold seat, capture upstream cascade)</option>
             <option value="FREEZE">FREEZE (Lock Round 1 seat permanently)</option>
             <option value="SLIDE">SLIDE (Upgrade only within same institute)</option>
           </select>
@@ -83,36 +84,59 @@
 
       <!-- Preference Builder -->
       <div class="space-y-2">
-        <label class="block text-xs font-mono text-slate-400">Your Preference List (Priority 1 = Highest):</label>
+        <label class="block text-xs font-mono text-slate-400">Your Preference Order (Choice 1 = Highest Aspiration):</label>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
           <div>
-            <span class="text-slate-500 font-mono">Choice #1</span>
+            <span class="text-slate-500 font-mono">Choice #1 (Dream Choice)</span>
             <select id="pref-1" class="w-full mt-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white font-mono">
-              <option value="IIT Bombay - Computer Science and Engineering" selected>IIT Bombay - CSE</option>
-              <option value="IIT Delhi - Computer Science and Engineering">IIT Delhi - CSE</option>
-              <option value="IIT Bombay - Electrical Engineering">IIT Bombay - EE</option>
-              <option value="IIT Delhi - Electrical Engineering">IIT Delhi - EE</option>
-              <option value="IIT Madras - Computer Science and Engineering">IIT Madras - CSE</option>
+              <optgroup label="Tier 1: Top IITs & NITs">
+                <option value="IIT Bombay - Computer Science and Engineering">IIT Bombay - CSE</option>
+                <option value="IIT Delhi - Electrical Engineering">IIT Delhi - EE</option>
+                <option value="NIT Tiruchirappalli - Computer Science and Engineering">NIT Trichy - CSE</option>
+              </optgroup>
+              <optgroup label="Tier 2: Mid-Rank Branches & NITs">
+                <option value="IIT Roorkee - Civil Engineering">IIT Roorkee - Civil</option>
+                <option value="NIT Warangal - Electronics and Communication Engineering" selected>NIT Warangal - ECE</option>
+                <option value="NIT Calicut - Computer Science and Engineering">NIT Calicut - CSE</option>
+              </optgroup>
+              <optgroup label="Tier 3: Lower Ranks & Core Engineering">
+                <option value="VNIT Nagpur - Mechanical Engineering">VNIT Nagpur - Mechanical</option>
+                <option value="NIT Rourkela - Chemical Engineering">NIT Rourkela - Chemical</option>
+                <option value="NIT Silchar - Civil Engineering">NIT Silchar - Civil</option>
+              </optgroup>
             </select>
           </div>
           <div>
-            <span class="text-slate-500 font-mono">Choice #2</span>
+            <span class="text-slate-500 font-mono">Choice #2 (Realistic Target)</span>
             <select id="pref-2" class="w-full mt-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white font-mono">
-              <option value="IIT Delhi - Computer Science and Engineering" selected>IIT Delhi - CSE</option>
-              <option value="IIT Bombay - Computer Science and Engineering">IIT Bombay - CSE</option>
-              <option value="IIT Bombay - Electrical Engineering">IIT Bombay - EE</option>
-              <option value="IIT Delhi - Electrical Engineering">IIT Delhi - EE</option>
-              <option value="IIT Madras - Computer Science and Engineering">IIT Madras - CSE</option>
+              <optgroup label="Tier 1: Top IITs & NITs">
+                <option value="IIT Delhi - Electrical Engineering">IIT Delhi - EE</option>
+                <option value="NIT Tiruchirappalli - Computer Science and Engineering">NIT Trichy - CSE</option>
+              </optgroup>
+              <optgroup label="Tier 2: Mid-Rank Branches & NITs">
+                <option value="IIT Roorkee - Civil Engineering">IIT Roorkee - Civil</option>
+                <option value="NIT Calicut - Computer Science and Engineering" selected>NIT Calicut - CSE</option>
+                <option value="NIT Warangal - Electronics and Communication Engineering">NIT Warangal - ECE</option>
+              </optgroup>
+              <optgroup label="Tier 3: Lower Ranks & Core Engineering">
+                <option value="VNIT Nagpur - Mechanical Engineering">VNIT Nagpur - Mechanical</option>
+                <option value="NIT Rourkela - Chemical Engineering">NIT Rourkela - Chemical</option>
+                <option value="NIT Silchar - Civil Engineering">NIT Silchar - Civil</option>
+              </optgroup>
             </select>
           </div>
           <div>
-            <span class="text-slate-500 font-mono">Choice #3</span>
+            <span class="text-slate-500 font-mono">Choice #3 (Safety Option)</span>
             <select id="pref-3" class="w-full mt-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-white font-mono">
-              <option value="IIT Bombay - Electrical Engineering" selected>IIT Bombay - EE</option>
-              <option value="IIT Bombay - Computer Science and Engineering">IIT Bombay - CSE</option>
-              <option value="IIT Delhi - Computer Science and Engineering">IIT Delhi - CSE</option>
-              <option value="IIT Delhi - Electrical Engineering">IIT Delhi - EE</option>
-              <option value="IIT Madras - Computer Science and Engineering">IIT Madras - CSE</option>
+              <optgroup label="Tier 2: Mid-Rank Branches & NITs">
+                <option value="IIT Roorkee - Civil Engineering">IIT Roorkee - Civil</option>
+                <option value="NIT Calicut - Computer Science and Engineering">NIT Calicut - CSE</option>
+              </optgroup>
+              <optgroup label="Tier 3: Lower Ranks & Core Engineering">
+                <option value="VNIT Nagpur - Mechanical Engineering" selected>VNIT Nagpur - Mechanical</option>
+                <option value="NIT Rourkela - Chemical Engineering">NIT Rourkela - Chemical</option>
+                <option value="NIT Silchar - Civil Engineering">NIT Silchar - Civil</option>
+              </optgroup>
             </select>
           </div>
         </div>
@@ -125,14 +149,14 @@
       <!-- Results Display -->
       <div id="user-results" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono pt-2">
         <div class="p-4 bg-slate-950 border border-slate-800 rounded-lg space-y-2">
-          <div class="text-slate-400">Round 1 Allocation</div>
+          <div class="text-slate-400">Round 1 Provisional Offer</div>
           <div id="user-r1-result" class="text-sm font-semibold text-white">--</div>
-          <div id="user-r1-note" class="text-slate-500 text-[11px]">Tentative provisional offer.</div>
+          <div id="user-r1-note" class="text-slate-500 text-[11px]">Tentative allocation under initial preference proposals.</div>
         </div>
         <div class="p-4 bg-slate-950 border border-slate-800 rounded-lg space-y-2">
           <div class="text-slate-400">Round 2 Allocation (Post-Dropout Cascade)</div>
           <div id="user-r2-result" class="text-sm font-semibold text-white">--</div>
-          <div id="user-r2-note" class="text-slate-500 text-[11px]">Evaluation after stochastic withdrawals.</div>
+          <div id="user-r2-note" class="text-slate-500 text-[11px]">Resulting assignment after upstream candidates withdraw.</div>
         </div>
         <div id="user-verdict" class="md:col-span-2 p-3 rounded-lg border text-xs"></div>
       </div>
@@ -268,39 +292,50 @@
       }
     });
 
-    // Custom Interactive Simulator Engine
+    // Custom Interactive Simulator Engine (Ranks 1 to 25,000+)
     document.getElementById("btn-run-user").addEventListener("click", () => {
-      const rank = parseInt(document.getElementById("user-rank").value, 10) || 50;
+      const rawRank = parseInt(document.getElementById("user-rank").value, 10) || 5400;
       const category = document.getElementById("user-category").value;
       const action = document.getElementById("user-action").value;
       
+      // Effective rank adjustment under category relaxation
+      const effectiveRank = category === "OBC" ? Math.floor(rawRank * 0.72) : rawRank;
+
       const p1 = document.getElementById("pref-1").value;
       const p2 = document.getElementById("pref-2").value;
       const p3 = document.getElementById("pref-3").value;
       const userPrefs = [p1, p2, p3];
 
-      // Cutoffs thresholds calibrated from sample_josaa_cutoffs.csv
+      // Round 1 and Round 2 (Post-Cascade) Empirical Cutoffs
       const cutoffsR1 = {
-        "IIT Bombay - Computer Science and Engineering": category === "OBC" ? 50 : 25,
-        "IIT Delhi - Computer Science and Engineering": category === "OBC" ? 100 : 60,
-        "IIT Bombay - Electrical Engineering": 200,
-        "IIT Delhi - Electrical Engineering": 350,
-        "IIT Madras - Computer Science and Engineering": 120
+        "IIT Bombay - Computer Science and Engineering": 68,
+        "IIT Delhi - Electrical Engineering": 550,
+        "NIT Tiruchirappalli - Computer Science and Engineering": 1500,
+        "NIT Warangal - Electronics and Communication Engineering": 4800,
+        "NIT Calicut - Computer Science and Engineering": 5500,
+        "IIT Roorkee - Civil Engineering": 6200,
+        "VNIT Nagpur - Mechanical Engineering": 14500,
+        "NIT Rourkela - Chemical Engineering": 16000,
+        "NIT Silchar - Civil Engineering": 24500
       };
 
-      // In Round 2, upstream dropouts expand cutoffs slightly (vacancy cascade)
+      // Upstream vacancies trigger rank expansion in Round 2
       const cutoffsR2 = {
-        "IIT Bombay - Computer Science and Engineering": category === "OBC" ? 75 : 45,
-        "IIT Delhi - Computer Science and Engineering": category === "OBC" ? 140 : 90,
-        "IIT Bombay - Electrical Engineering": 280,
-        "IIT Delhi - Electrical Engineering": 450,
-        "IIT Madras - Computer Science and Engineering": 160
+        "IIT Bombay - Computer Science and Engineering": 85,
+        "IIT Delhi - Electrical Engineering": 680,
+        "NIT Tiruchirappalli - Computer Science and Engineering": 1850,
+        "NIT Warangal - Electronics and Communication Engineering": 5600,
+        "NIT Calicut - Computer Science and Engineering": 6400,
+        "IIT Roorkee - Civil Engineering": 7200,
+        "VNIT Nagpur - Mechanical Engineering": 16200,
+        "NIT Rourkela - Chemical Engineering": 18000,
+        "NIT Silchar - Civil Engineering": 27000
       };
 
       // Determine Round 1 match
       let r1Match = null;
       for (let choice of userPrefs) {
-        if (rank <= cutoffsR1[choice]) {
+        if (effectiveRank <= (cutoffsR1[choice] || 0)) {
           r1Match = choice;
           break;
         }
@@ -309,10 +344,19 @@
       // Determine Round 2 match
       let r2Match = r1Match;
       if (action === "FREEZE" || !r1Match) {
-        r2Match = r1Match;
+        // If unmatched in R1, they still try in R2
+        if (!r1Match) {
+          for (let choice of userPrefs) {
+            if (effectiveRank <= (cutoffsR2[choice] || 0)) {
+              r2Match = choice;
+              break;
+            }
+          }
+        } else {
+          r2Match = r1Match;
+        }
       } else {
         const currentChoiceIdx = userPrefs.indexOf(r1Match);
-        // Look for upstream upgrades in higher preferences
         for (let i = 0; i < currentChoiceIdx; i++) {
           let potentialChoice = userPrefs[i];
           if (action === "SLIDE") {
@@ -320,7 +364,7 @@
             const potInst = potentialChoice.split(" - ")[0];
             if (currentInst !== potInst) continue;
           }
-          if (rank <= cutoffsR2[potentialChoice]) {
+          if (effectiveRank <= (cutoffsR2[potentialChoice] || 0)) {
             r2Match = potentialChoice;
             break;
           }
@@ -335,20 +379,24 @@
 
       resContainer.classList.remove("hidden");
       r1Res.innerText = r1Match ? r1Match : "No Allocation (Rank exceeded Round 1 cutoffs)";
-      r2Res.innerText = r2Match ? r2Match : "No Allocation";
+      r2Res.innerText = r2Match ? r2Match : "No Allocation (Rank exceeded Round 2 cutoffs)";
 
       if (r1Match && r2Match && userPrefs.indexOf(r2Match) < userPrefs.indexOf(r1Match)) {
         r2Res.className = "text-sm font-semibold text-emerald-400";
         verdict.className = "md:col-span-2 p-3 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-xs font-mono";
-        verdict.innerHTML = `<strong>Upgrade Achieved:</strong> By choosing <strong>${action}</strong>, you successfully rode the vacancy cascade from Choice #${userPrefs.indexOf(r1Match)+1} to Choice #${userPrefs.indexOf(r2Match)+1}!`;
-      } else if (action === "FREEZE" && rank <= cutoffsR2[userPrefs[0]] && r1Match !== userPrefs[0]) {
+        verdict.innerHTML = `<strong>Vacancy Cascade Upgrade:</strong> By selecting <strong>${action}</strong>, you retained your provisional seat while capturing an upstream vacancy chain, upgrading from Choice #${userPrefs.indexOf(r1Match)+1} (${r1Match}) to Choice #${userPrefs.indexOf(r2Match)+1} (${r2Match})!`;
+      } else if (action === "FREEZE" && r1Match && effectiveRank <= (cutoffsR2[userPrefs[0]] || 0) && r1Match !== userPrefs[0]) {
         r2Res.className = "text-sm font-semibold text-amber-400";
         verdict.className = "md:col-span-2 p-3 rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-mono";
-        verdict.innerHTML = `<strong>Regret Warning:</strong> You chose <strong>FREEZE</strong>. Had you chosen <strong>FLOAT</strong>, you would have upgraded to ${userPrefs[0]} in Round 2 due to upstream dropouts!`;
+        verdict.innerHTML = `<strong>Regret Detected:</strong> You chose <strong>FREEZE</strong> and locked ${r1Match}. Had you opted for <strong>FLOAT</strong>, you would have upgraded to ${userPrefs[0]} due to post-Round 1 dropouts!`;
+      } else if (!r1Match && r2Match) {
+        r2Res.className = "text-sm font-semibold text-emerald-400";
+        verdict.className = "md:col-span-2 p-3 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-xs font-mono";
+        verdict.innerHTML = `<strong>Round 2 Entry:</strong> Unallocated in Round 1, but qualified for Choice #${userPrefs.indexOf(r2Match)+1} (${r2Match}) as cutoffs expanded in Round 2.`;
       } else {
         r2Res.className = "text-sm font-semibold text-slate-200";
         verdict.className = "md:col-span-2 p-3 rounded-lg border border-slate-800 bg-slate-950 text-slate-300 text-xs font-mono";
-        verdict.innerText = "Stationary Outcome: Candidate retained their highest attainable preference across both rounds.";
+        verdict.innerText = "Stationary Allocation: Candidate retained their optimal attainable preference across rounds.";
       }
     });
   </script>

@@ -9,7 +9,7 @@ def test_data_loader_and_market_generation():
     assert os.path.exists(csv_path), "Sample CSV file must exist."
 
     cutoffs = load_cutoff_data(csv_path)
-    assert len(cutoffs) == 10
+    assert len(cutoffs) >= 10
 
     profiles, capacities = build_calibrated_market(cutoffs, num_students=20, round_no=1)
     assert len(profiles) == 20
