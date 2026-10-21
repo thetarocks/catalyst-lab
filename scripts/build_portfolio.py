@@ -88,24 +88,19 @@ def wrap(raw,title,depth=0,interactive=False):
  prefix='../'*depth or './'
  raw=raw.replace('src="https://lab.yourcatalyst.in/experiments/assets/',f'src="{prefix}assets/illustrations/')
  raw=re.sub(r'>Maths &(?:amp;)? code</a', '>Finance notebook</a', raw, count=1).replace('href="https://lab.yourcatalyst.in/experiments/learn.html"','href="https://lab.yourcatalyst.in/experiments/"',1)
- raw=raw.replace('href="/aboutme/#',f'href="{prefix}aboutme/#')
+ for page in ['aboutme','projects']:
+  raw=raw.replace(f'href="/{page}/#',f'href="{prefix}{page}/#')
  for old,new in [('href="/"',f'href="{prefix}"'),('href="/projects/"',f'href="{prefix}projects/"'),('href="/aboutme/"',f'href="{prefix}aboutme/"')]:raw=raw.replace(old,new)
  for folder in ['artifacts','evidence']:
   raw=raw.replace(f'href="{folder}/',f'href="{prefix}{folder}/')
  return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Quantitative mechanism design and market audits. Reproducible matching, governance and finance experiments with explicit assumptions, source code and benchmark evidence."><meta name="theme-color" content="#172b24"><title>{title} · Your Catalyst</title><link rel="icon" href="{prefix}assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="{prefix}assets/site.css?v={version}"><link rel="stylesheet" href="{prefix}assets/allocation/suite.css"><script type="module" src="{prefix}assets/site.mjs?v={version}"></script></head><body><a class="skip-link" href="#page-content">Skip to content</a><main id="page-content">{raw}</main></body></html>'''
-front=(r/'wordpress/front-page.html').read_text()
-front=front.replace('A PERSONAL LAB FOR ECONOMICS + CODE','SEATS. VOTES. MONEY. / RULES WITH CONSEQUENCES.')
-front=re.sub(r'Small rules\.<br\s*/?>\s*Big','Rules, tested.<br />Outcomes,',front)
-front=re.sub(r'effects\.</em\s*>','explained.</em>',front)
-front=front.replace('Markets are made of decisions. Pull one thread and see what changes.','I build open-source tools to stress-test how seats, votes and money are allocated. Change an assumption. Follow who gains and who loses.')
-front=front.replace('Explore the experiments ↘','The 60-second overview ↘').replace('href="#experiments"','href="#overview"',1)
-# Insert primary audits before the existing six-experiment collection.
-pos=front.index('<section\n      id="experiments"') if '<section\n      id="experiments"' in front else front.index('<section id="experiments"')
-motivation='<section class="motivation-bridge"><p class="research-eyebrow">WHY I BUILD THESE</p><h2>Politics made me<br><em>look at the rules.</em></h2><p>I got interested in mechanism design through its parallels with real-life politics: whose voice counts, who gets access, and how a rule changes the balance of influence. These projects turn those questions into something I can change, run and question.</p><a href="/aboutme/">More about the motivation ↗</a></section>'
-hero_end=front.index('</section>')+len('</section>')
-front=front[:hero_end]+overview+research+validation+motivation+finance+front[hero_end:pos]+architecture+front[pos:]
-front=front.replace('06 interactive models / Open source / Built to be questioned','Two flagship projects / Six-model teaching lab / Open evidence')
-front=enrich(front)
+# Keep the homepage a concise index; full project methods remain on Projects.
+legacy_front=(r/'wordpress/front-page.html').read_text()
+home_header=re.search(r'<header\b.*?</header>',legacy_front,re.S).group(0)
+home_footer=re.search(r'<footer\b.*?</footer>',legacy_front,re.S).group(0)
+front=(r/'scripts/templates/home.html').read_text()
+for token,value in [('header',home_header),('footer',home_footer),('sybil',mini_sybil),('allocation',mini_da)]:
+ front=front.replace('{{'+token+'}}',value)
 (site/'index.html').write_text(wrap(front,'Quantitative mechanism design & market audits',interactive=True))
 projects=(r/'wordpress/projects.blocks.html').read_text();pos=re.search(r'<section\s+id="experiments"',projects).start();projects=projects[:pos]+overview+research+validation+finance+projects[pos:];projects=enrich(projects)
 (site/'projects/index.html').write_text(wrap(projects,'Projects',1,True))
