@@ -45,3 +45,9 @@ The automated suite checks pricing benchmarks, exact small examples, conservatio
 ## Attribution and authorship
 
 Original models are attributed in the interface. This extension was developed with AI coding assistance. The notebook keeps the kernels, assumptions and intermediate quantities inspectable for review and further development.
+
+## Maths and code companion
+
+[Read the companion guide](https://lab.yourcatalyst.in/experiments/learn.html) for step-by-step derivations, hand-worked examples, kernel walkthroughs, computational complexity, validation scope and questions for further study. `learn.html` is self-contained and can also be read offline. `topics.mjs` supplies the subject-led navigation labels shared by the notebook index and experiment headers.
+
+The index includes a live order-book preview powered by the same `orderbook()` kernel as the full simulator. Search and category filters run locally. The interface respects reduced-motion preferences, keeps chart data available in tables and supports horizontal chart scrolling on small screens.

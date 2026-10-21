@@ -1,5 +1,7 @@
 import { experiments } from "./content.mjs";
 import { models } from "./models.mjs";
+import { topics } from "./topics.mjs";
+import { mountQuickPreview } from "./quick-preview.mjs";
 const main = document.querySelector("main");
 const colors = [
   "#286044",
@@ -43,7 +45,8 @@ function chart(c, index) {
   }
   const yPad = (maxY - minY) * 0.08;
   maxY += yPad;
-  if (c.kind !== "histogram") minY -= yPad;
+  if (c.kind !== "histogram")
+    minY = minY >= 0 ? Math.max(0, minY - yPad) : minY - yPad;
   const W = 700,
     H = 315,
     left = 65,
@@ -76,7 +79,7 @@ function chart(c, index) {
     }
   });
   svg += `<text x="${(W + left - right) / 2}" y="${H - 4}" text-anchor="middle" font-size="12" fill="#626c65">${esc(c.x)}</text><text x="15" y="${(H - bottom + top) / 2}" text-anchor="middle" transform="rotate(-90 15 ${(H - bottom + top) / 2})" font-size="11" fill="#626c65">${esc(c.y)}</text></svg>`;
-  return `<figure class="chart"><h3>${esc(c.title)}</h3>${svg}<figcaption class="legend">${c.series.map((s, i) => `<span><i style="background:${colors[i % colors.length]}"></i>${esc(s.name)}</span>`).join("")}</figcaption><details><summary>Read chart data (${all.length.toLocaleString()} points)</summary><div class="chart-data"><table><thead><tr><th>Series</th><th>${esc(c.x)}</th><th>${esc(c.y)}</th></tr></thead><tbody>${c.series.map((s) => s.points.map(([x, y]) => `<tr><th scope="row">${esc(s.name)}</th><td>${fmt(x)}</td><td>${fmt(y)}</td></tr>`).join("")).join("")}</tbody></table></div></details></figure>`;
+  return `<figure class="chart"><h3>${esc(c.title)}</h3><p class="chart-hint">Swipe the chart to see the full axes, or open its data table.</p><div class="plot-scroll" tabindex="0" role="region" aria-label="${esc(c.title)} — scrollable chart">${svg}</div><figcaption class="legend">${c.series.map((s, i) => `<span><i style="background:${colors[i % colors.length]}"></i>${esc(s.name)}</span>`).join("")}</figcaption><details><summary>Read chart data (${all.length.toLocaleString()} points)</summary><div class="chart-data"><table><thead><tr><th>Series</th><th>${esc(c.x)}</th><th>${esc(c.y)}</th></tr></thead><tbody>${c.series.map((s) => s.points.map(([x, y]) => `<tr><th scope="row">${esc(s.name)}</th><td>${fmt(x)}</td><td>${fmt(y)}</td></tr>`).join("")).join("")}</tbody></table></div></details></figure>`;
 }
 function network({ L, defaults }) {
   const n = L.length,
@@ -104,16 +107,73 @@ function network({ L, defaults }) {
 function index() {
   activeId = null;
   document.title = "Experiments · Your Catalyst";
-  main.innerHTML = `<section class="hero"><div><p class="eyebrow">A notebook of computational experiments</p><h1>Good questions.<br>Testable models.</h1><p class="lede">What happens when an economic rule meets a messy constraint? Six experiments in markets, money and the systems that connect them.</p></div><aside class="notebook"><p class="section-label">How to use this notebook</p><p>Start with a question. Change an assumption. Follow the mechanism through the numbers.</p><p>Each experiment includes its model, a worked example and the places where the explanation stops holding.</p><p class="small">No live prices. No black-box forecasts. Every stochastic run has a seed.</p></aside></section><div class="catalog-head"><span>FIELD NOTES / 6 EXPERIMENTS</span><span>INTERACTIVE MODELS + METHODS + SOURCE</span></div>${Object.entries(
-    experiments,
-  )
+  main.innerHTML = `<section class="hero"><div><p class="eyebrow">YOUR CATALYST / THE EXPERIMENT NOTEBOOK</p><h1>Economics you<br>can experiment with.</h1><p class="lede">Six working models of markets, risk and incentives. Change an assumption, inspect the result, then open the mathematics behind it.</p><div class="hero-links"><a class="text-button" href="./learn.html">Read the maths & code guide →</a><a href="https://github.com/thetarocks/catalyst-lab/tree/main/experiments">Browse the source ↗</a></div></div><aside class="quick-preview" aria-label="Try a market order"></aside></section><div class="catalog-tools"><div class="filter-pills" role="group" aria-label="Filter experiments"><button type="button" data-filter="all" aria-pressed="true">All six</button><button type="button" data-filter="execution" aria-pressed="false">Market execution</button><button type="button" data-filter="risk-models" aria-pressed="false">Risk & networks</button><button type="button" data-filter="incentives" aria-pressed="false">Incentives</button></div><label class="model-search">Find a model<input id="model-search" type="search" placeholder="Search topics or methods…" autocomplete="off"></label></div><p id="filter-status" class="filter-status" role="status">6 experiments</p><p id="no-models" class="no-models" hidden>No matches. Try a different topic or clear the filters.</p>${[
+    [
+      "execution",
+      "Market execution",
+      "How trades become prices.",
+      ["orderbook", "amm"],
+    ],
+    [
+      "risk-models",
+      "Risk & networks",
+      "What a risk measure or a hedge can leave out.",
+      ["hedge", "risk", "contagion"],
+    ],
+    [
+      "incentives",
+      "Incentives & allocation",
+      "How the rules change the way people bid.",
+      ["auctions"],
+    ],
+  ]
     .map(
-      ([id, e]) =>
-        `<a class="experiment-row" href="#${id}"><span class="serial">${e.no}</span><div><p class="tag">${e.area}</p><h2>${e.title}</h2><span class="small">${e.subtitle}</span></div><p class="row-desc">${e.question}</p><span class="row-arrow" aria-hidden="true">↗</span></a>`,
+      ([anchor, title, description, ids], i) =>
+        `<section class="catalog-group" id="${anchor}"><div class="group-heading"><span class="serial">0${i + 1}</span><div><h2>${title}</h2><p>${description}</p></div></div><div class="catalog-grid">${ids
+          .map((id) => {
+            const e = experiments[id],
+              t = topics[id];
+            return `<article class="experiment-card" data-model="${id}"><p class="tag">EXPERIMENT ${e.no} / ${t.cs}</p><h3><a href="#${id}">${t.name} <span aria-hidden="true">↗</span></a></h3><p class="card-question">${e.question}</p><p class="card-output"><strong>Explore:</strong> ${t.explore}</p><div class="card-bottom"><a href="#${id}">Run the experiment →</a><a href="./learn.html#${id}">Understand the model</a></div></article>`;
+          })
+          .join("")}</div></section>`,
     )
     .join(
       "",
-    )}<section class="index-note"><p class="section-label">Part of a larger inquiry</p><p>These models sit alongside the <a href="../">JoSAA allocation audit</a> and <a href="https://github.com/thetarocks/dao-sybil-resilience">DAO Sybil-resilience work</a>. The common thread is a practical one: encode a rule, inspect its behavior, and say exactly what the evidence supports.</p></section>`;
+    )}<section class="index-note"><div><p class="section-label">How the notebook is built</p><h2>Inspect the mechanism.</h2></div><div><p>Each experiment includes explicit assumptions, a worked example, numerical checks and primary references. The <a href="./learn.html#architecture">implementation guide</a> explains the shared architecture and the algorithms inside each model.</p><p class="small">Related work: <a href="../">JoSAA allocation audit</a> · <a href="https://github.com/thetarocks/dao-sybil-resilience">DAO Sybil resilience</a></p></div></section>`;
+  mountQuickPreview(main.querySelector(".quick-preview"));
+  let selectedCategory = "all";
+  const search = main.querySelector("#model-search");
+  function filterModels() {
+    const query = search.value.trim().toLocaleLowerCase();
+    let count = 0;
+    main.querySelectorAll(".catalog-group").forEach((group) => {
+      let visible = 0;
+      group.querySelectorAll("[data-model]").forEach((card) => {
+        const matches =
+          (selectedCategory === "all" || group.id === selectedCategory) &&
+          card.textContent.toLocaleLowerCase().includes(query);
+        card.hidden = !matches;
+        if (matches) {
+          count++;
+          visible++;
+        }
+      });
+      group.hidden = visible === 0;
+    });
+    main.querySelector("#filter-status").textContent =
+      `${count} experiment${count === 1 ? "" : "s"}${query ? " matching your search" : ""}`;
+    main.querySelector("#no-models").hidden = count !== 0;
+  }
+  main.querySelectorAll("[data-filter]").forEach((button) =>
+    button.addEventListener("click", () => {
+      selectedCategory = button.dataset.filter;
+      main
+        .querySelectorAll("[data-filter]")
+        .forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+      filterModels();
+    }),
+  );
+  search.addEventListener("input", filterModels);
 }
 function control(c) {
   if (c.options)
@@ -141,10 +201,17 @@ function readParams(e, query) {
 }
 function detail(id, query) {
   const e = experiments[id];
+  const topic = topics[id];
   activeId = id;
   document.title = `${e.title} · Your Catalyst`;
   const params = readParams(e, query);
-  main.innerHTML = `<a class="back" href="#">← All experiments</a><article><header class="detail-head"><p class="eyebrow">EXPERIMENT ${e.no} / ${e.area}</p><h1>${e.title}</h1><p class="subtitle">${e.subtitle}</p><p class="question">${e.question}</p><p class="intro">${e.intro}</p><div class="tags">${e.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div></header><section class="workspace" aria-label="Interactive experiment"><aside class="controls"><form><p class="section-label">The experiment</p><h2>Change an assumption.</h2>${e.controls.map(control).join("")}<div class="control"><label for="seed">Random seed</label><input id="seed" name="seed" type="number" min="0" max="4294967295" step="1" value="42"><p class="help">Same model + same inputs + same seed = same result. AMM results are analytic and do not use randomness.</p></div><p class="section-label">Try a starting point</p><div class="presets">${e.presets.map(([label], i) => `<button type="button" data-preset="${i}">${label}</button>`).join("")}</div><button class="primary" type="submit">Run experiment →</button><div class="actions"><button type="button" id="reset">Reset</button><button type="button" id="share">Copy run link</button><button type="button" id="json">JSON ↓</button><button type="button" id="csv">CSV ↓</button></div><p id="status" class="status" role="status" aria-live="polite"></p><div id="share-fallback"></div></form></aside><div id="results" aria-label="Simulation results"></div></section><section class="reading"><p class="eyebrow">MODEL NOTES / WHAT THE NUMBERS MEAN</p><h2>Open the model.</h2>${e.story.map(([title, text], i) => `<div class="step"><span class="serial">0${i + 1}</span><div><h3>${title}</h3><p>${text}</p></div></div>`).join("")}<pre class="equation">${esc(e.formula)}</pre><h3>A small worked example</h3><p>${e.worked}</p><h2>Two things to try</h2><ul>${e.try.map((t) => `<li>${t}</li>`).join("")}</ul><div class="method-box"><h3>Where this model stops</h3><p>${e.limits}</p></div><div class="method-box"><h3>Implementation & checks</h3><p>${e.engineering}</p><p><a href="https://github.com/thetarocks/catalyst-lab/blob/main/experiments/models.mjs">Read the model kernels ↗</a> · <a href="https://github.com/thetarocks/catalyst-lab/blob/main/experiments/models.test.mjs">Inspect the numerical tests ↗</a></p></div><div class="method-box"><h3>Reading behind the model</h3><ul>${e.sources.map(([l, u]) => `<li><a href="${u}">${l} ↗</a></li>`).join("")}</ul><p class="small">These are educational implementations of established models. Outputs are synthetic scenario results, not empirical findings or trading recommendations.</p></div><p><a href="#">← Back to the experiment notebook</a></p></section></article>`;
+  main.innerHTML = `<a class="back" href="#">← All experiments</a><article><header class="detail-head"><p class="eyebrow">EXPERIMENT ${e.no} / ${e.area}</p><h1>${topic.name}</h1><p class="subtitle">${e.title} · ${e.subtitle}</p><p class="question">${e.question}</p><p class="intro">${e.intro}</p><p class="detail-guide"><a href="./learn.html#${id}">Read the maths & code walkthrough ↗</a></p><div class="tags">${e.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div></header><nav class="section-nav" aria-label="On this page"><a href="#" data-section="simulator">01 / Experiment</a><a href="#" data-section="model-notes">02 / Model notes</a><a href="#" data-section="checks">03 / Code & checks</a><a href="#" data-section="references">04 / References</a></nav><section id="simulator" class="workspace" aria-label="Interactive experiment"><aside class="controls"><form><p class="section-label">The experiment</p><h2>Set the inputs.</h2><p class="help control-intro">Choose a scenario or adjust the controls, then run the model. Results stay fixed until the next run.</p>${e.controls.map(control).join("")}<div class="control"><label for="seed">Random seed</label><input id="seed" name="seed" type="number" min="0" max="4294967295" step="1" value="42"><p class="help">${id === "amm" ? "This model uses closed-form equations. The seed is recorded for consistency and does not affect the result." : "The same inputs and seed reproduce the same run."}</p></div><p class="section-label">Try a starting point</p><div class="presets">${e.presets.map(([label], i) => `<button type="button" data-preset="${i}">${label}</button>`).join("")}</div><button class="primary" type="submit">Run experiment →</button><div class="actions"><button type="button" id="reset">Reset</button><button type="button" id="share">Copy run link</button><button type="button" id="json">JSON ↓</button><button type="button" id="csv">CSV ↓</button></div><p id="status" class="status" role="status" aria-live="polite"></p><div id="share-fallback"></div></form></aside><div id="results" aria-label="Simulation results"></div></section><section id="model-notes" class="reading"><p class="eyebrow">MODEL NOTES / WHAT THE NUMBERS MEAN</p><h2>How to read this experiment.</h2><p class="reading-summary">Start with the mechanism below. For a derivation, an algorithm walkthrough and questions to test your understanding, open the <a href="./learn.html#${id}">${topic.name.toLowerCase()} guide</a>.</p>${e.story.map(([title, text], i) => `<div class="step"><span class="serial">0${i + 1}</span><div><h3>${title}</h3><p>${text}</p></div></div>`).join("")}<pre class="equation">${esc(e.formula)}</pre><h3>A small worked example</h3><p>${e.worked}</p><h2>Two things to try</h2><ul>${e.try.map((t) => `<li>${t}</li>`).join("")}</ul><div class="method-box"><h3>Where this model stops</h3><p>${e.limits}</p></div><div class="method-box" id="checks"><h3>Implementation & checks</h3><p>${e.engineering}</p><p><a href="https://github.com/thetarocks/catalyst-lab/blob/main/experiments/models.mjs">Read the model kernels ↗</a> · <a href="https://github.com/thetarocks/catalyst-lab/blob/main/experiments/models.test.mjs">Inspect the numerical tests ↗</a></p></div><div class="method-box" id="references"><h3>Reading behind the model</h3><ul>${e.sources.map(([l, u]) => `<li><a href="${u}">${l} ↗</a></li>`).join("")}</ul><p class="small">These are educational implementations of established models. Outputs are synthetic scenario results, not empirical findings or trading recommendations.</p></div><p><a href="#">← Back to the experiment notebook</a></p></section></article>`;
+  main.querySelectorAll("[data-section]").forEach((link) =>
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      document.getElementById(link.dataset.section).scrollIntoView();
+    }),
+  );
   const form = main.querySelector("form"),
     status = document.querySelector("#status");
   function apply(p) {
@@ -168,13 +235,13 @@ function detail(id, query) {
     try {
       const p = paramsFromForm();
       apply(p);
-      const start = performance.now(),
-        r = models[id](p);
+      const r = models[id](p);
       activeResult = r;
       activeParams = p;
       document.querySelector("#results").innerHTML =
         `<div class="metrics">${r.metrics.map((m) => `<div><div class="metric-label">${m.label}</div><div class="metric-value">${fmt(m.value)}<span>${m.unit}</span></div><p class="metric-note">${m.note}</p></div>`).join("")}</div><p class="insight">${r.insight}</p>${r.network ? network(r.network) : ""}${r.charts.map(chart).join("")}<details open><summary>${id === "orderbook" ? "Execution ledger" : "Model ledger"}</summary><table><thead><tr><th>Quantity</th><th>Value</th></tr></thead><tbody>${r.rows.map(([label, value]) => `<tr><th scope="row">${esc(label)}</th><td>${fmt(value)}</td></tr>`).join("")}</tbody></table></details><p class="small">Model version 1 · seed ${p.seed} · Run inputs are included in every export.</p>`;
-      status.textContent = `Completed · seed ${p.seed} · ${Math.round(performance.now() - start)} ms`;
+      status.classList.remove("error", "pending");
+      status.textContent = `Results updated · seed ${p.seed}`;
       history.replaceState(null, "", `#${id}?${new URLSearchParams(p)}`);
     } catch (err) {
       status.textContent =
@@ -189,8 +256,9 @@ function detail(id, query) {
   });
   form.addEventListener("input", () => {
     outputs();
+    status.classList.add("pending");
     status.textContent =
-      "Inputs changed. Run the experiment to update results.";
+      "Inputs changed. The results below show the previous run. Select Run experiment to update them.";
   });
   form.querySelectorAll("[data-preset]").forEach((b) =>
     b.addEventListener("click", () => {

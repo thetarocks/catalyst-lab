@@ -1,4 +1,46 @@
-# Catalyst Lab: Computational Mechanism Design & JoSAA Audit
+# Catalyst Lab — markets, risk & mechanism design
+
+An open-source notebook connecting economic rules to inspectable algorithms, interactive counterfactuals and numerical checks.
+
+**[Run the experiments](https://lab.yourcatalyst.in/experiments/) · [Read the maths & code guide](https://lab.yourcatalyst.in/experiments/learn.html) · [Visit Your Catalyst](https://yourcatalyst.in/)**
+
+![Interactive notebook with a live trading preview](docs/images/notebook-desktop.jpg)
+
+| Experiment | Mathematics & code | Try it |
+| --- | --- | --- |
+| Order-book execution | Price–time matching, partial fills, VWAP | [Simulator](https://lab.yourcatalyst.in/experiments/#orderbook) · [Explanation](https://lab.yourcatalyst.in/experiments/learn.html#orderbook) |
+| Automated market makers | Constant-product swaps, reserve invariants, LP divergence | [Simulator](https://lab.yourcatalyst.in/experiments/#amm) · [Explanation](https://lab.yourcatalyst.in/experiments/learn.html#amm) |
+| Discrete delta hedging | Black–Scholes, GBM paths, a self-financing ledger | [Simulator](https://lab.yourcatalyst.in/experiments/#hedge) · [Explanation](https://lab.yourcatalyst.in/experiments/learn.html#hedge) |
+| Portfolio tail risk | Correlated sampling, standardized Student-t shocks, VaR/ES | [Simulator](https://lab.yourcatalyst.in/experiments/#risk) · [Explanation](https://lab.yourcatalyst.in/experiments/learn.html#risk) |
+| Interbank contagion | Directed liabilities, proportional clearing, fixed-point iteration | [Simulator](https://lab.yourcatalyst.in/experiments/#contagion) · [Explanation](https://lab.yourcatalyst.in/experiments/learn.html#contagion) |
+| Auction design | Reserve-aware equilibrium bids and paired Monte Carlo | [Simulator](https://lab.yourcatalyst.in/experiments/#auctions) · [Explanation](https://lab.yourcatalyst.in/experiments/learn.html#auctions) |
+
+The browser models use synthetic inputs and established theory. Each includes assumptions, a worked example, primary references, numerical exports and validation. The [companion guide](experiments/learn.html) also covers algorithms, complexity, interpretation and possible extensions. [Implementation and reproducibility notes](experiments/README.md) describe the kernels and the use of coding assistance.
+
+## Explore the repository
+
+- [Model kernels](experiments/models.mjs) and [numerical tests](experiments/models.test.mjs)
+- [Interactive index](experiments/app.mjs), [live trading preview](experiments/quick-preview.mjs), and [styles](experiments/style.css)
+- [WordPress homepage, Projects, About and page-template source](wordpress/)
+- [Existing JoSAA simulator](https://lab.yourcatalyst.in/) and the original Python audit below
+
+## Run and verify
+
+No npm installation or build step is required for the browser notebook. Node 22+ runs the JavaScript checks.
+
+```sh
+python3 -m http.server 8765
+# Visit http://localhost:8765/experiments/
+node --test experiments/models.test.mjs
+python -m pip install pytest
+python -m pytest -q
+```
+
+The validation workflow runs 32 JavaScript model tests and 10 Python JoSAA tests. Passing checks support implementation correctness under the stated assumptions; they do not validate a market forecast or establish a new economic theorem.
+
+---
+
+## Original JoSAA audit
 
 [![Pytest Suite](https://img.shields.io/badge/pytest-10%2F10%20passing-brightgreen)](#)
 [![Live Demo](https://img.shields.io/badge/demo-lab.yourcatalyst.in-blue)](https://lab.yourcatalyst.in)
@@ -45,19 +87,4 @@ catalyst-lab/
 ├── tests/                          # 100% passing pytest invariant test suite
 ├── index.html                      # Interactive web sandbox deployed to root
 └── CNAME                           # Custom domain routing (lab.yourcatalyst.in)
-
 ```
-
-## Six additional computational experiments
-
-The [interactive experiment notebook](https://lab.yourcatalyst.in/experiments/) adds order-book execution, constant-product AMMs, discrete delta hedging, portfolio tail risk, interbank contagion and auction revenue comparison.
-
-Each experiment includes adjustable inputs, seeded replay, plots with accessible data tables, numerical exports, equations, a worked example, limitations and primary references. These are educational implementations using synthetic inputs, not new empirical findings. Implementation details and reproducibility notes are in [experiments/README.md](experiments/README.md).
-
-```sh
-node --test experiments/models.test.mjs
-python -m pytest -q
-python3 -m http.server 8765
-```
-
-The browser notebook is buildless and runs entirely on the client. GitHub Pages serves the repository root, retaining the existing JoSAA simulator and the `lab.yourcatalyst.in` custom domain.

@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Catalyst Lab | Computational Audit of JoSAA Allocation</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="lab-theme.css">
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
   <div class="max-w-5xl mx-auto px-4 py-12 space-y-12">
     
-    <nav aria-label="Lab navigation" class="flex flex-wrap gap-5 text-sm border-b border-slate-800 pb-5">
-      <a href="https://yourcatalyst.in" class="text-slate-400 hover:text-white">Your Catalyst ↗</a>
-      <a href="experiments/" class="text-emerald-300 underline underline-offset-4">Explore six new market & finance experiments →</a>
-    </nav>
+    <nav class="lab-nav" aria-label="Lab navigation"><a class="lab-brand" href="https://yourcatalyst.in/">YOUR CATALYST</a><a href="https://lab.yourcatalyst.in/experiments/">Experiments</a><a href="https://lab.yourcatalyst.in/experiments/learn.html">Maths &amp; code</a><a href="https://yourcatalyst.in/aboutme/">About me</a><a href="https://github.com/thetarocks/catalyst-lab">Source ↗</a></nav>
     <!-- Header -->
     <header class="space-y-4 border-b border-slate-800 pb-8">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
@@ -260,6 +258,7 @@
     </section>
   </div>
 
+  <footer class="lab-footer"><span>YOUR CATALYST · Matching &amp; allocation lab</span><a href="https://lab.yourcatalyst.in/experiments/">Explore the finance &amp; economics notebook →</a></footer>
   <script>
     // Module 1 Dynamic Script
     document.getElementById("btn-run-m1").addEventListener("click", () => {

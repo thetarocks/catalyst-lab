@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="The mathematics, algorithms, tests and limitations behind six computational experiments in economics and finance."
+    />
+    <title>Maths & code · Your Catalyst</title>
+    <style>
+      :root {
+        --paper: #f7f5ef;
+        --ink: #252b29;
+        --muted: #57635a;
+        --line: #d5dbd0;
+        --green: #286044;
+        --pale: #e8ede3;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 25px;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font:
+          16px/1.85 system-ui,
+          -apple-system,
+          sans-serif;
+      }
+      a {
+        color: var(--green);
+        text-underline-offset: 4px;
+      }
+      a:hover {
+        text-decoration-thickness: 2px;
+      }
+      :focus-visible {
+        outline: 3px solid #a64e36;
+        outline-offset: 4px;
+      }
+      .skip {
+        position: absolute;
+        top: -80px;
+        left: 20px;
+      }
+      .skip:focus {
+        top: 10px;
+        background: white;
+        padding: 10px;
+      }
+      header {
+        max-width: 1180px;
+        padding: 24px 32px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 25px;
+        border-bottom: 1px solid var(--line);
+        font-size: 12px;
+      }
+      header .brand {
+        font-size: 13px;
+        font-weight: 750;
+        letter-spacing: 1px;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      header nav {
+        display: flex;
+        gap: 25px;
+      }
+      main {
+        max-width: 1180px;
+        margin: auto;
+        padding: 55px 32px 80px;
+      }
+      .hero {
+        max-width: 850px;
+        margin-bottom: 40px;
+      }
+      .eyebrow {
+        font:
+          10px/1.7 ui-monospace,
+          monospace;
+        letter-spacing: 1px;
+        color: var(--green);
+        text-transform: uppercase;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: Georgia, serif;
+        font-weight: 400;
+        line-height: 1.25;
+        letter-spacing: -0.5px;
+      }
+      h1 {
+        font-size: clamp(38px, 5vw, 59px);
+        margin: 15px 0 20px;
+      }
+      h2 {
+        font-size: 35px;
+        margin: 12px 0 20px;
+      }
+      h3 {
+        font-size: 24px;
+        margin: 30px 0 12px;
+      }
+      .hero p {
+        max-width: 67ch;
+        color: var(--muted);
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 760px);
+        gap: 55px;
+        align-items: start;
+      }
+      .contents {
+        position: sticky;
+        top: 25px;
+        padding: 18px 20px;
+        border: 1px solid var(--line);
+        font-size: 12px;
+        line-height: 1.65;
+      }
+      .contents a {
+        display: block;
+        padding: 8px 0;
+        text-decoration: none;
+      }
+      .contents a:hover {
+        text-decoration: underline;
+      }
+      .contents strong {
+        display: block;
+        font:
+          10px ui-monospace,
+          monospace;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .chapter {
+        border-top: 2px solid var(--ink);
+        padding-top: 25px;
+        margin-bottom: 65px;
+        scroll-margin-top: 20px;
+      }
+      .chapter > p,
+      .chapter li {
+        max-width: 69ch;
+      }
+      .lead {
+        font-size: 18px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .formula {
+        font:
+          15px/2 ui-monospace,
+          monospace;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        background: #fff9;
+        border: 1px solid var(--line);
+        padding: 18px 22px;
+        margin: 22px 0;
+      }
+      .formula .line {
+        display: block;
+        margin: 5px 0;
+      }
+      .callout {
+        padding: 18px 22px;
+        border-left: 3px solid var(--green);
+        background: var(--pale);
+        margin: 24px 0;
+        font-size: 14px;
+      }
+      .callout p:last-child {
+        margin-bottom: 0;
+      }
+      pre {
+        background: #eaece4;
+        padding: 20px 22px;
+        font:
+          12px/1.9 ui-monospace,
+          monospace;
+        overflow: auto;
+        tab-size: 2;
+      }
+      p code,
+      li code {
+        background: #e8ebe1;
+        padding: 2px 5px;
+        font-size: 13px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 13px;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        text-align: left;
+        vertical-align: top;
+        padding: 12px 10px;
+        border-bottom: 1px solid var(--line);
+      }
+      th:first-child,
+      td:first-child {
+        padding-left: 0;
+      }
+      ul,
+      ol {
+        padding-left: 23px;
+      }
+      li {
+        margin: 10px 0;
+      }
+      details {
+        border-top: 1px solid var(--line);
+        margin: 22px 0;
+        padding-top: 15px;
+      }
+      summary {
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .questions {
+        padding: 20px 24px;
+        border: 1px solid var(--line);
+        margin-top: 26px;
+      }
+      .questions h3 {
+        margin-top: 0;
+      }
+      .questions p {
+        font-size: 14px;
+      }
+      .links {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        margin: 20px 0;
+      }
+      .small {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .source {
+        font-size: 12px;
+        border-top: 1px solid var(--line);
+        padding-top: 15px;
+        line-height: 1.9;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        max-width: 1180px;
+        margin: auto;
+        padding: 25px 32px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      @media (max-width: 800px) {
+        .layout {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .contents {
+          position: static;
+          display: flex;
+          gap: 0 18px;
+          flex-wrap: wrap;
+        }
+        .contents strong {
+          width: 100%;
+          margin: 5px 0;
+        }
+        .contents a {
+          padding: 5px 0;
+        }
+        main {
+          padding: 35px 22px 60px;
+        }
+        header {
+          padding: 20px 22px;
+          flex-wrap: wrap;
+        }
+        header nav {
+          gap: 18px;
+        }
+        h2 {
+          font-size: 31px;
+        }
+        .chapter {
+          margin-bottom: 45px;
+        }
+        .formula {
+          font-size: 13px;
+          padding: 16px;
+        }
+        body {
+          font-size: 15px;
+        }
+        pre {
+          font-size: 11px;
+        }
+        table {
+          font-size: 12px;
+        }
+        .table-wrap {
+          overflow: auto;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      @media print {
+        header,
+        .contents,
+        footer,
+        .skip {
+          display: none;
+        }
+        .layout {
+          display: block;
+        }
+        body {
+          background: white;
+          font-size: 11pt;
+        }
+        main {
+          padding: 0;
+        }
+        .chapter {
+          break-before: page;
+        }
+        .chapter:first-child {
+          break-before: auto;
+        }
+        h2,
+        h3 {
+          break-after: avoid;
+        }
+        .formula,
+        pre,
+        .callout {
+          break-inside: avoid;
+        }
+        a {
+          color: inherit;
+        }
+        .hero {
+          margin-bottom: 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#architecture">Skip to the guide</a>
+    <header>
+      <a class="brand" href="https://yourcatalyst.in/">YOUR CATALYST</a>
+      <nav aria-label="Main">
+        <a href="https://lab.yourcatalyst.in/experiments/"
+          >Run the experiments</a
+        ><a href="https://github.com/thetarocks/catalyst-lab">GitHub ↗</a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">
+          THE COMPANION GUIDE / MATHS, CODE & INTERPRETATION
+        </p>
+        <h1>Understand what<br />the experiment is doing.</h1>
+        <p>
+          Six models, explained from the question to the calculation. This guide
+          connects the equations to the actual JavaScript functions, shows what
+          the tests establish, and identifies the assumptions that deserve
+          scrutiny.
+        </p>
+        <p class="small">
+          The implementations use established theory and synthetic inputs.
+          Numerical examples below are hand calculations unless explicitly
+          labeled as simulation results.
+        </p>
+      </section>
+      <div class="layout">
+        <nav class="contents" aria-label="Guide contents">
+          <strong>IN THIS GUIDE</strong
+          ><a href="#architecture">Before the models</a
+          ><a href="#orderbook">01 · Order-book execution</a
+          ><a href="#amm">02 · Automated market makers</a
+          ><a href="#hedge">03 · Delta hedging</a
+          ><a href="#risk">04 · Portfolio tail risk</a
+          ><a href="#contagion">05 · Interbank contagion</a
+          ><a href="#auctions">06 · Auction design</a
+          ><a href="#discussion">Explain & extend the work</a>
+        </nav>
+        <div>
+          <section class="chapter" id="architecture">
+            <p class="eyebrow">THE SHARED ARCHITECTURE</p>
+            <h2>A model, a renderer and a test suite.</h2>
+            <p>
+              The important separation is between a calculation and its
+              presentation. <code>models.mjs</code> contains the mathematical
+              kernels. <code>content.mjs</code> describes the inputs and method
+              notes. <code>topics.mjs</code> labels the subjects.
+              <code>app.mjs</code> reads validated controls, runs a kernel and
+              renders its returned metrics, plots and ledger. The tests call the
+              kernels directly, without a browser.
+            </p>
+            <pre>
+URL parameters / form controls
+           ↓ validation and defaults
+pure model function(parameters)
+           ↓
+{ metrics, charts, rows, insight, raw }
+           ↓
+SVG charts + data tables + JSON / CSV exports</pre
+            >
+            <p>
+              “Pure” here means a model starts fresh on each call and has no
+              external side effects. The lower-level <code>match()</code> helper
+              deliberately mutates its supplied order book;
+              <code>orderbook()</code> creates that book locally and preserves a
+              before-trade snapshot.
+            </p>
+            <p>
+              Stochastic experiments start a seeded pseudorandom generator,
+              <code>rng(seed)</code>. <code>normal(rng)</code> converts uniform
+              draws to normal draws using the Box–Muller transformation. The
+              seed makes a run replayable; it does not make a single run
+              representative of a real market.
+            </p>
+            <div class="formula">
+              <span class="line">Z = √(−2 ln U₁) cos(2πU₂)</span
+              ><span class="line"
+                >Monte Carlo standard error of a mean = sample standard
+                deviation / √N</span
+              >
+            </div>
+            <p>
+              There are three kinds of evidence in the tests: exact accounting
+              identities, independently calculable benchmarks, and stochastic
+              checks with stated tolerances. Passing them supports
+              implementation correctness under the stated model. It does not
+              establish that the model describes actual markets.
+            </p>
+            <div class="callout">
+              <strong>Three quantities to keep separate</strong>
+              <p>
+                <b>Standard deviation:</b> spread of outcomes.
+                <b>A percentile:</b> a location in that outcome distribution.
+                <b>A confidence interval for the mean:</b> uncertainty from
+                sampling a finite number of outcomes. A narrow confidence
+                interval does not mean individual losses are small.
+              </p>
+            </div>
+            <div class="links">
+              <a
+                href="https://github.com/thetarocks/catalyst-lab/blob/main/experiments/models.mjs"
+                >Model source ↗</a
+              ><a
+                href="https://github.com/thetarocks/catalyst-lab/blob/main/experiments/models.test.mjs"
+                >Numerical tests ↗</a
+              >
+            </div>
+          </section>
+
+          <section class="chapter" id="orderbook">
+            <p class="eyebrow">01 / DATA STRUCTURES & MATCHING</p>
+            <h2>Order-book execution</h2>
+            <p class="lead">
+              The last quoted price does not tell you what an entire order will
+              cost. Execution depends on how much quantity is available at each
+              price.
+            </p>
+            <h3>The mechanism</h3>
+            <p>
+              A limit order offers to buy or sell a quantity at a specified
+              price or better. A market order takes available liquidity. A buy
+              matches the lowest ask first; a sell matches the highest bid
+              first. At the same price, the earlier order has priority. This is
+              price–time priority.
+            </p>
+            <p>
+              The interface constructs twenty levels on each side of a $100
+              midpoint. Quantity at each level varies around the chosen depth
+              using the seed. A market order walks through those levels until it
+              fills or the displayed liquidity is exhausted.
+            </p>
+            <div class="formula">
+              <span class="line"
+                >Filled at a level = min(incoming quantity left, resting
+                quantity)</span
+              ><span class="line">VWAP = Σ pᵢqᵢ / Σ qᵢ</span
+              ><span class="line"
+                >Buy cost in basis points = 10,000 × (VWAP − midpoint) /
+                midpoint</span
+              >
+            </div>
+            <p>
+              <b>Example:</b> buy 200 shares when 100 are available at $100.10
+              and 100 at $100.20. The total is $20,030, so VWAP is $100.15.
+              Relative to the $100 midpoint, this costs 15 basis points. One
+              basis point is 0.01 percentage points. The spread explains the
+              first level; consuming depth explains the extra cost.
+            </p>
+            <h3>What the code does</h3>
+            <p>
+              <code>match(book, order)</code> selects the opposite side, sorts
+              by price and then order ID, repeatedly fills its best order,
+              updates both quantities and records each fill. It executes at the
+              <em>resting</em> price. An unfilled limit remainder can join the
+              book; a market remainder is returned explicitly and discarded in
+              this model.
+            </p>
+            <pre>
+sort opposite side by price, then arrival ID
+while quantity remains and the best order is executable:
+    fill = min(quantity remaining, resting quantity)
+    record resting price and fill quantity
+    reduce both quantities
+    remove resting order if exhausted
+rest an unfilled limit remainder; report a market remainder</pre
+            >
+            <p>
+              <code>orderbook()</code> computes the before-trade depth chart,
+              cumulative execution path, notional, VWAP and shortfall from the
+              fill ledger. Tests check price priority, FIFO ties, partial fills,
+              uncrossed limits and liquidity exhaustion.
+            </p>
+            <h3>Why it is interesting</h3>
+            <p>
+              This connects a data-structure decision directly to an economic
+              outcome. A narrow spread can coexist with poor execution for a
+              large order. Two venues with the same best quote can offer
+              different total execution costs because their depth differs.
+            </p>
+            <p>
+              <b>Computational trade-off:</b> sorting M orders costs O(M log M),
+              but JavaScript <code>shift()</code> can move O(M) elements each
+              time. Sweeping K orders therefore adds O(KM) work in the current
+              array implementation. It is clear and adequate for forty synthetic
+              orders; it is not a production low-latency exchange. A scalable
+              next step is an ordered price map with FIFO queues at each price
+              and efficient cancellation by order ID.
+            </p>
+            <div class="questions">
+              <h3>Be able to explain</h3>
+              <p>
+                <b>Why not always use a heap?</b> A heap finds the best price,
+                but a full exchange also needs FIFO ordering within prices,
+                cancellations and fast updates. The appropriate structure
+                depends on the operations.
+              </p>
+              <p>
+                <b>What does the demo leave out?</b> New orders, cancellations,
+                hidden liquidity, fees, multiple venues and latency. It is one
+                static sweep, not an agent-based market simulation.
+              </p>
+            </div>
+            <p class="source">
+              Read:
+              <a
+                href="https://www.cmegroup.com/education/files/a-traders-guide-to-futures.pdf"
+                >CME Group, A Trader’s Guide to Futures</a
+              >. The project implements one FIFO-style mechanism; exchanges can
+              use other matching algorithms.
+              <a href="https://lab.yourcatalyst.in/experiments/#orderbook"
+                >Run this model →</a
+              >
+            </p>
+          </section>
+
+          <section class="chapter" id="amm">
+            <p class="eyebrow">02 / NONLINEAR EQUATIONS & INVARIANTS</p>
+            <h2>Automated market makers</h2>
+            <p class="lead">
+              A liquidity pool offers trades according to a curve. The curve
+              creates a price without maintaining a queue of buy and sell
+              orders.
+            </p>
+            <h3>Derive the swap</h3>
+            <p>
+              Let x be token A reserves, y token B reserves and k = xy. Selling
+              a units of A into a fee-free constant-product pool requires (x +
+              a)(y − b) = xy. Solving gives b = ya/(x + a), the B tokens
+              received. The initial marginal price is y/x, but a finite trade
+              receives the average price along a changing curve.
+            </p>
+            <div class="formula">
+              <span class="line">Effective input aₑ = a(1 − f)</span
+              ><span class="line">B out = y aₑ / (x + aₑ)</span
+              ><span class="line"
+                >Actual reserves after trade: x′ = x + a, y′ = y − B out</span
+              >
+            </div>
+            <p>
+              With fee f, only the effective input determines output, while the
+              full input enters the reserve. That distinction lets the reserve
+              product grow. A “constant-product” AMM preserves the product
+              exactly for a zero-fee swap; with retained fees, the product
+              increases.
+            </p>
+            <p>
+              <b>Example:</b> x = 100 A and y = 10,000 B. A fee-free sale of 10
+              A returns 909.09 B, not the 1,000 B implied by the initial spot
+              price. Average execution is 90.91 B/A; the post-trade marginal
+              price is about 82.64 B/A. Those are three different prices.
+            </p>
+            <h3>Why providing liquidity can underperform holding</h3>
+            <p>
+              The LP chart is a <em>separate fee-free scenario</em>. Suppose the
+              external price of A in B rises by ratio r, and arbitrage realigns
+              the pool. The product remains k and y′/x′ is r times its initial
+              value. Therefore x′ = x/√r and y′ = y√r.
+            </p>
+            <div class="formula">
+              <span class="line">LP value after repricing = 2y√r</span
+              ><span class="line"
+                >Value of holding original tokens = y(1 + r)</span
+              ><span class="line">Relative LP return = 2√r / (1 + r) − 1</span>
+            </div>
+            <p>
+              If A doubles, r = 2. The LP-to-hold ratio is 2√2/3 ≈ 0.9428, so
+              the LP underperforms holding by 5.72%, before fees. This does not
+              mean the LP lost 5.72% of its starting wealth. Its absolute value
+              can rise while it underperforms the chosen benchmark.
+            </p>
+            <h3>What the code does</h3>
+            <p>
+              <code>amm()</code> evaluates these closed-form equations, builds
+              two 101-point curves and returns reserve accounting. The kernel
+              itself takes O(1) work for a single swap; generating P plotted
+              points takes O(P) work and memory. There is no random simulation
+              here. Tests check an exact swap, invariant preservation without
+              fees, product growth with fees, positive remaining reserves and
+              zero divergence when r = 1.
+            </p>
+            <h3>Why it is interesting</h3>
+            <p>
+              A few lines of algebra express an entire trading mechanism. The LP
+              comparison also illustrates adverse selection: arbitrageurs trade
+              against a pool as external prices change, and the pool ends up
+              holding relatively less of the appreciating asset. Fee income must
+              be evaluated against that benchmark loss, not treated as free
+              return.
+            </p>
+            <div class="questions">
+              <h3>Be able to explain</h3>
+              <p>
+                <b
+                  >Why does splitting a fee-free trade not remove price
+                  impact?</b
+                >
+                Successive trades along the same unchanged constant-product
+                curve reach the same final reserves. You do not restore the
+                original price by splitting the order.
+              </p>
+              <p>
+                <b>What is missing?</b> Gas, rounding, MEV, concentrated
+                liquidity, arbitrage timing and the history of fee income. The
+                displayed LP curve cannot answer whether a real pool is
+                profitable.
+              </p>
+            </div>
+            <p class="source">
+              Read:
+              <a href="https://app.uniswap.org/whitepaper.pdf"
+                >Adams, Zinsmeister & Robinson, Uniswap v2 Core</a
+              >.
+              <a href="https://lab.yourcatalyst.in/experiments/#amm"
+                >Run this model →</a
+              >
+            </p>
+          </section>
+
+          <section class="chapter" id="hedge">
+            <p class="eyebrow">03 / STOCHASTIC PROCESSES & ACCOUNTING</p>
+            <h2>Discrete delta hedging</h2>
+            <p class="lead">
+              An option-pricing formula describes a replication argument. This
+              experiment asks what happens when the replication trades at
+              intervals, pays fees or uses the wrong volatility.
+            </p>
+            <h3>Start with the option</h3>
+            <p>
+              A European call pays max(S<sub>T</sub> − K, 0) at expiry. In this
+              demo S₀ = K = 100, maturity T = one year and the continuously
+              compounded rate r = 4%. The model premium and delta come from
+              Black–Scholes, with no dividends.
+            </p>
+            <div class="formula">
+              <span class="line">d₁ = [ln(S/K) + (r + σ²/2)τ] / (σ√τ)</span
+              ><span class="line">d₂ = d₁ − σ√τ</span
+              ><span class="line">C = SΦ(d₁) − Ke<sup>−rτ</sup>Φ(d₂)</span
+              ><span class="line">Delta Δ = ∂C/∂S = Φ(d₁)</span>
+            </div>
+            <p>
+              Here τ is time remaining and Φ is the standard normal cumulative
+              distribution function. Delta is the first-order sensitivity of the
+              call price to the stock price. A short call has negative delta;
+              buying Δ shares offsets that first-order exposure.
+            </p>
+            <h3>Follow the self-financing ledger</h3>
+            <p>
+              Sell the call for C₀, buy Δ₀ shares and put the remaining amount
+              in cash: B₀ = C₀ − Δ₀S₀ − initial trading fee. Negative cash is
+              borrowing. Between trading dates it accrues at r. At each date,
+              the cash account funds the change in stock holdings and the fee.
+              No external money is injected.
+            </p>
+            <div class="formula">
+              <span class="line"
+                >B<sub>new</sub> = B<sub>old</sub>e<sup>rΔt</sup> − (Δ<sub
+                  >new</sub
+                >
+                − Δ<sub>old</sub>)S − c |(Δ<sub>new</sub> −
+                Δ<sub>old</sub>)S|</span
+              ><span class="line"
+                >Terminal hedge P&amp;L = B<sub>T</sub> + Δ<sub>last</sub>S<sub
+                  >T</sub
+                >
+                − max(S<sub>T</sub> − K, 0) − liquidation fee</span
+              >
+            </div>
+            <p>
+              The cost rate c is the selected basis points divided by 10,000.
+              For a move from delta 0.50 to 0.60 at S = $100, the hedge
+              purchases $10 of stock per option; at 10 bps the fee is $0.01.
+            </p>
+            <h3>Generate the stock paths</h3>
+            <div class="formula">
+              <span class="line"
+                >S<sub>t+Δt</sub> = S<sub>t</sub> exp[(r −
+                σ<sub>path</sub>²/2)Δt + σ<sub>path</sub>√Δt Z]</span
+              >
+            </div>
+            <p>
+              <code>hedge()</code> simulates 600 risk-neutral geometric Brownian
+              motion paths. The formula above samples GBM exactly at the
+              selected dates; the hedge is still discrete. Pricing volatility
+              and path volatility are separate controls. The paths use drift r,
+              so this is a replication experiment under a risk-neutral model,
+              not a forecast of stock returns.
+            </p>
+            <pre>
+for each of 600 paths:
+    cash = option premium − initial shares − initial fee
+    for each time interval:
+        simulate next stock price; accrue cash interest
+        if before expiry:
+            compute new model delta
+            finance stock adjustment and fee from cash
+    liquidate shares, pay call payoff, record P&L</pre
+            >
+            <p>
+              <code>call()</code> computes the price, delta, gamma and vega,
+              using a numerical approximation for Φ. A parallel cost-free cash
+              account uses the exact same stock path. Work is O(PN) for P paths
+              and N intervals. The kernel retains P terminal outcomes and the
+              first path, so working output memory is O(P + N), rather than
+              storing every path.
+            </p>
+            <h3>Why it is interesting</h3>
+            <p>
+              There are three separate errors to discuss: discrete rebalancing,
+              proportional trading costs and pricing-model misspecification.
+              Increasing trading frequency can reduce discretization error while
+              increasing accumulated fees. A tighter hedge before costs need not
+              be a better hedge after costs.
+            </p>
+            <p>
+              For a small move, the unhedged second-order option exposure is
+              approximately ½Γ(dS)². This explains why delta hedging alone does
+              not eliminate the effect of a finite price move between trades. It
+              is a useful local intuition, not an exact terminal P&amp;L
+              formula.
+            </p>
+            <div class="questions">
+              <h3>Be able to explain</h3>
+              <p>
+                <b>How is it tested?</b> A known Black–Scholes benchmark, expiry
+                and zero-volatility cases, near-zero mean cost-free hedge error
+                with matched volatility, and the check that trading costs never
+                improve a paired path’s P&amp;L.
+              </p>
+              <p>
+                <b>What cannot be inferred?</b> A 95% interval for the simulated
+                mean is not a 95% interval for a trader’s next outcome. The
+                model omits jumps, stochastic volatility, a volatility surface,
+                discrete dividends and unequal borrowing/lending rates.
+                Different interval counts do not share paired underlying paths.
+              </p>
+            </div>
+            <p class="source">
+              Read:
+              <a
+                href="https://www.nobelprize.org/uploads/2018/06/scholes-lecture.pdf"
+                >Scholes, Nobel Lecture: Derivatives in a Dynamic Environment</a
+              >.
+              <a href="https://lab.yourcatalyst.in/experiments/#hedge"
+                >Run this model →</a
+              >
+            </p>
+          </section>
+
+          <section class="chapter" id="risk">
+            <p class="eyebrow">04 / COVARIANCE & DISTRIBUTION TAILS</p>
+            <h2>Portfolio tail risk</h2>
+            <p class="lead">
+              Mean and variance describe only part of a distribution. Two models
+              can agree on both and disagree about the severity of rare losses.
+            </p>
+            <h3>The linear algebra</h3>
+            <p>
+              For weights w, asset mean vector μ and covariance matrix Σ, the
+              portfolio mean is wᵀμ and its variance is wᵀΣw. Covariance entries
+              are Σᵢⱼ = ρᵢⱼσᵢσⱼ. Diversification depends on co-movement, not
+              just the number of assets.
+            </p>
+            <div class="formula">
+              <span class="line">E[R<sub>p</sub>] = wᵀμ</span
+              ><span class="line"
+                >Var(R<sub>p</sub>) = Σᵢ wᵢ²σᵢ² + 2Σ<sub>i&lt;j</sub>
+                wᵢwⱼρᵢⱼσᵢσⱼ</span
+              >
+            </div>
+            <p>
+              The assumed means are 8%, 4% and 5%, and volatilities 20%, 7% and
+              15%, for equity, bonds and gold. These are teaching inputs, not
+              fitted estimates. A 60/30/10 allocation has mean 6.5%. With
+              equity–bond correlation −0.2, its annual volatility is about
+              11.86%.
+            </p>
+            <h3>Construct correlated draws</h3>
+            <p>
+              <code>risk()</code> starts with independent standard normal
+              variables. It sets the bond shock to ρZ₁ + √(1 − ρ²)Z₂ and the
+              gold shock to an independent Z₃. The first two shocks have
+              correlation ρ and unit variance. The gold pairwise correlations
+              are zero. Only one correlation is adjustable, keeping this
+              covariance specification valid over the controls’ range.
+            </p>
+            <p>
+              For heavy tails, all three shocks share a multiplier √(3/U), where
+              U is the sum of squares of five independent normals, so U ~ χ²₅. A
+              conventional t₅ draw has multiplier √(5/U). Using 3 instead
+              standardizes the result to unit variance because E[1/U] = 1/(5 −
+              2). The portfolio’s analytic covariance is therefore preserved.
+            </p>
+            <div class="formula">
+              <span class="line"
+                >Standardized multivariate t₅ shock = correlated normal vector ×
+                √(3/χ²₅)</span
+              ><span class="line"
+                >Loss L = −R<sub>p</sub>; VaR₉₅ = q₀.₉₅(L)</span
+              ><span class="line"
+                >ES₉₅ = E[L | L ≥ VaR₉₅] for this continuous distribution</span
+              >
+            </div>
+            <p>
+              The common scale produces joint tail dependence: “zero
+              correlation” does not imply independence in this heavy-tail
+              construction. That is a stronger insight than simply making each
+              asset individually noisier.
+            </p>
+            <h3>The simulation and frontier</h3>
+            <p>
+              The kernel generates 12,000 one-year portfolio returns, sorts
+              losses to find an interpolated 95th percentile, and averages the
+              tail at or beyond that threshold. Separately, it enumerates all
+              1,326 long-only portfolios on a two-percentage-point weight grid.
+              Sorting by volatility and retaining improvements in expected
+              return constructs an approximate grid frontier. It is not a
+              quadratic-programming optimizer.
+            </p>
+            <p>
+              For M draws and G grid portfolios, the main work is O(M log M + G
+              log G), with O(M + G) storage. The three-asset dimension is fixed.
+              Tests check pure-asset limits, weights summing to one, a
+              hand-computed covariance result and covariance-preserving heavy
+              tails.
+            </p>
+            <h3>Why it is interesting</h3>
+            <p>
+              Expected shortfall asks what losses look like after crossing the
+              threshold. A 95% VaR alone says little about that severity. A
+              variance-standardized heavy-tail model can even have a lower 95%
+              quantile than a Gaussian while having worse expected shortfall.
+              “Heavy tails” does not mean every percentile must increase.
+            </p>
+            <div class="questions">
+              <h3>Be able to explain</h3>
+              <p>
+                <b>Is this a backtest?</b> No. Inputs and returns are synthetic.
+                A real application would estimate means and covariance out of
+                sample, include costs and examine stability under estimation
+                error.
+              </p>
+              <p>
+                <b>Why can simulated returns fall below −100%?</b> These are
+                arithmetic Gaussian or Student-t return models with unbounded
+                support. That is a limitation for limited-liability assets.
+                Clipping would alter the distribution and covariance; a bounded
+                or log-return model requires rethinking calibration.
+              </p>
+            </div>
+            <p class="source">
+              Read:
+              <a href="https://web.stanford.edu/~boyd/papers/pdf/markowitz.pdf"
+                >Boyd and coauthors, Markowitz Portfolio Construction at
+                Seventy</a
+              >.
+              <a href="https://lab.yourcatalyst.in/experiments/#risk"
+                >Run this model →</a
+              >
+            </p>
+          </section>
+
+          <section class="chapter" id="contagion">
+            <p class="eyebrow">05 / GRAPHS & FIXED-POINT ALGORITHMS</p>
+            <h2>Interbank contagion</h2>
+            <p class="lead">
+              A payment is simultaneously one institution’s liability and
+              another institution’s asset. To determine what everyone can pay,
+              solve the balance sheets together.
+            </p>
+            <h3>Represent the network</h3>
+            <p>
+              Lᵢⱼ is what bank i owes creditor j. Total promised payment is p̄ᵢ =
+              ΣⱼLᵢⱼ. The share promised to creditor j is Πᵢⱼ = Lᵢⱼ/p̄ᵢ. If bank i
+              pays less than promised, all its creditors receive the same
+              fraction of their claim. This is proportional repayment.
+            </p>
+            <div class="formula">
+              <span class="line">pᵢ = min(p̄ᵢ, aᵢ + Σⱼ Πⱼᵢpⱼ)</span
+              ><span class="line"
+                >Equityᵢ = external assets aᵢ + incoming payments − outgoing
+                payment pᵢ</span
+              >
+            </div>
+            <p>
+              The formula implements limited liability: a bank pays at most what
+              it owes and at most what it has available. The difficulty is
+              circularity. Bank i’s available assets depend on the payments of
+              other banks, which depend in turn on its own payment.
+            </p>
+            <h3>Solve the fixed point</h3>
+            <p>
+              <code>clearNetwork()</code> starts with full promised payments. It
+              updates every payment simultaneously using the previous vector,
+              and repeats until the maximum absolute change is below 10⁻¹⁰ or
+              10,000 iterations have run. Starting at full payments gives a
+              decreasing sequence toward the greatest clearing solution.
+              “Greatest” describes the componentwise payment vector, not a
+              policy optimization.
+            </p>
+            <pre>
+payments = total promised liabilities
+repeat:
+    incoming[i] = sum of each debtor's payment × its share owed to i
+    next[i] = min(promised[i], external_assets[i] + incoming[i])
+    stop if max absolute change is below tolerance
+    payments = next</pre
+            >
+            <p>
+              All eight banks owe 100 units to an outside creditor, society.
+              This creates an obligation that does not recycle endlessly inside
+              the banking network and makes these networks regular. It also lets
+              the code report losses to outside creditors separately from the
+              sum of all unpaid claims.
+            </p>
+            <p>
+              <b>Example:</b> Bank A owes 100 to Bank B and 100 to society.
+              After its shock, A has 100 external assets and no other receipts.
+              It pays half of every claim: 50 to B and 50 to society. If B owes
+              society 100 and has no external assets, B can now pay only 50. B’s
+              missed payment is an indirect consequence of A’s shock.
+            </p>
+            <h3>Make the topology comparison meaningful</h3>
+            <p>
+              <code>contagion()</code> constructs a directed ring, a complete
+              network or a hub. Each has total interbank liabilities 8E, where E
+              is the exposure scale. Incoming and outgoing interbank totals
+              balance at every bank before the shock. In the hub, each
+              directional hub–spoke link is 4E/7, so the hub concentrates 4E of
+              outgoing and incoming exposure. Equal system totals do not imply
+              equal institution-level concentration.
+            </p>
+            <p>
+              The code separates initial defaults—insolvent even if peers pay in
+              full after the external shock—from secondary defaults that appear
+              only when peers’ actual payments are considered. Dense-matrix
+              clearing takes O(In²) for I iterations and n institutions. Storing
+              the network uses O(n²); saving the full iteration history adds
+              O(In). A sparse graph implementation could replace the n² sum by
+              the number of edges.
+            </p>
+            <h3>Why it is interesting</h3>
+            <p>
+              System risk cannot be inferred from isolated balance sheets.
+              Connections can share a loss or propagate it. The experiment
+              isolates one solvency channel while holding aggregate exposure
+              fixed. It does not show that “more connected is always safer” or
+              “the hub is always worse.” Those statements depend on balance
+              sheets, shock placement and the loss mechanism.
+            </p>
+            <div class="questions">
+              <h3>Be able to explain</h3>
+              <p>
+                <b>Are iterations days?</b> No. They are numerical updates in a
+                static clearing calculation. The graph of payments is a
+                convergence trace, not a chronology of a bank run.
+              </p>
+              <p>
+                <b>How is it validated?</b> Hand-calculated networks,
+                limited-liability bounds, residuals of the clearing equation,
+                full repayment without shocks and payment monotonicity as
+                external assets increase.
+              </p>
+              <p>
+                <b>What is absent?</b> Liquidity runs, collateral, claim
+                seniority, bankruptcy haircuts, fire sales and rescue policy.
+                Summing unpaid interbank and external claims is not the same as
+                measuring a net economy-wide welfare loss.
+              </p>
+            </div>
+            <p class="source">
+              Read:
+              <a
+                href="https://pubsonline.informs.org/doi/10.1287/mnsc.47.2.236.9835"
+                >Eisenberg & Noe, Systemic Risk in Financial Systems</a
+              >.
+              <a href="https://lab.yourcatalyst.in/experiments/#contagion"
+                >Run this model →</a
+              >
+            </p>
+          </section>
+
+          <section class="chapter" id="auctions">
+            <p class="eyebrow">06 / GAME THEORY & EXPERIMENTAL DESIGN</p>
+            <h2>Auction design</h2>
+            <p class="lead">
+              Changing how the winner pays changes the incentive to bid.
+              Comparing mechanisms requires accounting for those behavioral
+              responses.
+            </p>
+            <h3>Why truthful bidding works in a second-price auction</h3>
+            <p>
+              A bidder with private value v wins if their bid exceeds the
+              competing bids, but pays the highest competing bid, subject to the
+              seller’s reserve. Bidding above value can make them win at a loss;
+              bidding below can make them lose a profitable purchase. Truthful
+              bidding is therefore weakly dominant in this
+              independent-private-value setting with a non-personalized reserve.
+            </p>
+            <h3>Derive the first-price bid</h3>
+            <p>
+              Assume n symmetric risk-neutral bidders with independent values
+              uniform on [0,100]. With no reserve, suppose everyone else uses
+              b(v) = αv. If a bidder of value v bids b in the interior range,
+              the chance all others bid less is (b/(100α))ⁿ⁻¹. Expected utility
+              is (v − b) times that probability. Differentiating with respect to
+              b gives (n − 1)(v − b) − b = 0.
+            </p>
+            <div class="formula">
+              <span class="line"
+                >No-reserve equilibrium: b(v) = [(n − 1)/n]v</span
+              ><span class="line"
+                >With reserve R: b(v) = [(n − 1)v + R(R/v)<sup>n−1</sup>]/n, for
+                v ≥ R</span
+              ><span class="line"
+                >No-reserve expected revenue = 100(n − 1)/(n + 1)</span
+              >
+            </div>
+            <p>
+              The reserve formula respects the boundary b(R) = R. Types below R
+              do not participate. In the second-price format, the eligible
+              winner pays max(R, second-highest value).
+            </p>
+            <p>
+              <b>Example:</b> with five bidders, someone valuing the item at $90
+              bids $72 in the no-reserve first-price equilibrium. Second-price
+              payment depends on the runner-up. Across auctions, each format has
+              expected revenue $66.67; payments need not agree in any particular
+              auction.
+            </p>
+            <h3>What the code does</h3>
+            <p>
+              <code>auctions()</code> draws 10,000 value vectors, sorts each
+              vector and applies both mechanisms to that same draw. The
+              first-price bid multiplier is 100% at equilibrium. Other
+              multipliers are deliberate off-equilibrium counterfactuals, not
+              solutions to a new game. The scaled bids remain monotone in value,
+              but may fail the reserve or exceed the bidder’s value.
+            </p>
+            <div class="formula">
+              <span class="line"
+                >Dᵢ = revenue<sub>first,i</sub> − revenue<sub
+                  >second,i</sub
+                ></span
+              ><span class="line"
+                >Approximate 95% interval for mean difference = D̄ ± 1.96
+                s<sub>D</sub>/√N</span
+              >
+            </div>
+            <p>
+              Using the same draws is the common-random-numbers method. It
+              controls for the fact that some auctions just happen to draw
+              higher values. The paired variance is Var(X − Y) = Var(X) + Var(Y)
+              − 2Cov(X,Y). Positive covariance between the two revenues makes
+              the comparison more precise.
+            </p>
+            <p>
+              Work per auction is O(n log n) because values are sorted, though
+              only the top two are needed. The current running-mean plot also
+              re-sums accumulated arrays every 100 auctions, adding roughly
+              O(N²/100) work over a run. A streaming sum would make that part
+              O(N). At the fixed 10,000-auction size the current version remains
+              small, but this is a useful implementation improvement to
+              identify.
+            </p>
+            <h3>Why it is interesting</h3>
+            <p>
+              The payment rule alone does not determine seller revenue. Bidders
+              respond strategically. Revenue equivalence is an expectation under
+              assumptions about values, risk preferences and allocation/payment
+              boundary conditions. Simulation illustrates the theorem and
+              stresses assumptions; it does not prove the theorem.
+            </p>
+            <div class="questions">
+              <h3>Be able to explain</h3>
+              <p>
+                <b>Why does a reserve sometimes reduce welfare?</b> With seller
+                value fixed at zero, an unsold item gives zero realized surplus
+                even when a bidder values it positively. A seller may accept
+                that efficiency loss in exchange for a different revenue
+                distribution.
+              </p>
+              <p>
+                <b>What does the interval establish?</b> Whether the finite
+                simulation is consistent with a predicted zero mean difference.
+                A confidence interval containing zero is not proof of equality.
+              </p>
+              <p>
+                <b>What would change the result?</b> Correlated or common
+                values, risk aversion, asymmetric bidders, entry costs or
+                collusion. Those require different equilibrium reasoning; a bid
+                multiplier is not a substitute for that derivation.
+              </p>
+            </div>
+            <p class="source">
+              Read:
+              <a
+                href="https://web.stanford.edu/~jdlevin/Econ%20286/Auctions.pdf"
+                >Jonathan Levin, Auction Theory</a
+              >.
+              <a href="https://lab.yourcatalyst.in/experiments/#auctions"
+                >Run this model →</a
+              >
+            </p>
+          </section>
+
+          <section class="chapter" id="discussion">
+            <p class="eyebrow">UNDERSTAND, DISCUSS, EXTEND</p>
+            <h2>Connect the equation to an engineering decision.</h2>
+            <p>
+              A clear explanation has four parts: the question, the mechanism, a
+              testable prediction, and a limitation. For each model, be ready to
+              work through one numerical example without looking at the
+              interface.
+            </p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>Core engineering idea</th>
+                    <th>A useful next extension</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Order book</td>
+                    <td>Priority, state mutation and conservation</td>
+                    <td>Per-price queues, cancellation and event replay</td>
+                  </tr>
+                  <tr>
+                    <td>AMM</td>
+                    <td>Algebraic invariants and reserve accounting</td>
+                    <td>Fee-income paths and arbitrage dynamics</td>
+                  </tr>
+                  <tr>
+                    <td>Delta hedge</td>
+                    <td>Stochastic simulation and a self-financing ledger</td>
+                    <td>
+                      Paired paths across frequencies, jumps or stochastic
+                      volatility
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Portfolio</td>
+                    <td>Covariance-preserving sampling and tail statistics</td>
+                    <td>
+                      Out-of-sample estimation and a continuous constrained
+                      optimizer
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Contagion</td>
+                    <td>Directed graphs and monotone fixed points</td>
+                    <td>Sparse networks, seniority and fire-sale feedback</td>
+                  </tr>
+                  <tr>
+                    <td>Auctions</td>
+                    <td>Equilibrium behavior and paired Monte Carlo</td>
+                    <td>
+                      Streaming estimators and an explicitly solved asymmetric
+                      game
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h3>A practical learning check</h3>
+            <ol>
+              <li>
+                Predict what a control change should do <em>before</em> running
+                the simulation.
+              </li>
+              <li>Show the relevant equation and identify every term.</li>
+              <li>
+                Find the function that implements it and explain one edge case.
+              </li>
+              <li>
+                Explain a test and why an independent benchmark or invariant is
+                stronger than checking that the screen looks plausible.
+              </li>
+              <li>Name a conclusion the experiment cannot support.</li>
+            </ol>
+            <p>
+              The models are established ideas. The implementation work lies in
+              making them reproducible, inspectable and testable, and in
+              designing meaningful comparisons. When describing personal
+              contributions, distinguish work you have personally understood,
+              modified and validated from work completed with coding assistance.
+            </p>
+            <div class="callout">
+              <strong>A defensible project description</strong>
+              <p>
+                “I’m studying six established economics and finance mechanisms
+                through an open-source simulation notebook developed with AI
+                coding assistance. The work connects mathematical assumptions to
+                algorithms, numerical checks and interactive counterfactuals.”
+                Add specific first-person implementation or research claims only
+                when you can substantiate them.
+              </p>
+            </div>
+            <p class="small">
+              Guide version 1. Implementation references describe the current
+              repository. The experiments use synthetic assumptions and do not
+              constitute trading systems or empirical market studies.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer>
+      YOUR CATALYST · Maths & code companion ·
+      <a href="https://github.com/thetarocks/catalyst-lab/tree/main/experiments"
+        >Open source</a
+      >
+    </footer>
+  </body>
+</html>
