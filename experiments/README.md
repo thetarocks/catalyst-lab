@@ -18,16 +18,16 @@ From the repository root:
 ```sh
 python3 -m http.server 8765
 # Open http://localhost:8765/experiments/
-node --test experiments/models.test.mjs
+node --test experiments/*.test.mjs
 ```
 
 Node 22+ runs the numerical tests with its built-in test runner. The browser app has no npm dependencies and no build step. Serve over HTTP; ES modules do not work reliably from file://. Optional Google Fonts have system-font fallbacks; the models do not call any API.
 
 ## Reproducibility
 
-The URL hash records model name, all controls and a 32-bit seed. Each run reconstructs a Mulberry32 PRNG; Gaussian samples use Box–Muller. JSON exports contain model version, parameters, metrics and full underlying simulation outputs. CSV exports contain parameters, metrics, ledger and plotted data in long format. Exports always describe the **last completed run**. A changed control does not silently overwrite the displayed result.
+The URL hash records model name, all controls and a 32-bit seed. Each run reconstructs a Mulberry32 PRNG; Gaussian samples use Box–Muller. JSON exports contain model version, parameters, metrics and full underlying simulation outputs. CSV exports contain parameters, metrics, ledger and plotted data in long format. Exports always describe the **last completed run**. Live mode runs changes after a short pause and updates explanations, charts and the run link together. In manual mode, changed controls remain staged until Run experiment is selected.
 
-`models.mjs` contains pure kernels; `content.mjs` contains controls and method notes; `app.mjs` renders the interface and accessible SVG charts. Every chart has a numerical data table. No output is sent to a server.
+`models.mjs` contains pure kernels; `content.mjs` contains controls and method notes; `app.mjs` coordinates the interface; `live-notes.mjs` explains validated inputs and completed outputs, `charts.mjs` draws and inspects SVG charts, and `network-view.mjs` presents bank obligations. Every chart has a numerical data table. No output is sent to a server.
 
 ## Numerical conventions
 
@@ -48,6 +48,8 @@ Original models are attributed in the interface. This extension was developed wi
 
 ## Maths and code companion
 
-[Read the companion guide](https://lab.yourcatalyst.in/experiments/learn.html) for step-by-step derivations, hand-worked examples, kernel walkthroughs, computational complexity, validation scope and questions for further study. `learn.html` is self-contained and can also be read offline. `topics.mjs` supplies the subject-led navigation labels shared by the notebook index and experiment headers.
+[Read the companion guide](https://lab.yourcatalyst.in/experiments/learn.html) for step-by-step derivations, hand-worked examples, kernel walkthroughs, computational complexity, validation scope and questions for further study. Serve `learn.html` with its shared `design.css` stylesheet and `reading.mjs` module. `topics.mjs` supplies the subject-led navigation labels shared by the notebook index and experiment headers.
 
 The index includes a live order-book preview powered by the same `orderbook()` kernel as the full simulator. Search and category filters run locally. The interface respects reduced-motion preferences, keeps chart data available in tables and supports horizontal chart scrolling on small screens.
+
+Pinned baselines compare completed metrics and remain local to the current experiment visit. Chart visibility choices are presentation only and do not change model calculations or CSV data. AMM scenario markers use exact completed outputs; the UI reports when a trade lies beyond the sampled curve domain. All charts support pointer or keyboard inspection, keep numerical tables, and respect reduced-motion preferences.

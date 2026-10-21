@@ -15,5 +15,5 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install pytest==8.4.2
       - run: python -m pytest -q
-      - run: node --test experiments/models.test.mjs
+      - run: node --test experiments/*.test.mjs
       - run: node --check experiments/app.mjs

@@ -17,12 +17,17 @@ An open-source notebook connecting economic rules to inspectable algorithms, int
 
 The browser models use synthetic inputs and established theory. Each includes assumptions, a worked example, primary references, numerical exports and validation. The [companion guide](experiments/learn.html) also covers algorithms, complexity, interpretation and possible extensions. [Implementation and reproducibility notes](experiments/README.md) describe the kernels and the use of coding assistance.
 
+The experiment workspaces include debounced live controls, contextual explanations, pinned metric baselines, animated charts, mouse/touch/keyboard inspection, series toggles and selectable bank obligations. Live mode can be paused; exports always describe completed runs. Baselines and chart-visibility choices remain in browser memory and reset on a new visit.
+
+![Experiment controls, exact scenario markers and an inspectable chart](docs/images/workbench-desktop.jpg)
+
 The interface uses original SVG studies of each mechanism, a working order-book preview, searchable experiment collections and a companion guide with section tracking and reading progress. Motion respects reduced-motion preferences. The illustrations are visual identities, separate from the numerical charts.
 
 ## Explore the repository
 
 - [Model kernels](experiments/models.mjs) and [numerical tests](experiments/models.test.mjs)
 - [Interactive index](experiments/app.mjs), [live trading preview](experiments/quick-preview.mjs), and [styles](experiments/style.css)
+- [Live explanations](experiments/live-notes.mjs), [interactive charts](experiments/charts.mjs), [bank inspection](experiments/network-view.mjs) and [presentation checks](experiments/presentation.test.mjs)
 - [WordPress homepage, Projects, About and page-template source](wordpress/)
 - [Existing JoSAA simulator](https://lab.yourcatalyst.in/) and the original Python audit below
 
@@ -33,12 +38,12 @@ No npm installation or build step is required for the browser notebook. Node 22+
 ```sh
 python3 -m http.server 8765
 # Visit http://localhost:8765/experiments/
-node --test experiments/models.test.mjs
+node --test experiments/*.test.mjs
 python -m pip install pytest
 python -m pytest -q
 ```
 
-The validation workflow runs 32 JavaScript model tests and 10 Python JoSAA tests. Passing checks support implementation correctness under the stated assumptions; they do not validate a market forecast or establish a new economic theorem.
+The validation workflow runs 43 JavaScript numerical and presentation tests and 10 Python JoSAA tests. Passing checks support implementation correctness under the stated assumptions; they do not validate a market forecast or establish a new economic theorem.
 
 ---
 

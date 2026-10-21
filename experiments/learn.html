@@ -412,6 +412,23 @@
         </nav>
         <div>
           <section class="chapter" id="architecture">
+            <div class="callout">
+              <strong>Use the model as a conversation.</strong>
+              <p>
+                Live updates run after you pause on a control. Each dial
+                explains the current input, and the scenario panel describes the
+                completed results. Pause live updates to stage several changes,
+                then select Run experiment. Exports and copied links always
+                refer to the last completed run.
+              </p>
+              <p>
+                Pin a completed run as a baseline to inspect metric differences.
+                Baselines last until you leave the experiment. These differences
+                are descriptive comparisons, not estimates of statistical
+                significance. Chart sliders support keyboard inspection; series
+                buttons control visibility without changing the calculation.
+              </p>
+            </div>
             <p class="eyebrow">THE SHARED ARCHITECTURE</p>
             <h2>A model, a renderer and a test suite.</h2>
             <p>
@@ -422,6 +439,11 @@
               <code>app.mjs</code> reads validated controls, runs a kernel and
               renders its returned metrics, plots and ledger. The tests call the
               kernels directly, without a browser.
+              <code>live-notes.mjs</code> turns validated inputs and completed
+              outputs into contextual explanations;
+              <code>charts.mjs</code> handles inspection and animation, and
+              <code>network-view.mjs</code> presents bank obligations. These
+              presentation layers do not modify the model kernels.
             </p>
             <pre>
 URL parameters / form controls
