@@ -9,7 +9,7 @@ python3 -m pip install pytest==8.4.2
 python3 -m pytest -q
 ```
 
-The Python suite has **15 tests**. The browser notebook needs no npm packages or build step: serve it with `python3 -m http.server 8765` and open `http://localhost:8765/experiments/`. With Node 22+, run its 43 checks using `node --test experiments/*.test.mjs`.
+The Python suite has **15 tests**. The browser notebook needs no npm packages or build step: serve it with `python3 -m http.server 8765` and open `http://localhost:8765/experiments/`. With Node 22+, run its 51 JavaScript checks using `node --test experiments/*.test.mjs allocation/*.test.mjs`.
 
 An open-source notebook connecting economic rules to inspectable algorithms, interactive counterfactuals and numerical checks.
 
@@ -35,6 +35,12 @@ The experiment workspaces include debounced live controls, contextual explanatio
 The interface uses original SVG studies of each mechanism, a working order-book preview, searchable experiment collections and a companion guide with section tracking and reading progress. Motion respects reduced-motion preferences. The illustrations are visual identities, separate from the numerical charts.
 
 ![Research portfolio landing page](docs/images/portfolio-desktop.jpg)
+
+## Launch the allocation model
+
+The [JoSAA-inspired teaching simulator](https://lab.yourcatalyst.in/) renders a populated vacancy chain immediately. Float, Freeze, Slide and no-withdrawal presets compare deterministic three-applicant cases. [The browser kernel](allocation/model.mjs) runs student-proposing DA with strict common priorities; [six executable fixtures](allocation/fixtures.mjs) check capacity, acceptable matches, baseline envy, displacement state, multi-round choices and a one-program quota choice. The inspector re-runs those fixtures in the browser and links to CI.
+
+The browser fixture suite is separate from the Python audit. Green fixture checks do not prove DSIC, general quota monotonicity or official-rule equivalence. The published 50/50 result concerns one synthetic applicant and repeated sampling of four possible withdrawals; it is not a population regret estimate. The proposal to preview Freeze consequences is an interface hypothesis awaiting user testing.
 
 ## Research and evidence
 
@@ -77,12 +83,12 @@ No npm installation or build step is required for the browser notebook. Node 22+
 ```sh
 python3 -m http.server 8765
 # Visit http://localhost:8765/experiments/
-node --test experiments/*.test.mjs
+node --test experiments/*.test.mjs allocation/*.test.mjs
 python -m pip install pytest
 python -m pytest -q
 ```
 
-The validation workflow runs 43 JavaScript checks and 15 Python tests. Passing checks support implementation correctness under the stated assumptions; coverage has not been measured. They do not validate a market forecast or establish a new economic theorem.
+The validation workflow runs 51 JavaScript checks and 15 Python tests. Passing checks support implementation correctness under the stated assumptions; coverage has not been measured. They do not validate a market forecast or establish a new economic theorem.
 
 [![Validate models](https://github.com/thetarocks/catalyst-lab/actions/workflows/validate.yml/badge.svg)](https://github.com/thetarocks/catalyst-lab/actions/workflows/validate.yml)
 

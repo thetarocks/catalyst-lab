@@ -1,3 +1,6 @@
+import {mountInvariantSuite} from './allocation/suite.mjs';
+const suiteHost=document.querySelector('.invariant-suite');
+if(suiteHost)mountInvariantSuite(suiteHost);
 import {mountQuickPreview} from './quick-preview.mjs';
 const market=document.querySelector('.landing-market-preview');
 if(market) mountQuickPreview(market);
@@ -15,10 +18,11 @@ if(stage){let action='FLOAT';
 }
 const kInput=document.querySelector('#sybil-k'),gapInput=document.querySelector('#sybil-gap');
 if(kInput&&gapInput){const draw=()=>{const k=Number(kInput.value),r=Number(gapInput.value),gain=Math.sqrt(k)-1,kMin=Math.floor((1+r)**2+1e-10)+1,strict=gain-r>1e-10;
+ document.querySelectorAll('[data-sybil-k]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.sybilK)===k&&Number(b.dataset.sybilGap)===r)));
  document.querySelector('#sybil-k-value').textContent=`${k} wallets`;
  document.querySelector('#sybil-gap-value').textContent=`${n(r)} × W`;
  document.querySelector('#sybil-insight').textContent=`Weight: ${n(Math.sqrt(k))}× the unsplit weight. Added weight: ${n(gain)} W; opposing lead: ${n(r)} W. ${strict?'Strict reversal in this fixed-tally model.':Math.abs(gain-r)<1e-10?'Exactly on the boundary: a tie is not a strict reversal.':'No strict reversal at this split.'} Minimum strict-reversal split: ${kMin} wallets.`;
  const px=x=>42+(x-1)/63*475,py=y=>179-y/9*150;
  document.querySelector('#sybil-diagram').innerHTML=`<title>Added weight is (sqrt(k) minus 1) W. Current ${k} wallets add ${n(gain)} W against gap ${n(r)} W.</title><path d="M42 20V179H523" fill="none" stroke="#718368"/><path d="${Array.from({length:127},(_,i)=>{const x=1+i*.5;return `${i?'L':'M'}${px(x)},${py(Math.sqrt(x)-1)}`}).join(' ')}" stroke="#d7ff3f" stroke-width="3" fill="none"/><path d="M42 ${py(r)}H523" stroke="#fa9271" stroke-width="2" stroke-dasharray="6 6"/><circle cx="${px(k)}" cy="${py(gain)}" r="7" fill="${strict?'#d7ff3f':'#f4f1e9'}" stroke="#172b24" stroke-width="2"/><g fill="#cad6bf" font-family="Arial,sans-serif" font-size="11"><text x="42" y="200">1 wallet</text><text x="460" y="200">64 wallets</text><text x="50" y="18">Added weight / W</text><text x="380" y="${Math.max(16,py(r)-10)}">Opposing lead ${n(r)} W</text></g>`;
- };kInput.addEventListener('input',draw);gapInput.addEventListener('input',draw);draw();
+ };document.querySelectorAll('[data-sybil-k]').forEach(b=>b.addEventListener('click',()=>{kInput.value=b.dataset.sybilK;gapInput.value=b.dataset.sybilGap;draw();}));kInput.addEventListener('input',draw);gapInput.addEventListener('input',draw);draw();
 }
