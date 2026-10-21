@@ -1,182 +1,571 @@
-<!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Experiments &amp; projects</h1>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>
-  Economics and finance are full of rules that look simple until you try to
-  implement them. These experiments make the mechanism inspectable: change an
-  input, follow the numbers and read where the model stops.
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:paragraph -->
-<p>
-  <a href="https://lab.yourcatalyst.in/experiments/"
-    >Open the full interactive notebook →</a
-  >
-  · <a href="https://yourcatalyst.in/">Return home</a> ·
-  <a href="https://github.com/thetarocks/catalyst-lab">GitHub source</a>
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">
-  <a href="https://lab.yourcatalyst.in/experiments/#orderbook"
-    >The price of immediacy</a
-  >
-</h2>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>
-  A price–time matching engine that exposes every fill. Change order size,
-  spread and depth to see why the quoted price is only part of the cost.
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:paragraph -->
-<p>
-  <small
-    >Matching engine · Fill ledger · VWAP. Includes model notes, a worked
-    example, sources and downloadable results.</small
-  >
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">
-  <a href="https://lab.yourcatalyst.in/experiments/#amm"
-    >Liquidity has a curve</a
-  >
-</h2>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>
-  Trace a constant-product swap through the reserves, then compare liquidity
-  provision with holding. Separate fee income, execution shortfall and
-  divergence loss.
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:paragraph -->
-<p>
-  <small
-    >Reserve accounting · Price impact · LP returns. Includes model notes, a
-    worked example, sources and downloadable results.</small
-  >
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">
-  <a href="https://lab.yourcatalyst.in/experiments/#hedge"
-    >A hedge is a process</a
-  >
-</h2>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>
-  Sell a call and finance a delta hedge through 600 simulated stock paths.
-  Explore the trade-off between rebalancing error, transaction costs and a wrong
-  volatility assumption.
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:paragraph -->
-<p>
-  <small
-    >Monte Carlo · Black–Scholes · Self-financing hedge. Includes model notes, a
-    worked example, sources and downloadable results.</small
-  >
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">
-  <a href="https://lab.yourcatalyst.in/experiments/#risk"
-    >Beyond the tidy frontier</a
-  >
-</h2>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>
-  Build a long-only portfolio, change the correlation structure and compare
-  Gaussian with heavy-tailed shocks. The same volatility can conceal a different
-  tail.
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:paragraph -->
-<p>
-  <small
-    >Covariance · Grid frontier · Expected shortfall. Includes model notes, a
-    worked example, sources and downloadable results.</small
-  >
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">
-  <a href="https://lab.yourcatalyst.in/experiments/#contagion"
-    >When one balance sheet breaks</a
-  >
-</h2>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>
-  Send an asset shock through eight connected banks. Compare ring, complete and
-  hub networks using proportional clearing and inspect which defaults are
-  secondary.
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:paragraph -->
-<p>
-  <small
-    >Fixed-point solver · Network topology · Contagion. Includes model notes, a
-    worked example, sources and downloadable results.</small
-  >
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">
-  <a href="https://lab.yourcatalyst.in/experiments/#auctions"
-    >Who pays for the winning bid?</a
-  >
-</h2>
-<!-- /wp:heading -->
-<!-- wp:paragraph -->
-<p>
-  Run first-price and second-price auctions on the same 10,000 value draws. Test
-  reserve-aware equilibrium bids, then move bidding away from equilibrium.
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:paragraph -->
-<p>
-  <small
-    >Auction theory · Paired estimators · Revenue equivalence. Includes model
-    notes, a worked example, sources and downloadable results.</small
-  >
-</p>
-<!-- /wp:paragraph -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">Existing research</h2>
-<!-- /wp:heading -->
-<!-- wp:list -->
-<ul class="wp-block-list">
-  <!-- wp:list-item -->
-  <li>
-    <a href="https://lab.yourcatalyst.in/"
-      >JoSAA matching and multi-round allocation simulator</a
+<!-- wp:html -->
+<div
+  style="
+    width: 100%;
+    max-width: none !important;
+    position: relative;
+    left: 0;
+    margin: 0 !important;
+    background: #f7f5ef;
+    color: #252b29;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    line-height: 1.65;
+  "
+>
+  <header style="border-bottom: 1px solid #d9dcd2">
+    <div
+      style="
+        max-width: 1000px;
+        margin: auto;
+        padding: 23px 24px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+      "
     >
-    —
-    <a href="https://github.com/thetarocks/catalyst-lab">source and methods</a>
-  </li>
-  <!-- /wp:list-item --><!-- wp:list-item -->
-  <li>
-    <a href="https://github.com/thetarocks/dao-sybil-resilience"
-      >DAO Sybil resilience and quadratic voting</a
+      <a
+        href="/"
+        style="
+          font-size: 13px;
+          font-weight: 750;
+          letter-spacing: 1px;
+          color: #252b29;
+          text-decoration: none;
+        "
+        >YOUR CATALYST</a
+      >
+      <nav
+        aria-label="Main navigation"
+        style="display: flex; flex-wrap: wrap; gap: 23px; font-size: 12px"
+      >
+        <a href="/projects/" style="color: #48544b; text-decoration: none"
+          >Projects</a
+        ><a href="/aboutme/" style="color: #48544b; text-decoration: none"
+          >About me</a
+        ><a
+          href="https://github.com/thetarocks"
+          style="color: #48544b; text-decoration: none"
+          >GitHub ↗</a
+        >
+      </nav>
+    </div>
+  </header>
+  <div role="region" aria-label="Project catalog" style="max-width: 1000px; margin: auto; padding: 65px 24px 70px">
+    <section style="border-bottom:2px solid #252b29;padding-bottom:30px;margin-bottom:35px"><p style="font:10px/1.6 ui-monospace,monospace;color:#286044;letter-spacing:1px">THE PROJECT INDEX</p><h1 style="font:normal clamp(36px,5vw,54px)/1.15 Georgia,serif;letter-spacing:-1px;margin:15px 0 20px">Experiments &amp; projects.</h1><p style="font-size:15px;line-height:1.8;color:#536057;max-width:740px">A collection of interactive models and mechanism-design work. Start with a question, inspect the assumptions, and follow the calculations through to the result.</p></section>
+    <section id="experiments" style="margin-bottom: 50px">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          flex-wrap: wrap;
+          gap: 15px;
+          margin-bottom: 10px;
+        "
+      >
+        <h2
+          style="
+            font:
+              normal 34px/1.2 Georgia,
+              serif;
+            margin: 0;
+          "
+        >
+          Six questions to explore.
+        </h2>
+        <a
+          href="https://lab.yourcatalyst.in/experiments/"
+          style="
+            font:
+              11px/1.7 ui-monospace,
+              monospace;
+            color: #286044;
+          "
+          >VIEW THE NOTEBOOK ↗</a
+        >
+      </div>
+      <p
+        style="
+          font-size: 13px;
+          line-height: 1.8;
+          color: #697269;
+          max-width: 730px;
+        "
+      >
+        Interactive models with adjustable inputs, reproducible runs,
+        downloadable results and explanations of the mathematics. All six use
+        synthetic scenarios, with assumptions and limitations stated inside each
+        experiment.
+      </p>
+      <article style="padding: 27px 0; border-bottom: 1px solid #d9dcd2">
+        <p
+          style="
+            font:
+              10px/1.6 ui-monospace,
+              monospace;
+            letter-spacing: 1px;
+            color: #286044;
+            margin: 0 0 8px;
+          "
+        >
+          01 / MARKETS
+        </p>
+        <h3
+          style="
+            font:
+              normal 27px/1.2 Georgia,
+              serif;
+            margin: 0 0 12px;
+          "
+        >
+          <a
+            style="color: #252b29; text-decoration: none"
+            href="https://lab.yourcatalyst.in/experiments/#orderbook"
+            >The price of immediacy ↗</a
+          >
+        </h3>
+        <p
+          style="
+            font-size: 14px;
+            line-height: 1.75;
+            color: #536057;
+            max-width: 740px;
+            margin: 0 0 12px;
+          "
+        >
+          A price–time matching engine that exposes every fill. Change order
+          size, spread and depth to see why the quoted price is only part of the
+          cost.
+        </p>
+        <p
+          style="
+            font:
+              10px/1.7 ui-monospace,
+              monospace;
+            color: #697269;
+            margin: 0;
+          "
+        >
+          Matching engine · Fill ledger · VWAP
+        </p>
+      </article>
+      <article style="padding: 27px 0; border-bottom: 1px solid #d9dcd2">
+        <p
+          style="
+            font:
+              10px/1.6 ui-monospace,
+              monospace;
+            letter-spacing: 1px;
+            color: #286044;
+            margin: 0 0 8px;
+          "
+        >
+          02 / DEFI
+        </p>
+        <h3
+          style="
+            font:
+              normal 27px/1.2 Georgia,
+              serif;
+            margin: 0 0 12px;
+          "
+        >
+          <a
+            style="color: #252b29; text-decoration: none"
+            href="https://lab.yourcatalyst.in/experiments/#amm"
+            >Liquidity has a curve ↗</a
+          >
+        </h3>
+        <p
+          style="
+            font-size: 14px;
+            line-height: 1.75;
+            color: #536057;
+            max-width: 740px;
+            margin: 0 0 12px;
+          "
+        >
+          Trace a constant-product swap through the reserves, then compare
+          liquidity provision with holding. Separate fee income, execution
+          shortfall and divergence loss.
+        </p>
+        <p
+          style="
+            font:
+              10px/1.7 ui-monospace,
+              monospace;
+            color: #697269;
+            margin: 0;
+          "
+        >
+          Reserve accounting · Price impact · LP returns
+        </p>
+      </article>
+      <article style="padding: 27px 0; border-bottom: 1px solid #d9dcd2">
+        <p
+          style="
+            font:
+              10px/1.6 ui-monospace,
+              monospace;
+            letter-spacing: 1px;
+            color: #286044;
+            margin: 0 0 8px;
+          "
+        >
+          03 / DERIVATIVES
+        </p>
+        <h3
+          style="
+            font:
+              normal 27px/1.2 Georgia,
+              serif;
+            margin: 0 0 12px;
+          "
+        >
+          <a
+            style="color: #252b29; text-decoration: none"
+            href="https://lab.yourcatalyst.in/experiments/#hedge"
+            >A hedge is a process ↗</a
+          >
+        </h3>
+        <p
+          style="
+            font-size: 14px;
+            line-height: 1.75;
+            color: #536057;
+            max-width: 740px;
+            margin: 0 0 12px;
+          "
+        >
+          Sell a call and finance a delta hedge through 600 simulated stock
+          paths. Explore the trade-off between rebalancing error, transaction
+          costs and a wrong volatility assumption.
+        </p>
+        <p
+          style="
+            font:
+              10px/1.7 ui-monospace,
+              monospace;
+            color: #697269;
+            margin: 0;
+          "
+        >
+          Monte Carlo · Black–Scholes · Self-financing hedge
+        </p>
+      </article>
+      <article style="padding: 27px 0; border-bottom: 1px solid #d9dcd2">
+        <p
+          style="
+            font:
+              10px/1.6 ui-monospace,
+              monospace;
+            letter-spacing: 1px;
+            color: #286044;
+            margin: 0 0 8px;
+          "
+        >
+          04 / PORTFOLIOS
+        </p>
+        <h3
+          style="
+            font:
+              normal 27px/1.2 Georgia,
+              serif;
+            margin: 0 0 12px;
+          "
+        >
+          <a
+            style="color: #252b29; text-decoration: none"
+            href="https://lab.yourcatalyst.in/experiments/#risk"
+            >Beyond the tidy frontier ↗</a
+          >
+        </h3>
+        <p
+          style="
+            font-size: 14px;
+            line-height: 1.75;
+            color: #536057;
+            max-width: 740px;
+            margin: 0 0 12px;
+          "
+        >
+          Build a long-only portfolio, change the correlation structure and
+          compare Gaussian with heavy-tailed shocks. The same volatility can
+          conceal a different tail.
+        </p>
+        <p
+          style="
+            font:
+              10px/1.7 ui-monospace,
+              monospace;
+            color: #697269;
+            margin: 0;
+          "
+        >
+          Covariance · Grid frontier · Expected shortfall
+        </p>
+      </article>
+      <article style="padding: 27px 0; border-bottom: 1px solid #d9dcd2">
+        <p
+          style="
+            font:
+              10px/1.6 ui-monospace,
+              monospace;
+            letter-spacing: 1px;
+            color: #286044;
+            margin: 0 0 8px;
+          "
+        >
+          05 / NETWORKS
+        </p>
+        <h3
+          style="
+            font:
+              normal 27px/1.2 Georgia,
+              serif;
+            margin: 0 0 12px;
+          "
+        >
+          <a
+            style="color: #252b29; text-decoration: none"
+            href="https://lab.yourcatalyst.in/experiments/#contagion"
+            >When one balance sheet breaks ↗</a
+          >
+        </h3>
+        <p
+          style="
+            font-size: 14px;
+            line-height: 1.75;
+            color: #536057;
+            max-width: 740px;
+            margin: 0 0 12px;
+          "
+        >
+          Send an asset shock through eight connected banks. Compare ring,
+          complete and hub networks using proportional clearing and inspect
+          which defaults are secondary.
+        </p>
+        <p
+          style="
+            font:
+              10px/1.7 ui-monospace,
+              monospace;
+            color: #697269;
+            margin: 0;
+          "
+        >
+          Fixed-point solver · Network topology · Contagion
+        </p>
+      </article>
+      <article style="padding: 27px 0; border-bottom: 1px solid #d9dcd2">
+        <p
+          style="
+            font:
+              10px/1.6 ui-monospace,
+              monospace;
+            letter-spacing: 1px;
+            color: #286044;
+            margin: 0 0 8px;
+          "
+        >
+          06 / MECHANISMS
+        </p>
+        <h3
+          style="
+            font:
+              normal 27px/1.2 Georgia,
+              serif;
+            margin: 0 0 12px;
+          "
+        >
+          <a
+            style="color: #252b29; text-decoration: none"
+            href="https://lab.yourcatalyst.in/experiments/#auctions"
+            >Who pays for the winning bid? ↗</a
+          >
+        </h3>
+        <p
+          style="
+            font-size: 14px;
+            line-height: 1.75;
+            color: #536057;
+            max-width: 740px;
+            margin: 0 0 12px;
+          "
+        >
+          Run first-price and second-price auctions on the same 10,000 value
+          draws. Test reserve-aware equilibrium bids, then move bidding away
+          from equilibrium.
+        </p>
+        <p
+          style="
+            font:
+              10px/1.7 ui-monospace,
+              monospace;
+            color: #697269;
+            margin: 0;
+          "
+        >
+          Auction theory · Paired estimators · Revenue equivalence
+        </p>
+      </article>
+    </section>
+    <section
+      style="
+        border-top: 2px solid #252b29;
+        padding-top: 30px;
+        margin-bottom: 40px;
+      "
     >
-    — research in progress
-  </li>
-  <!-- /wp:list-item -->
-</ul>
-<!-- /wp:list -->
-<!-- wp:paragraph -->
-<p>
-  <small
-    >The six new experiments use synthetic scenarios and implement established
-    models. They include explicit assumptions, numerical validation and
-    implementation notes. They are educational experiments rather than empirical
-    market findings.</small
-  >
-</p>
-<!-- /wp:paragraph -->
+      <p
+        style="
+          font:
+            10px/1.6 ui-monospace,
+            monospace;
+          letter-spacing: 1px;
+          color: #286044;
+        "
+      >
+        MECHANISM DESIGN / EXISTING WORK
+      </p>
+      <h2
+        style="
+          font:
+            normal 34px/1.2 Georgia,
+            serif;
+          margin: 15px 0 25px;
+        "
+      >
+        Allocation and collective choice.
+      </h2>
+      <article style="padding: 0 0 25px; border-bottom: 1px solid #d9dcd2">
+        <h3
+          style="
+            font:
+              normal 25px/1.3 Georgia,
+              serif;
+            margin: 0 0 12px;
+          "
+        >
+          Auditing JoSAA: matching, vacancy chains and reservation interleaving
+        </h3>
+        <p
+          style="
+            font-size: 14px;
+            line-height: 1.8;
+            color: #536057;
+            max-width: 740px;
+          "
+        >
+          An implementation of student-proposing deferred acceptance and
+          multi-round allocation under Freeze, Float and Slide. The repository
+          includes strategic-perturbation audits and invariant tests; the live
+          sandbox explores allocation and regret under simplified cutoff
+          assumptions.
+        </p>
+        <a
+          href="https://lab.yourcatalyst.in/"
+          style="font-size: 12px; color: #286044; margin-right: 20px"
+          >Launch the JoSAA simulator ↗</a
+        ><a
+          href="https://github.com/thetarocks/catalyst-lab"
+          style="font-size: 12px; color: #536057"
+          >Source &amp; methods ↗</a
+        >
+      </article>
+      <article style="padding: 25px 0">
+        <p
+          style="
+            font:
+              10px/1.6 ui-monospace,
+              monospace;
+            letter-spacing: 0.7px;
+            color: #697269;
+          "
+        >
+          RESEARCH IN PROGRESS
+        </p>
+        <h3
+          style="
+            font:
+              normal 25px/1.3 Georgia,
+              serif;
+            margin: 0 0 12px;
+          "
+        >
+          Sybil reversal thresholds in quadratic voting
+        </h3>
+        <p
+          style="
+            font-size: 14px;
+            line-height: 1.8;
+            color: #536057;
+            max-width: 740px;
+          "
+        >
+          Quadratic voting changes the relationship between spending and
+          influence. The governance work examines how splitting resources across
+          identities can change that relationship, using counterfactual
+          simulations around DAO voting.
+        </p>
+        <a
+          href="https://github.com/thetarocks/dao-sybil-resilience"
+          style="font-size: 12px; color: #286044"
+          >Explore the governance repository ↗</a
+        >
+      </article>
+    </section>
+    <aside style="border-top: 1px solid #d9dcd2; padding: 25px 0">
+      <h2
+        style="
+          font:
+            normal 26px/1.3 Georgia,
+            serif;
+          margin: 0 0 14px;
+        "
+      >
+        A note on the work.
+      </h2>
+      <p
+        style="
+          font-size: 13px;
+          line-height: 1.8;
+          color: #697269;
+          max-width: 740px;
+        "
+      >
+        A model is useful when its assumptions are visible. Each new experiment
+        includes a worked example, primary references and numerical checks. The
+        simulations illustrate established ideas; they do not establish new
+        empirical findings. Code and implementation notes, including the use of
+        AI coding assistance, are available in the repository.
+      </p>
+    </aside>
+    <footer
+      style="
+        border-top: 1px solid #d9dcd2;
+        padding-top: 25px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 15px;
+        font:
+          10px/1.7 ui-monospace,
+          monospace;
+        color: #697269;
+      "
+    >
+      <span>© 2026 YOUR CATALYST</span
+      ><a
+        href="https://github.com/thetarocks/catalyst-lab"
+        style="color: #536057"
+        >READ THE SOURCE ↗</a
+      >
+    </footer>
+  </div>
+</div>
+
+<!-- /wp:html -->
