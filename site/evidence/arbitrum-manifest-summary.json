@@ -1,0 +1,9 @@
+{
+  "source_url": "https://github.com/thetarocks/arbitrum-quadratic-voting-simulation/blob/main/proposals_manifest.json",
+  "source_sha256": "ba46f1413b1a26d008372c9ae868e4e660f80c2c2e15c6875e1e21931ee67b7f",
+  "proposals": 15,
+  "reported_vote_count_total": 866320,
+  "proposal_score_min": 42148959.440151975,
+  "proposal_score_max": 240473878.20028165,
+  "scope": "Proposal metadata, not an independent ballot-level replication. Vote counts and scores can include the same participants across proposals; scores are not dollars or unique token holdings."
+}

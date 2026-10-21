@@ -1,5 +1,16 @@
 # Catalyst Lab — markets, risk & mechanism design
 
+## Run locally in 2 commands
+
+From a cloned checkout with Python 3.9+, install the test dependency and run the Python checks:
+
+```sh
+python3 -m pip install pytest==8.4.2
+python3 -m pytest -q
+```
+
+The Python suite has **15 tests**. The browser notebook needs no npm packages or build step: serve it with `python3 -m http.server 8765` and open `http://localhost:8765/experiments/`. With Node 22+, run its 43 checks using `node --test experiments/*.test.mjs`.
+
 An open-source notebook connecting economic rules to inspectable algorithms, interactive counterfactuals and numerical checks.
 
 **[Run the experiments](https://lab.yourcatalyst.in/experiments/) · [Read the maths & code guide](https://lab.yourcatalyst.in/experiments/learn.html) · [Visit Your Catalyst](https://yourcatalyst.in/)**
@@ -34,6 +45,22 @@ The interface uses original SVG studies of each mechanism, a working order-book 
 
 Read the [three-page JoSAA technical note](site/artifacts/josaa-technical-note.pdf), [two-page Sybil model note](site/artifacts/sybil-technical-note.pdf), [static evidence](evidence/josaa-static.json), [paired-trial evidence](evidence/josaa-dynamic.json), and [methods and limitations](docs/methods_and_limitations.md).
 
+## Engineering decisions and a real regression
+
+The portfolio starts with a question connected to politics: how do rules distribute representation, access and influence? The models make those choices inspectable through inputs, intermediate state and counterfactuals.
+
+During development, a later higher-priority applicant could appear in the program’s accepted list while their own `current_match` remained empty. The repair updates retained applicants too. [The regression](tests/test_da.py) checks the winning program list, the winner’s state and the displaced applicant’s state together.
+
+The pipeline is **sample inputs → synthetic preferences → matching → round actions → paired withdrawals → JSON evidence**. The browser notebook uses **seed + controls → pure model → chart / explanation / export**. Displayed prose and charts use the same completed result.
+
+### Measured performance
+
+The [local timing record](evidence/runtime.json) reports five wall-clock samples after warm-up on macOS ARM64 / Python 3.9.6. The static workload executes **1,081 matching runs in a 1.62 s median**; the dynamic workload executes **201 matching runs in a 140.0 ms median**. Measurements include market generation and source hashing. They are local workload timings, not browser or national-scale guarantees.
+
+Re-run with `python3 -m scripts.benchmark_runtime --json evidence/runtime.json`. Array queues and repeated sorting remain optimization opportunities; no WebAssembly or Worker speedup is claimed.
+
+The [archived DAO proposal metadata](evidence/arbitrum-proposals.json) contains 15 proposals and 866,320 reported votes across them, with recorded per-proposal Snapshot scores from 42.1m to 240.5m. These are proposal metadata counts; repeat participants are possible and scores are not dollar amounts. See the [aggregation and provenance](site/evidence/arbitrum-manifest-summary.json). This does not replace a frozen ballot-level archive or reproduce the paper independently.
+
 ## Explore the repository
 
 - [Static portfolio source](site/) — Home, Projects, About, previews, PDFs and evidence; published through [yourcatalyst-site](https://github.com/thetarocks/yourcatalyst-site)
@@ -55,7 +82,7 @@ python -m pip install pytest
 python -m pytest -q
 ```
 
-The validation workflow runs 43 JavaScript checks and 14 Python tests. Passing checks support implementation correctness under the stated assumptions; coverage has not been measured. They do not validate a market forecast or establish a new economic theorem.
+The validation workflow runs 43 JavaScript checks and 15 Python tests. Passing checks support implementation correctness under the stated assumptions; coverage has not been measured. They do not validate a market forecast or establish a new economic theorem.
 
 [![Validate models](https://github.com/thetarocks/catalyst-lab/actions/workflows/validate.yml/badge.svg)](https://github.com/thetarocks/catalyst-lab/actions/workflows/validate.yml)
 
