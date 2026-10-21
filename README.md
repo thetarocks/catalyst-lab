@@ -11,6 +11,14 @@ python3 -m pytest -q
 
 The Python suite has **15 tests**. The browser notebook needs no npm packages or build step: serve it with `python3 -m http.server 8765` and open `http://localhost:8765/experiments/`. With Node 22+, run its 51 JavaScript checks using `node --test experiments/*.test.mjs allocation/*.test.mjs`.
 
+## The 60-second research path
+
+1. **DAO governance:** [Sharvina’s SSRN preprint](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7103878) reports changed winners in **4/15 selected proposals** under fixed-vote square-root reweighting. Editorial criticism of its novelty and fixed-distribution assumption prompted the [Sybil follow-up](https://github.com/thetarocks/dao-sybil-resilience). This is a preprint and subsequent analytical study, not peer-reviewed acceptance.
+2. **JoSAA:** early Freeze forfeits one preference tier in **50/50 paired trials for one synthetic applicant**, repeatedly sampling four possible withdrawals. [Trial-level evidence](evidence/josaa-dynamic.json) makes the narrow scope inspectable; it is not a population estimate.
+3. **Engineering:** a higher-priority displacement could update a program list without updating the winning applicant’s state. The Codex-assisted repair has a [regression checking both sides](tests/test_da.py).
+
+[Who designed, implemented, analyzed and wrote what](docs/contributions.md) separates Sharvina’s original research from the later AI-assisted extensions. Private editorial criticism is author-reported; independent replication or acceptance is not claimed. The six browser finance models below are **one educational computational laboratory implementing established models**, not six additional research papers.
+
 An open-source notebook connecting economic rules to inspectable algorithms, interactive counterfactuals and numerical checks.
 
 **[Run the experiments](https://lab.yourcatalyst.in/experiments/) · [Read the maths & code guide](https://lab.yourcatalyst.in/experiments/learn.html) · [Visit Your Catalyst](https://yourcatalyst.in/)**
