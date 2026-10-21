@@ -45,3 +45,19 @@ catalyst-lab/
 ├── tests/                          # 100% passing pytest invariant test suite
 ├── index.html                      # Interactive web sandbox deployed to root
 └── CNAME                           # Custom domain routing (lab.yourcatalyst.in)
+
+```
+
+## Six additional computational experiments
+
+The [interactive experiment notebook](https://lab.yourcatalyst.in/experiments/) adds order-book execution, constant-product AMMs, discrete delta hedging, portfolio tail risk, interbank contagion and auction revenue comparison.
+
+Each experiment includes adjustable inputs, seeded replay, plots with accessible data tables, numerical exports, equations, a worked example, limitations and primary references. These are educational implementations using synthetic inputs, not new empirical findings. Implementation details and reproducibility notes are in [experiments/README.md](experiments/README.md).
+
+```sh
+node --test experiments/models.test.mjs
+python -m pytest -q
+python3 -m http.server 8765
+```
+
+The browser notebook is buildless and runs entirely on the client. GitHub Pages serves the repository root, retaining the existing JoSAA simulator and the `lab.yourcatalyst.in` custom domain.
