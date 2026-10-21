@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "audit": "static_da",
+  "candidates": 60,
+  "programs": 17,
+  "deviations_tested": 1080,
+  "profitable_deviations": 0,
+  "assignment_runs": 1081,
+  "gain_rate_pct": 0.0,
+  "scope": "One synthetic OPEN-category cohort derived from the repository sample cutoff table; truncations and two adjacent swaps per applicant. A finite check, not a proof of strategy-proofness or an empirical estimate for real admissions.",
+  "source_sha256": {
+    "scripts/benchmark_manipulability.py": "251c3caeaa3a6165ddc159829fcf3c3146c4d3f53ecdfff395db083274cce2ae",
+    "scripts/audit_dynamic_strategies.py": "df1b7ed30e306db7b29ef9c01b707356c3d30c94080d40d4006c096d454d1fd2",
+    "core/deferred_acceptance.py": "7e78d88281494be19b15807e4ee26815a0ba0f7eac5c7957a1c27cb763039a82",
+    "core/josaa_engine.py": "fb1920a5480c42e2119bb8094ee7630fe386db2975d2e87ad7ea22617f9b227f",
+    "core/agents.py": "b86b879e815ccd825d0ec5a2ff8a3028a523fa82a469df8d9a6f1c59f6655efc",
+    "core/market_builder.py": "bd715cc666eeb1b6f1f2f3dcdc6a69fbb50adc9e5b69c7056a61decd8447a1dc",
+    "data/raw/sample_josaa_cutoffs.csv": "7e0bd48f5ed19d080ccddf502b102f0f07dab1f3396ca12a0df506a80b4a3e46"
+  }
+}

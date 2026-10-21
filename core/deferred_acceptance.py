@@ -39,6 +39,8 @@ class Program:
         retained = pool[:self.capacity]
         rejected = pool[self.capacity:]
         self.matched_students = retained
+        for student in retained:
+            student.current_match = self.id
 
         for rej in rejected:
             rej.current_match = None

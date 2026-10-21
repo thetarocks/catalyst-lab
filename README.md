@@ -23,13 +23,23 @@ The experiment workspaces include debounced live controls, contextual explanatio
 
 The interface uses original SVG studies of each mechanism, a working order-book preview, searchable experiment collections and a companion guide with section tracking and reading progress. Motion respects reduced-motion preferences. The illustrations are visual identities, separate from the numerical charts.
 
+## Research and evidence
+
+- **JoSAA:** 0 profitable deviations across **1,080** finite preference perturbations (60 synthetic applicants, 17 programs). DSIC for applicant-proposing DA in a single round is established theory; this is an implementation check, not a new proof.
+- **Multi-round contribution:** for one selected applicant, freezing forfeits an upgrade in **50/50 paired trials**, with one upstream withdrawal per trial. These repeatedly sample only four possible withdrawal sets; this is not a population estimate. The audit performs 201 matching runs.
+- **Data:** synthetic preferences and utilities generated from `data/raw/sample_josaa_cutoffs.csv`. Its official source/year are not documented; it must not be treated as verified real JoSAA data or actual submitted preferences.
+- **DAO paper:** [Arbitrum governance counterfactuals on SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7103878). This preprint concerns fixed-vote square-root reweighting. The [Sybil follow-on](https://github.com/thetarocks/dao-sybil-resilience) is a separate analytical model; complete raw ballots are not archived here.
+
+Read the [three-page JoSAA technical note](site/artifacts/josaa-technical-note.pdf), [two-page Sybil model note](site/artifacts/sybil-technical-note.pdf), [static evidence](evidence/josaa-static.json), [paired-trial evidence](evidence/josaa-dynamic.json), and [methods and limitations](docs/methods_and_limitations.md).
+
 ## Explore the repository
 
-- [Model kernels](experiments/models.mjs) and [numerical tests](experiments/models.test.mjs)
-- [Interactive index](experiments/app.mjs), [live trading preview](experiments/quick-preview.mjs), and [styles](experiments/style.css)
-- [Live explanations](experiments/live-notes.mjs), [interactive charts](experiments/charts.mjs), [bank inspection](experiments/network-view.mjs) and [presentation checks](experiments/presentation.test.mjs)
-- [WordPress homepage, Projects, About and page-template source](wordpress/)
-- [Existing JoSAA simulator](https://lab.yourcatalyst.in/) and the original Python audit below
+- [Static portfolio source](site/) — Home, Projects, About, previews, PDFs and evidence; published through [yourcatalyst-site](https://github.com/thetarocks/yourcatalyst-site)
+- [Python matching kernels](core/), [benchmark scripts](scripts/) and [Python tests](tests/)
+- [Browser model kernels](experiments/models.mjs) and [numerical tests](experiments/models.test.mjs)
+- [Live explanations](experiments/live-notes.mjs), [interactive charts](experiments/charts.mjs) and [presentation checks](experiments/presentation.test.mjs)
+- [Finance notebook documentation](experiments/README.md) and [maths/code guide](experiments/learn.html)
+- [Legacy WordPress markup](wordpress/) — retained as a migration backup
 
 ## Run and verify
 
@@ -43,55 +53,23 @@ python -m pip install pytest
 python -m pytest -q
 ```
 
-The validation workflow runs 43 JavaScript numerical and presentation tests and 10 Python JoSAA tests. Passing checks support implementation correctness under the stated assumptions; they do not validate a market forecast or establish a new economic theorem.
+The validation workflow runs 43 JavaScript checks and 14 Python tests. Passing checks support implementation correctness under the stated assumptions; coverage has not been measured. They do not validate a market forecast or establish a new economic theorem.
 
----
+[![Validate models](https://github.com/thetarocks/catalyst-lab/actions/workflows/validate.yml/badge.svg)](https://github.com/thetarocks/catalyst-lab/actions/workflows/validate.yml)
 
-## Original JoSAA audit
+Reproduce the audited results and portfolio:
 
-[![Pytest Suite](https://img.shields.io/badge/pytest-10%2F10%20passing-brightgreen)](#)
-[![Live Demo](https://img.shields.io/badge/demo-lab.yourcatalyst.in-blue)](https://lab.yourcatalyst.in)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-An algorithmic testbed and game-theoretic audit of India's **Joint Seat Allocation Authority (JoSAA)** admission mechanism. 
-
-The project formalizes and evaluates the interaction between **Gale-Shapley Student-Proposing Deferred Acceptance**, sequential multi-round clearing under dynamic candidate actions (`Freeze`, `Float`, `Slide`), and Supreme Court-mandated vertical reservation interleaving (*Indra Sawhney* / *Sönmez-Yenmez*).
-
-🌐 **Interactive Sandbox:** [https://lab.yourcatalyst.in](https://lab.yourcatalyst.in)
-
----
-
-## Key Findings
-
-1. **Static Dominant-Strategy Incentive Compatibility (DSIC):**
-   * Evaluated across $N = 600$ strategic perturbations (choice truncations and rank-inversion deviations) on a calibrated 60-applicant market.
-   * **Result:** $0.00\%$ profitable deviations, empirically confirming strategy-proofness in the one-shot static limit.
-2. **Dynamic Regret in Multi-Round Clearing:**
-   * While static preference submission is strategy-proof, sequential rounds introduce a timing game under exogenous upstream dropouts.
-   * Prematurely selecting `FREEZE` is strictly weakly dominated by `FLOAT`, with simulations showing significant welfare losses when upstream seats open up.
-3. **Merit-First Quota Interleaving:**
-   * Verified that reserved-category candidates consume OPEN merit seats first by Common Rank List (CRL) merit before touching category quotas, preserving affirmative action capacity.
-
----
-
-## Repository Architecture
-
-```text
-catalyst-lab/
-├── core/
-│   ├── deferred_acceptance.py      # Gale-Shapley (1962) student-proposing DA
-│   ├── josaa_engine.py             # Multi-round dynamic clearing (Freeze/Float/Slide)
-│   ├── reservation_engine.py       # Indra Sawhney vertical quota interleaving
-│   └── market_builder.py           # Revealed-preference cohort calibration
-├── data/
-│   └── raw/sample_josaa_cutoffs.csv # Opening and closing rank empirical benchmarks
-├── docs/
-│   ├── methods_and_limitations.md  # Formal assumptions and boundary conditions
-│   └── audit_findings.md           # Theoretical proofs and empirical audit findings
-├── scripts/
-│   ├── benchmark_manipulability.py # Automated DSIC perturbation audit (600 tests)
-│   └── audit_dynamic_strategies.py # Dynamic Freeze vs. Float regret simulator
-├── tests/                          # 100% passing pytest invariant test suite
-├── index.html                      # Interactive web sandbox deployed to root
-└── CNAME                           # Custom domain routing (lab.yourcatalyst.in)
+```sh
+python -m scripts.benchmark_manipulability --json evidence/josaa-static.json
+python -m scripts.audit_dynamic_strategies --json evidence/josaa-dynamic.json
+cp evidence/josaa-*.json site/evidence/
+python scripts/build_portfolio.py
+python3 -m http.server 8766 --directory site
+# Visit http://localhost:8766/
+# Optional PDF regeneration: pip install reportlab, then
+python scripts/build_technical_notes.py
 ```
+
+The Python DA implementation uses program-side sorting and a list queue; it is an inspectable small-market implementation, not an optimized national-scale allocator. Quota fixtures test the implemented vertical-quota rules; they do not establish equivalence to every official JoSAA rule. The browser sandbox has its own synthetic illustrative inputs, distinct from the Python benchmark cohorts. See the PDFs for exact scope and limitations.
+
+The portfolio uses coding assistance; the intent is to make the equations, source, tests and evidence inspectable enough to explain and challenge. No real user testimonial, mentor endorsement or competition outcome is claimed without a verifiable source.

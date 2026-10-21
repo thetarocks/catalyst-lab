@@ -1,0 +1,48 @@
+{
+  "scope": "Reconstruction from four hard-coded published W/G summary pairs. This verifies algebraic consistency, not raw-ballot provenance or a real attack.",
+  "source_url": "https://github.com/thetarocks/dao-sybil-resilience/blob/main/run_sybil_pipeline.py",
+  "source_sha256": "30cbab95d80bf7b73642b61085aa0e0640f3e942daa1f25f668f9df380605ff9",
+  "condition": "(sqrt(k)-1)*W > G",
+  "cases": [
+    {
+      "name": "Grants Milestone 1",
+      "W": 4272.48,
+      "G": 3992.73,
+      "r": 0.9345,
+      "k_star": 4,
+      "computed_strict_k_min": 4,
+      "gain_at_threshold": 4272.48,
+      "gain_one_below": 3127.672434321876
+    },
+    {
+      "name": "ACryptoS LTIPP",
+      "W": 4252.89,
+      "G": 16856.83,
+      "r": 3.9636,
+      "k_star": 25,
+      "computed_strict_k_min": 25,
+      "gain_at_threshold": 17011.56,
+      "gain_one_below": 16581.9308643703
+    },
+    {
+      "name": "Arbitrum Coalition",
+      "W": 5192.48,
+      "G": 73484.43,
+      "r": 14.1521,
+      "k_star": 230,
+      "computed_strict_k_min": 230,
+      "gain_at_threshold": 73555.37817145759,
+      "gain_one_below": 73384.00069264491
+    },
+    {
+      "name": "Security Enhancement",
+      "W": 3834.53,
+      "G": 110816.18,
+      "r": 28.8995,
+      "k_star": 894,
+      "computed_strict_k_min": 894,
+      "gain_at_threshold": 110817.27577245438,
+      "gain_one_below": 110753.13489707214
+    }
+  ]
+}

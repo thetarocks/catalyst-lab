@@ -1,0 +1,240 @@
+{
+  "seed": 42,
+  "models": {
+    "orderbook": {
+      "parameters": {
+        "seed": 42,
+        "size": 1200,
+        "depth": 120,
+        "spread": 0.2,
+        "side": 1
+      },
+      "metrics": [
+        {
+          "label": "Filled quantity",
+          "value": 1200,
+          "unit": "shares",
+          "note": ""
+        },
+        {
+          "label": "Unfilled quantity",
+          "value": 0,
+          "unit": "shares",
+          "note": "Market orders do not rest in this model."
+        },
+        {
+          "label": "Execution VWAP",
+          "value": 100.52808333333334,
+          "unit": "$",
+          "note": ""
+        },
+        {
+          "label": "Cost vs midpoint",
+          "value": 52.80833333333418,
+          "unit": "bps",
+          "note": "Positive means a worse execution price."
+        }
+      ]
+    },
+    "amm": {
+      "parameters": {
+        "seed": 42,
+        "reserve": 5000,
+        "trade": 1000,
+        "fee": 0.3,
+        "ratio": 2
+      },
+      "metrics": [
+        {
+          "label": "Token B received",
+          "value": 83124.89578122394,
+          "unit": "B",
+          "note": ""
+        },
+        {
+          "label": "Execution shortfall",
+          "value": 16.87510421877606,
+          "unit": "%",
+          "note": "Against the initial 100 B/A spot price; includes fee."
+        },
+        {
+          "label": "LP vs holding",
+          "value": -5.719095841793653,
+          "unit": "%",
+          "note": "Price-ratio scenario, before fees."
+        },
+        {
+          "label": "Invariant growth",
+          "value": 0.05002501250626068,
+          "unit": "%",
+          "note": "Fees stay in the pool."
+        }
+      ]
+    },
+    "hedge": {
+      "parameters": {
+        "seed": 42,
+        "implied": 20,
+        "realized": 20,
+        "steps": 52,
+        "cost": 2
+      },
+      "metrics": [
+        {
+          "label": "Call premium",
+          "value": 9.925041401853989,
+          "unit": "$",
+          "note": "European call, S = K = 100, T = 1 year, r = 4%."
+        },
+        {
+          "label": "Mean hedge P&L",
+          "value": -0.042633571084580026,
+          "unit": "$",
+          "note": "Monte Carlo 95% mean interval: -0.117 to 0.032."
+        },
+        {
+          "label": "Hedge P&L dispersion",
+          "value": 0.9340986880952028,
+          "unit": "$",
+          "note": "Sample standard deviation across 600 paths."
+        },
+        {
+          "label": "5th percentile P&L",
+          "value": -1.559509568702439,
+          "unit": "$",
+          "note": "A path outcome, not a confidence bound."
+        }
+      ]
+    },
+    "risk": {
+      "parameters": {
+        "seed": 42,
+        "equity": 60,
+        "bond": 75,
+        "corr": -20,
+        "tails": 0
+      },
+      "metrics": [
+        {
+          "label": "Expected return",
+          "value": 6.5,
+          "unit": "%",
+          "note": "Assumed one-year arithmetic mean."
+        },
+        {
+          "label": "Portfolio volatility",
+          "value": 11.856643707221703,
+          "unit": "%",
+          "note": "Analytic standard deviation under the stated covariance."
+        },
+        {
+          "label": "95% loss quantile",
+          "value": 12.660810893256253,
+          "unit": "%",
+          "note": "Loss is negative return; negative values represent a gain."
+        },
+        {
+          "label": "Expected shortfall",
+          "value": 17.703676817724553,
+          "unit": "%",
+          "note": "Mean loss in the worst 5% of 12,000 simulated outcomes."
+        }
+      ]
+    },
+    "contagion": {
+      "parameters": {
+        "seed": 42,
+        "topology": 0,
+        "exposure": 200,
+        "capital": 10,
+        "shock": 100
+      },
+      "metrics": [
+        {
+          "label": "Banks in default",
+          "value": 4,
+          "unit": "/ 8",
+          "note": "A default means less than full promised payment."
+        },
+        {
+          "label": "Secondary defaults",
+          "value": 3,
+          "unit": "banks",
+          "note": "Defaulting at clearing but solvent if peers paid in full."
+        },
+        {
+          "label": "Total unpaid liabilities",
+          "value": 167.10606773602956,
+          "unit": "units",
+          "note": "Includes interbank and society claims."
+        },
+        {
+          "label": "Loss to outside creditors",
+          "value": 55.70202257867652,
+          "unit": "units",
+          "note": "Bank liabilities include 100 each to society."
+        }
+      ]
+    },
+    "auctions": {
+      "parameters": {
+        "seed": 42,
+        "bidders": 5,
+        "reserve": 0,
+        "shade": 100
+      },
+      "metrics": [
+        {
+          "label": "First-price revenue",
+          "value": 66.77620616692491,
+          "unit": "$",
+          "note": "Mean per auction, including unsold items."
+        },
+        {
+          "label": "Second-price revenue",
+          "value": 66.7125784723414,
+          "unit": "$",
+          "note": "Truthful bids and the same reserve."
+        },
+        {
+          "label": "Paired revenue difference",
+          "value": 0.06362769458349794,
+          "unit": "$",
+          "note": "Monte Carlo 95% mean interval: -0.209 to 0.336."
+        },
+        {
+          "label": "First-price sale rate",
+          "value": 100,
+          "unit": "%",
+          "note": ""
+        }
+      ]
+    }
+  },
+  "riskHeavyTail": [
+    {
+      "label": "Expected return",
+      "value": 6.5,
+      "unit": "%",
+      "note": "Assumed one-year arithmetic mean."
+    },
+    {
+      "label": "Portfolio volatility",
+      "value": 11.856643707221703,
+      "unit": "%",
+      "note": "Analytic standard deviation under the stated covariance."
+    },
+    {
+      "label": "95% loss quantile",
+      "value": 11.839168431143964,
+      "unit": "%",
+      "note": "Loss is negative return; negative values represent a gain."
+    },
+    {
+      "label": "Expected shortfall",
+      "value": 19.74241054281629,
+      "unit": "%",
+      "note": "Mean loss in the worst 5% of 12,000 simulated outcomes."
+    }
+  ]
+}

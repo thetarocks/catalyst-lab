@@ -1,0 +1,1136 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Quantitative mechanism design and market audits. Reproducible matching, governance and finance experiments with explicit assumptions, source code and benchmark evidence."><meta name="theme-color" content="#172b24"><title>Quantitative mechanism design & market audits · Your Catalyst</title><link rel="icon" href="./assets/mark.svg" type="image/svg+xml"><link rel="stylesheet" href="./assets/site.css"><script type="module" src="./assets/site.mjs"></script></head><body><a class="skip-link" href="#page-content">Skip to content</a><main id="page-content"><div
+  style="
+    width: 100%;
+    position: relative;
+    left: 0;
+    margin: 0;
+    
+    max-width: none !important;
+    background: #f4f1e9;
+    color: #172b24;
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+    min-height: 100vh;
+  "
+>
+  <header
+    style="
+      max-width: 1440px;
+      margin: auto;
+      padding: 26px 4%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+      align-items: center;
+    "
+  >
+    <a
+      href="./"
+      style="
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        color: #172b24;
+        text-decoration: none;
+      "
+      >✳ &nbsp; YOUR CATALYST</a
+    >
+    <div
+      role="navigation"
+      aria-label="Main navigation"
+      style="display: flex; flex-wrap: wrap; gap: 16px 26px; font-size: 12px"
+    >
+      <a href="./projects/" style="color: #172b24; text-decoration: none"
+        >Projects</a
+      ><a
+        href="https://lab.yourcatalyst.in/experiments/"
+        style="color: #172b24; text-decoration: none"
+        >Finance notebook</a
+      ><a href="./aboutme/" style="color: #172b24; text-decoration: none"
+        >About me</a
+      ><a
+        href="https://github.com/thetarocks"
+        style="color: #172b24; text-decoration: none"
+        >GitHub ↗</a
+      >
+    </div>
+  </header>
+  <div style="max-width: 1440px; margin: auto; padding: 0 4% 40px">
+    <section
+      style="
+        background: #172b24;
+        color: #f4f1e9;
+        padding: clamp(28px, 5vw, 65px);
+        border-radius: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+        overflow: hidden;
+      "
+    >
+      <div style="flex: 1 1 420px">
+        <p
+          style="
+            font: 11px/1.7 monospace;
+            letter-spacing: 1px;
+            color: #d7ff3f;
+            margin: 0 0 20px;
+          "
+        >
+          QUANTITATIVE MECHANISM DESIGN &amp; MARKET AUDITS
+        </p>
+        <h1
+          style="
+            font:
+              500 clamp(52px, 7.5vw, 105px) / 0.98 Arial,
+              sans-serif;
+            letter-spacing: -4px;
+            margin: 35px 0 25px;
+            color: #f4f1e9;
+          "
+        >
+          Rules, tested.<br />Outcomes,
+          <em
+            style="
+              font-family: Georgia, serif;
+              color: #d7ff3f;
+              font-weight: 400;
+            "
+            >explained.</em>
+        </h1>
+        <p
+          style="
+            font-size: 16px;
+            line-height: 1.85;
+            max-width: 65ch;
+            color: #536158;
+            margin: 15px 0;
+            color: #c3cdbc;
+            font-size: 18px;
+            max-width: 35ch;
+          "
+        >
+          Runnable models of allocation, influence and risk. Read the result, inspect the assumptions, then change the rules.
+        </p>
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            margin-top: 28px;
+          "
+        >
+          <a
+            href="#research"
+            style="
+              display: inline-block;
+              background: #d7ff3f;
+              color: #172b24;
+              border-radius: 30px;
+              padding: 14px 23px;
+              text-decoration: none;
+              font-size: 13px;
+              font-weight: 600;
+              line-height: 1.6;
+            "
+            >Explore the research ↘</a
+          ><a
+            href="https://lab.yourcatalyst.in/experiments/learn.html"
+            style="font-size: 12px; color: #f4f1e9"
+            >Inside the maths &amp; code ↗</a
+          >
+        </div>
+        <p
+          style="
+            font-size: 16px;
+            line-height: 1.85;
+            max-width: 65ch;
+            color: #536158;
+            margin: 15px 0;
+            font: 10px/1.8 monospace;
+            color: #bbc9b2;
+            margin-top: 28px;
+          "
+        >
+          06 interactive models / Open source / Built to be questioned
+        </p>
+      </div>
+      <div style="flex: 1 1 340px; min-width: 0">
+        <img
+          src="https://lab.yourcatalyst.in/experiments/assets/systems.svg"
+          alt="A wireframe world crossed by a stepped price signal. An illustration of connected economic systems."
+          width="720"
+          height="440"
+          style="display: block; width: 100%; height: auto"
+        />
+        <p
+          style="
+            font: 11px/1.7 monospace;
+            letter-spacing: 1px;
+            color: #bbc9b2;
+            margin: 0 0 20px;
+          "
+        >
+          THE WORLD, WITH A FEW VARIABLES LEFT OPEN.
+        </p>
+      </div>
+    </section>
+    <div
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 24px 0;
+        border-bottom: 1px solid #172b24;
+        font:
+          500 clamp(12px, 2vw, 23px) / 1.5 Arial,
+          sans-serif;
+        letter-spacing: 1px;
+      "
+    >
+      <span>MARKETS</span><span>✳</span><span>RISK</span><span>✳</span
+      ><span>INCENTIVES</span><span>✳</span><span>CODE ↗</span>
+    </div>
+    <section
+      style="
+        padding: 60px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 35px;
+        align-items: center;
+      "
+    >
+      <div style="flex: 1 1 350px">
+        <p
+          style="
+            font: 11px/1.7 monospace;
+            letter-spacing: 1px;
+            color: #536158;
+            margin: 0 0 20px;
+          "
+        >
+          DON’T JUST READ. CHANGE SOMETHING.
+        </p>
+        <h2
+          style="
+            font:
+              500 clamp(32px, 4.6vw, 60px) / 1.1 Arial,
+              sans-serif;
+            letter-spacing: -2px;
+            margin: 18px 0 25px;
+            color: #172b24;
+          "
+        >
+          A notebook you<br />can play with.
+        </h2>
+      </div>
+      <div style="flex: 1 1 350px">
+        <p
+          style="
+            font-size: 16px;
+            line-height: 1.85;
+            max-width: 65ch;
+            color: #536158;
+            margin: 15px 0;
+          "
+        >
+          What happens when a trade gets too large, a hedge trades too often, or
+          a bank cannot pay? Your Catalyst turns those questions into small,
+          inspectable computational worlds.
+        </p>
+        <a
+          href="https://lab.yourcatalyst.in/experiments/"
+          style="
+            display: inline-block;
+            background: #172b24;
+            color: #d7ff3f;
+            border-radius: 30px;
+            padding: 14px 23px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.6;
+          "
+          >Try the live market preview ↗</a
+        >
+      </div>
+    </section>
+    <section id="research" class="research-section"><p class="research-eyebrow">FEATURED AUDITS / READ THE RESULT, THEN INSPECT IT</p><h2>Who gets a seat?<br><em>Who gets a say?</em></h2><p class="research-lede">Two projects about allocation and influence. The findings below are bounded by the data and assumptions behind them.</p><div class="research-grid"><article class="research-card"><div class="research-card-copy"><p class="research-eyebrow">01 / ALLOCATION MECHANISMS</p><h3>JoSAA allocation audit</h3><div class="takeaway"><span>KEY MODEL RESULT</span><p>No profitable deviation in 1,080 tested preference changes. In the selected two-round counterfactual, early freezing forfeited an upgrade in 50/50 paired trials.</p></div><p class="research-scope"><strong>Data &amp; limitations</strong> · Synthetic cohorts from a sample cutoff table. The dynamic result concerns one selected applicant and one upstream withdrawal per trial.</p><p class="stack-line"><strong>Stack</strong> Python standard library · pytest · JavaScript · Tailwind CDN · GitHub Pages</p><p class="scale-line"><strong>Scale</strong> 60 applicants / 17 programs / 1,080 perturbations. Dynamic audit: 80 applicants / 50 paired trials / 201 matching runs.</p><div class="artifact-links"><a class="artifact-chip" href="https://lab.yourcatalyst.in/">Interactive sandbox ↗</a><a class="artifact-chip" href="https://github.com/thetarocks/catalyst-lab/tree/main/core">Engine source ↗</a><a class="artifact-chip" href="./artifacts/josaa-technical-note.pdf">Technical note PDF ↗</a><a class="artifact-chip" href="./evidence/josaa-dynamic.json">Benchmark JSON ↗</a><a class="artifact-chip" href="https://github.com/thetarocks/catalyst-lab/actions/workflows/validate.yml">Tests & CI ↗</a></div></div><div class="mini-lab da-preview"><div class="mini-label">COUNTERFACTUAL PREVIEW / TWO APPLICANTS</div><h3>A vacancy. Two decisions.</h3><div class="choice-buttons" role="group" aria-label="Candidate action"><button type="button" data-action="FLOAT" aria-pressed="true">Float</button><button type="button" data-action="FREEZE" aria-pressed="false">Freeze</button></div><svg id="da-diagram" viewBox="0 0 550 210" role="img" aria-label="Two-round allocation illustration"></svg><label for="da-stage">Move through the rounds <output id="da-stage-value"></output></label><input id="da-stage" type="range" min="0" max="2" step="1" value="0"><p id="da-insight" role="status"></p><small>Illustrative two-seat example. The linked audit uses larger synthetic cohorts.</small></div></article><article class="research-card"><div class="research-card-copy"><p class="research-eyebrow">02 / GOVERNANCE & ADVERSARIAL IDENTITIES</p><h3>Arbitrum governance counterfactuals</h3><div class="takeaway"><span>HEADLINE RESULT / SSRN PREPRINT</span><p>Square-root reweighting changed the winning choice in 4 of 15 sampled Arbitrum proposals (26.7%).</p></div><p class="research-scope"><strong>Data &amp; limitations</strong> · Reported in the SSRN preprint; selected high-turnout proposals, not all DAO decisions. Reweighting holds observed votes fixed. The Sybil preview below is a separate analytical model.</p><p class="stack-line"><strong>Stack</strong> Python · NumPy · pandas · Matplotlib · requests · Snapshot GraphQL</p><p class="scale-line"><strong>Scope</strong> Paper: ~850,000 Snapshot vote records / 15 proposals. Repo includes pagination and reconstruction checks; complete raw ballots are not archived.</p><div class="artifact-links"><a class="artifact-chip" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7103878">SSRN preprint ↗</a><a class="artifact-chip" href="https://github.com/thetarocks/dao-sybil-resilience">Sybil follow-on source ↗</a><a class="artifact-chip" href="https://github.com/thetarocks/arbitrum-quadratic-voting-simulation">Collection pipeline ↗</a><a class="artifact-chip" href="./artifacts/sybil-technical-note.pdf">Technical note PDF ↗</a><a class="artifact-chip" href="./evidence/sybil-boundaries.json">Boundary evidence ↗</a><a class="artifact-chip" href="https://github.com/thetarocks/catalyst-lab/blob/main/tests/test_benchmark_evidence.py">Boundary checks ↗</a></div></div><div class="mini-lab sybil-preview"><div class="mini-label">IDENTITY SPLITTING / FIXED TOKEN BUDGET</div><h3>One balance. Many voices.</h3><svg id="sybil-diagram" viewBox="0 0 550 210" role="img" aria-label="Square-root voting weight as wallet count increases"></svg><label for="sybil-k">Wallets sharing the same budget <output id="sybil-k-value"></output></label><input id="sybil-k" type="range" min="1" max="64" step="1" value="9"><label for="sybil-gap">Opposing lead / initial attacker weight <output id="sybil-gap-value"></output></label><input id="sybil-gap" type="range" min="0" max="8" step="0.1" value="2"><p id="sybil-insight" role="status"></p><small>Equal splits, no identity cost and fixed opposing tally. Analytical illustration, not an observed attack.</small></div></article><article class="research-card finance-feature"><div class="research-card-copy"><p class="research-eyebrow">03 / FINANCE &amp; ECONOMICS NOTEBOOK</p><h3>From the quote<br>to the actual fill.</h3><div class="takeaway"><span>HEADLINE MODEL RESULT / SEED 42</span><p>A 1,200-share sweep consumes ten price levels and pays 52.808 bps against the $100 midpoint in the default book.</p></div><p class="research-scope"><strong>Data &amp; limitations</strong> · Synthetic, static single-venue order book. No cancellations, hidden orders, exchange fees or latency.</p><p class="stack-line"><strong>Stack</strong> JavaScript ES modules · SVG · node:test · GitHub Actions / Pages</p><p class="scale-line"><strong>Collection</strong> Six models, including market microstructure, AMMs, hedging, portfolio tails, bank networks and auctions.</p><div class="artifact-links"><a class="artifact-chip" href="https://lab.yourcatalyst.in/experiments/">Open all six models ↗</a><a class="artifact-chip" href="https://lab.yourcatalyst.in/experiments/learn.html">Maths & code guide ↗</a><a class="artifact-chip" href="https://github.com/thetarocks/catalyst-lab/blob/main/experiments/models.mjs">Matching engine ↗</a><a class="artifact-chip" href="./evidence/experiment-results.json">Numerical evidence ↗</a></div></div><div class="mini-lab landing-market-preview" aria-label="Live market execution preview"></div></article></div></section><section class="architecture-section" id="architecture"><div><p class="research-eyebrow">WHAT RUNS WHERE</p><h2>A small stack.<br><em>Visible evidence.</em></h2></div><div class="architecture-grid"><div><span>01 / OFFLINE AUDITS</span><h3>Python kernels</h3><p>Explicit applicant state, matching, counterfactual trials and versioned JSON. Source hashes record the exact inputs behind the published benchmark.</p></div><div><span>02 / INTERACTIVE LAB</span><h3>Browser computation</h3><p>JavaScript ES modules, seeded simulation, SVG charts and CSV/JSON exports. Models run locally; an application server is not needed.</p></div><div><span>03 / DELIVERY & CHECKS</span><h3>GitHub Pages + Actions</h3><p>Static HTML/CSS/JavaScript, deployed from a public repository. CI checks numerical identities and presentation behavior; a passing suite is not a claim of complete test coverage.</p></div></div><a class="ci-badge" href="https://github.com/thetarocks/catalyst-lab/actions/workflows/validate.yml"><img src="https://github.com/thetarocks/catalyst-lab/actions/workflows/validate.yml/badge.svg" alt="Live GitHub Actions validation status" width="145" height="20"></a><div class="artifact-links"><a class="artifact-chip" href="https://github.com/thetarocks/catalyst-lab/blob/main/README.md">Architecture & reproduction ↗</a><a class="artifact-chip" href="https://github.com/thetarocks/yourcatalyst-site">Published source ↗</a></div></section><section id="experiments" style="padding: 65px 0 20px">
+      <p
+        style="
+          font: 11px/1.7 monospace;
+          letter-spacing: 1px;
+          color: #536158;
+          margin: 0 0 20px;
+        "
+      >
+        THE EXPERIMENT COLLECTION / 01—06
+      </p>
+      <h2
+        style="
+          font:
+            500 clamp(32px, 4.6vw, 60px) / 1.1 Arial,
+            sans-serif;
+          letter-spacing: -2px;
+          margin: 18px 0 25px;
+          color: #172b24;
+        "
+      >
+        Choose a world.<br /><em>Change its rules.</em>
+      </h2>
+      <p
+        style="
+          font-size: 16px;
+          line-height: 1.85;
+          max-width: 65ch;
+          color: #536158;
+          margin: 15px 0;
+        "
+      >
+        Six ways to investigate markets, risk and incentives. Each model
+        includes adjustable assumptions, worked examples, checks and
+        downloadable results.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 25px 0">
+        <a
+          href="#markets"
+          style="
+            display: inline-block;
+            background: #172b24;
+            color: #d7ff3f;
+            border-radius: 30px;
+            padding: 14px 23px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.6;
+          "
+          >Markets ↘</a
+        ><a
+          href="#risk"
+          style="
+            display: inline-block;
+            background: #172b24;
+            color: #d7ff3f;
+            border-radius: 30px;
+            padding: 14px 23px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.6;
+          "
+          >Risk & networks ↘</a
+        ><a
+          href="#incentives"
+          style="
+            display: inline-block;
+            background: #172b24;
+            color: #d7ff3f;
+            border-radius: 30px;
+            padding: 14px 23px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.6;
+          "
+          >Incentives ↘</a
+        >
+      </div>
+    </section>
+    <section
+      id="markets"
+      style="padding-top: 30px; margin-top: 20px; border-top: 1px solid #ced2c4"
+    >
+      <p
+        style="
+          font: 11px/1.7 monospace;
+          letter-spacing: 1px;
+          color: #536158;
+          margin: 0 0 20px;
+        "
+      >
+        01 / HOW TRADES BECOME PRICES.
+      </p>
+      <h2
+        style="
+          font:
+            500 clamp(32px, 4.6vw, 60px) / 1.1 Arial,
+            sans-serif;
+          letter-spacing: -2px;
+          margin: 18px 0 25px;
+          color: #172b24;
+        "
+      >
+        Market execution
+      </h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 36px">
+        <article style="flex: 1 1 400px; min-width: 0; margin-bottom: 25px">
+          <a
+            href="https://lab.yourcatalyst.in/experiments/#orderbook"
+            style="display: block"
+            ><img
+              src="https://lab.yourcatalyst.in/experiments/assets/orderbook.svg"
+              alt="Illustration for Order-book execution, not simulated output"
+              width="720"
+              height="440"
+              loading="lazy"
+              style="
+                display: block;
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+              "
+          /></a>
+          <div style="padding: 22px 0 0">
+            <p
+              style="
+                font: 11px/1.7 monospace;
+                letter-spacing: 1px;
+                color: #536158;
+                margin: 0 0 20px;
+              "
+            >
+              EXPERIMENT 01 / DATA STRUCTURES &amp; MATCHING
+            </p>
+            <h3
+              style="
+                font:
+                  500 30px/1.15 Arial,
+                  sans-serif;
+                letter-spacing: -1px;
+                margin: 15px 0;
+              "
+            >
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#orderbook"
+                style="text-decoration: none; color: #172b24"
+                >Order-book execution ↗</a
+              >
+            </h3>
+            <p
+              style="
+                font-size: 16px;
+                line-height: 1.85;
+                max-width: 65ch;
+                color: #536158;
+                margin: 15px 0;
+              "
+            >
+              Why does a large trade pay more than the price on the screen?
+            </p>
+            <div class="takeaway"><span>SEEDED MODEL EXAMPLE / SEED 42</span><p>1,200 shares consume ten price levels: VWAP $100.528 and 52.808 bps cost against the $100 midpoint.</p></div><p class="research-scope"><strong>Limitations</strong> · Static synthetic book; no cancellations, hidden liquidity or latency.</p><p class="stack-line"><strong>Stack</strong> JavaScript ES modules · SVG · node:test · GitHub Pages</p><p class="scale-line"><strong>Computation</strong> 40 resting orders · price/time matching · fill ledger</p><p class="evidence-link"><a href="./evidence/experiment-results.json">Exact parameters &amp; outputs ↗</a></p><details
+              style="
+                border-top: 1px solid #ced2c4;
+                padding: 15px 0;
+                margin-top: 15px;
+              "
+            >
+              <summary style="cursor: pointer; font-size: 13px; color: #172b24">
+                What can I explore?
+              </summary>
+              <p
+                style="
+                  font-size: 16px;
+                  line-height: 1.85;
+                  max-width: 65ch;
+                  color: #536158;
+                  margin: 15px 0;
+                  font-size: 14px;
+                "
+              >
+                Fill-by-fill execution, VWAP and the cost of consuming
+                liquidity.
+              </p>
+              <a
+                href="https://lab.yourcatalyst.in/experiments/learn.html#orderbook"
+                style="color: #172b24; font-size: 12px"
+                >The maths, code &amp; limitations →</a
+              >
+            </details>
+            <div style="margin-top: 16px">
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#orderbook"
+                style="
+                  display: inline-block;
+                  background: #172b24;
+                  color: #d7ff3f;
+                  border-radius: 30px;
+                  padding: 14px 23px;
+                  text-decoration: none;
+                  font-size: 13px;
+                  font-weight: 600;
+                  line-height: 1.6;
+                "
+                >Run the experiment ↗</a
+              >
+            </div>
+          </div>
+        </article>
+        <article style="flex: 1 1 400px; min-width: 0; margin-bottom: 25px">
+          <a
+            href="https://lab.yourcatalyst.in/experiments/#amm"
+            style="display: block"
+            ><img
+              src="https://lab.yourcatalyst.in/experiments/assets/amm.svg"
+              alt="Illustration for Automated market makers, not simulated output"
+              width="720"
+              height="440"
+              loading="lazy"
+              style="
+                display: block;
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+              "
+          /></a>
+          <div style="padding: 22px 0 0">
+            <p
+              style="
+                font: 11px/1.7 monospace;
+                letter-spacing: 1px;
+                color: #536158;
+                margin: 0 0 20px;
+              "
+            >
+              EXPERIMENT 02 / NONLINEAR PRICING &amp; INVARIANTS
+            </p>
+            <h3
+              style="
+                font:
+                  500 30px/1.15 Arial,
+                  sans-serif;
+                letter-spacing: -1px;
+                margin: 15px 0;
+              "
+            >
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#amm"
+                style="text-decoration: none; color: #172b24"
+                >Automated market makers ↗</a
+              >
+            </h3>
+            <p
+              style="
+                font-size: 16px;
+                line-height: 1.85;
+                max-width: 65ch;
+                color: #536158;
+                margin: 15px 0;
+              "
+            >
+              What does an automated market maker charge for a large trade?
+            </p>
+            <div class="takeaway"><span>SEEDED MODEL EXAMPLE / SEED 42</span><p>A 1,000 A swap against 5,000 A reserves receives 83,124.896 B after a 0.3% fee. Separately, a doubled external price implies −5.719% LP return relative to holding, before fees.</p></div><p class="research-scope"><strong>Limitations</strong> · Two-token constant-product model; no arbitrage path, MEV or fee-income forecast.</p><p class="stack-line"><strong>Stack</strong> JavaScript ES modules · SVG · node:test · GitHub Pages</p><p class="scale-line"><strong>Computation</strong> Closed-form reserve accounting · two sampled curves</p><p class="evidence-link"><a href="./evidence/experiment-results.json">Exact parameters &amp; outputs ↗</a></p><details
+              style="
+                border-top: 1px solid #ced2c4;
+                padding: 15px 0;
+                margin-top: 15px;
+              "
+            >
+              <summary style="cursor: pointer; font-size: 13px; color: #172b24">
+                What can I explore?
+              </summary>
+              <p
+                style="
+                  font-size: 16px;
+                  line-height: 1.85;
+                  max-width: 65ch;
+                  color: #536158;
+                  margin: 15px 0;
+                  font-size: 14px;
+                "
+              >
+                Swap output, price impact, fee accounting and LP divergence
+                loss.
+              </p>
+              <a
+                href="https://lab.yourcatalyst.in/experiments/learn.html#amm"
+                style="color: #172b24; font-size: 12px"
+                >The maths, code &amp; limitations →</a
+              >
+            </details>
+            <div style="margin-top: 16px">
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#amm"
+                style="
+                  display: inline-block;
+                  background: #172b24;
+                  color: #d7ff3f;
+                  border-radius: 30px;
+                  padding: 14px 23px;
+                  text-decoration: none;
+                  font-size: 13px;
+                  font-weight: 600;
+                  line-height: 1.6;
+                "
+                >Run the experiment ↗</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section
+      id="risk"
+      style="padding-top: 30px; margin-top: 20px; border-top: 1px solid #ced2c4"
+    >
+      <p
+        style="
+          font: 11px/1.7 monospace;
+          letter-spacing: 1px;
+          color: #536158;
+          margin: 0 0 20px;
+        "
+      >
+        02 / WHAT A RISK MEASURE OR A HEDGE CAN LEAVE OUT.
+      </p>
+      <h2
+        style="
+          font:
+            500 clamp(32px, 4.6vw, 60px) / 1.1 Arial,
+            sans-serif;
+          letter-spacing: -2px;
+          margin: 18px 0 25px;
+          color: #172b24;
+        "
+      >
+        Risk & networks
+      </h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 36px">
+        <article style="flex: 1 1 400px; min-width: 0; margin-bottom: 25px">
+          <a
+            href="https://lab.yourcatalyst.in/experiments/#hedge"
+            style="display: block"
+            ><img
+              src="https://lab.yourcatalyst.in/experiments/assets/hedge.svg"
+              alt="Illustration for Discrete delta hedging, not simulated output"
+              width="720"
+              height="440"
+              loading="lazy"
+              style="
+                display: block;
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+              "
+          /></a>
+          <div style="padding: 22px 0 0">
+            <p
+              style="
+                font: 11px/1.7 monospace;
+                letter-spacing: 1px;
+                color: #536158;
+                margin: 0 0 20px;
+              "
+            >
+              EXPERIMENT 03 / STOCHASTIC SIMULATION
+            </p>
+            <h3
+              style="
+                font:
+                  500 30px/1.15 Arial,
+                  sans-serif;
+                letter-spacing: -1px;
+                margin: 15px 0;
+              "
+            >
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#hedge"
+                style="text-decoration: none; color: #172b24"
+                >Discrete delta hedging ↗</a
+              >
+            </h3>
+            <p
+              style="
+                font-size: 16px;
+                line-height: 1.85;
+                max-width: 65ch;
+                color: #536158;
+                margin: 15px 0;
+              "
+            >
+              If an option can be replicated, why does a real hedge still lose
+              money?
+            </p>
+            <div class="takeaway"><span>SEEDED MODEL EXAMPLE / SEED 42</span><p>Even with matched 20% pricing/path volatility, discrete hedging produces $0.934 sample P&L dispersion across 600 paths at weekly rebalancing and 2 bps costs.</p></div><p class="research-scope"><strong>Limitations</strong> · GBM paths and discrete rebalancing; no volatility surface, jumps or real execution.</p><p class="stack-line"><strong>Stack</strong> JavaScript ES modules · SVG · node:test · GitHub Pages</p><p class="scale-line"><strong>Computation</strong> 600 seeded GBM paths · 52 intervals · self-financing ledger</p><p class="evidence-link"><a href="./evidence/experiment-results.json">Exact parameters &amp; outputs ↗</a></p><details
+              style="
+                border-top: 1px solid #ced2c4;
+                padding: 15px 0;
+                margin-top: 15px;
+              "
+            >
+              <summary style="cursor: pointer; font-size: 13px; color: #172b24">
+                What can I explore?
+              </summary>
+              <p
+                style="
+                  font-size: 16px;
+                  line-height: 1.85;
+                  max-width: 65ch;
+                  color: #536158;
+                  margin: 15px 0;
+                  font-size: 14px;
+                "
+              >
+                Replication error, trading costs and volatility
+                misspecification.
+              </p>
+              <a
+                href="https://lab.yourcatalyst.in/experiments/learn.html#hedge"
+                style="color: #172b24; font-size: 12px"
+                >The maths, code &amp; limitations →</a
+              >
+            </details>
+            <div style="margin-top: 16px">
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#hedge"
+                style="
+                  display: inline-block;
+                  background: #172b24;
+                  color: #d7ff3f;
+                  border-radius: 30px;
+                  padding: 14px 23px;
+                  text-decoration: none;
+                  font-size: 13px;
+                  font-weight: 600;
+                  line-height: 1.6;
+                "
+                >Run the experiment ↗</a
+              >
+            </div>
+          </div>
+        </article>
+        <article style="flex: 1 1 400px; min-width: 0; margin-bottom: 25px">
+          <a
+            href="https://lab.yourcatalyst.in/experiments/#risk"
+            style="display: block"
+            ><img
+              src="https://lab.yourcatalyst.in/experiments/assets/risk.svg"
+              alt="Illustration for Portfolio tail risk, not simulated output"
+              width="720"
+              height="440"
+              loading="lazy"
+              style="
+                display: block;
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+              "
+          /></a>
+          <div style="padding: 22px 0 0">
+            <p
+              style="
+                font: 11px/1.7 monospace;
+                letter-spacing: 1px;
+                color: #536158;
+                margin: 0 0 20px;
+              "
+            >
+              EXPERIMENT 04 / LINEAR ALGEBRA &amp; STATISTICS
+            </p>
+            <h3
+              style="
+                font:
+                  500 30px/1.15 Arial,
+                  sans-serif;
+                letter-spacing: -1px;
+                margin: 15px 0;
+              "
+            >
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#risk"
+                style="text-decoration: none; color: #172b24"
+                >Portfolio tail risk ↗</a
+              >
+            </h3>
+            <p
+              style="
+                font-size: 16px;
+                line-height: 1.85;
+                max-width: 65ch;
+                color: #536158;
+                margin: 15px 0;
+              "
+            >
+              Can two models agree on volatility and disagree on how bad losses
+              get?
+            </p>
+            <div class="takeaway"><span>SEEDED MODEL EXAMPLE / SEED 42</span><p>Holding analytic volatility at 11.857%, switching Gaussian shocks to standardized t₅ changes worst-5% mean loss from 17.704% to 19.742% in the seeded example.</p></div><p class="research-scope"><strong>Limitations</strong> · Synthetic stationary returns; tail estimates depend on the assumed distribution.</p><p class="stack-line"><strong>Stack</strong> JavaScript ES modules · SVG · node:test · GitHub Pages</p><p class="scale-line"><strong>Computation</strong> 12,000 return draws · 1,326 grid portfolios · covariance-preserving sampling</p><p class="evidence-link"><a href="./evidence/experiment-results.json">Exact parameters &amp; outputs ↗</a></p><details
+              style="
+                border-top: 1px solid #ced2c4;
+                padding: 15px 0;
+                margin-top: 15px;
+              "
+            >
+              <summary style="cursor: pointer; font-size: 13px; color: #172b24">
+                What can I explore?
+              </summary>
+              <p
+                style="
+                  font-size: 16px;
+                  line-height: 1.85;
+                  max-width: 65ch;
+                  color: #536158;
+                  margin: 15px 0;
+                  font-size: 14px;
+                "
+              >
+                Covariance, a grid frontier and losses beyond the 95% quantile.
+              </p>
+              <a
+                href="https://lab.yourcatalyst.in/experiments/learn.html#risk"
+                style="color: #172b24; font-size: 12px"
+                >The maths, code &amp; limitations →</a
+              >
+            </details>
+            <div style="margin-top: 16px">
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#risk"
+                style="
+                  display: inline-block;
+                  background: #172b24;
+                  color: #d7ff3f;
+                  border-radius: 30px;
+                  padding: 14px 23px;
+                  text-decoration: none;
+                  font-size: 13px;
+                  font-weight: 600;
+                  line-height: 1.6;
+                "
+                >Run the experiment ↗</a
+              >
+            </div>
+          </div>
+        </article>
+        <article style="flex: 1 1 400px; min-width: 0; margin-bottom: 25px">
+          <a
+            href="https://lab.yourcatalyst.in/experiments/#contagion"
+            style="display: block"
+            ><img
+              src="https://lab.yourcatalyst.in/experiments/assets/contagion.svg"
+              alt="Illustration for Interbank contagion, not simulated output"
+              width="720"
+              height="440"
+              loading="lazy"
+              style="
+                display: block;
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+              "
+          /></a>
+          <div style="padding: 22px 0 0">
+            <p
+              style="
+                font: 11px/1.7 monospace;
+                letter-spacing: 1px;
+                color: #536158;
+                margin: 0 0 20px;
+              "
+            >
+              EXPERIMENT 05 / GRAPHS &amp; FIXED POINTS
+            </p>
+            <h3
+              style="
+                font:
+                  500 30px/1.15 Arial,
+                  sans-serif;
+                letter-spacing: -1px;
+                margin: 15px 0;
+              "
+            >
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#contagion"
+                style="text-decoration: none; color: #172b24"
+                >Interbank contagion ↗</a
+              >
+            </h3>
+            <p
+              style="
+                font-size: 16px;
+                line-height: 1.85;
+                max-width: 65ch;
+                color: #536158;
+                margin: 15px 0;
+              "
+            >
+              How can a loss at one bank reach a bank that never held the
+              damaged asset?
+            </p>
+            <div class="takeaway"><span>SEEDED MODEL EXAMPLE / SEED 42</span><p>In the default eight-bank ring, a 100-unit loss at Bank 1 produces three secondary defaults and 55.702 units of outside-creditor losses.</p></div><p class="research-scope"><strong>Limitations</strong> · Stylized fixed liabilities and pro-rata clearing; no liquidity runs or fire sales.</p><p class="stack-line"><strong>Stack</strong> JavaScript ES modules · SVG · node:test · GitHub Pages</p><p class="scale-line"><strong>Computation</strong> 8 banks + outside creditor · iterative pro-rata clearing</p><p class="evidence-link"><a href="./evidence/experiment-results.json">Exact parameters &amp; outputs ↗</a></p><details
+              style="
+                border-top: 1px solid #ced2c4;
+                padding: 15px 0;
+                margin-top: 15px;
+              "
+            >
+              <summary style="cursor: pointer; font-size: 13px; color: #172b24">
+                What can I explore?
+              </summary>
+              <p
+                style="
+                  font-size: 16px;
+                  line-height: 1.85;
+                  max-width: 65ch;
+                  color: #536158;
+                  margin: 15px 0;
+                  font-size: 14px;
+                "
+              >
+                Payment shortfalls and secondary defaults across three networks.
+              </p>
+              <a
+                href="https://lab.yourcatalyst.in/experiments/learn.html#contagion"
+                style="color: #172b24; font-size: 12px"
+                >The maths, code &amp; limitations →</a
+              >
+            </details>
+            <div style="margin-top: 16px">
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#contagion"
+                style="
+                  display: inline-block;
+                  background: #172b24;
+                  color: #d7ff3f;
+                  border-radius: 30px;
+                  padding: 14px 23px;
+                  text-decoration: none;
+                  font-size: 13px;
+                  font-weight: 600;
+                  line-height: 1.6;
+                "
+                >Run the experiment ↗</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section
+      id="incentives"
+      style="padding-top: 30px; margin-top: 20px; border-top: 1px solid #ced2c4"
+    >
+      <p
+        style="
+          font: 11px/1.7 monospace;
+          letter-spacing: 1px;
+          color: #536158;
+          margin: 0 0 20px;
+        "
+      >
+        03 / HOW THE RULES CHANGE THE WAY PEOPLE BID.
+      </p>
+      <h2
+        style="
+          font:
+            500 clamp(32px, 4.6vw, 60px) / 1.1 Arial,
+            sans-serif;
+          letter-spacing: -2px;
+          margin: 18px 0 25px;
+          color: #172b24;
+        "
+      >
+        Incentives & allocation
+      </h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 36px">
+        <article style="flex: 1 1 400px; min-width: 0; margin-bottom: 25px">
+          <a
+            href="https://lab.yourcatalyst.in/experiments/#auctions"
+            style="display: block"
+            ><img
+              src="https://lab.yourcatalyst.in/experiments/assets/auctions.svg"
+              alt="Illustration for Auction design, not simulated output"
+              width="720"
+              height="440"
+              loading="lazy"
+              style="
+                display: block;
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+              "
+          /></a>
+          <div style="padding: 22px 0 0">
+            <p
+              style="
+                font: 11px/1.7 monospace;
+                letter-spacing: 1px;
+                color: #536158;
+                margin: 0 0 20px;
+              "
+            >
+              EXPERIMENT 06 / GAME THEORY &amp; PAIRED EXPERIMENTS
+            </p>
+            <h3
+              style="
+                font:
+                  500 30px/1.15 Arial,
+                  sans-serif;
+                letter-spacing: -1px;
+                margin: 15px 0;
+              "
+            >
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#auctions"
+                style="text-decoration: none; color: #172b24"
+                >Auction design ↗</a
+              >
+            </h3>
+            <p
+              style="
+                font-size: 16px;
+                line-height: 1.85;
+                max-width: 65ch;
+                color: #536158;
+                margin: 15px 0;
+              "
+            >
+              Can different payment rules raise the same expected revenue?
+            </p>
+            <div class="takeaway"><span>SEEDED MODEL EXAMPLE / SEED 42</span><p>With five bidders and no reserve, both formats have $66.67 theoretical expected revenue. The 10,000 paired draws estimate $66.776 versus $66.713.</p></div><p class="research-scope"><strong>Limitations</strong> · Independent uniform private values and risk-neutral bidders; no collusion or entry costs.</p><p class="stack-line"><strong>Stack</strong> JavaScript ES modules · SVG · node:test · GitHub Pages</p><p class="scale-line"><strong>Computation</strong> 10,000 paired value draws · reserve-aware first-price bids</p><p class="evidence-link"><a href="./evidence/experiment-results.json">Exact parameters &amp; outputs ↗</a></p><details
+              style="
+                border-top: 1px solid #ced2c4;
+                padding: 15px 0;
+                margin-top: 15px;
+              "
+            >
+              <summary style="cursor: pointer; font-size: 13px; color: #172b24">
+                What can I explore?
+              </summary>
+              <p
+                style="
+                  font-size: 16px;
+                  line-height: 1.85;
+                  max-width: 65ch;
+                  color: #536158;
+                  margin: 15px 0;
+                  font-size: 14px;
+                "
+              >
+                Equilibrium bids, reserves, sale rates and expected seller
+                revenue.
+              </p>
+              <a
+                href="https://lab.yourcatalyst.in/experiments/learn.html#auctions"
+                style="color: #172b24; font-size: 12px"
+                >The maths, code &amp; limitations →</a
+              >
+            </details>
+            <div style="margin-top: 16px">
+              <a
+                href="https://lab.yourcatalyst.in/experiments/#auctions"
+                style="
+                  display: inline-block;
+                  background: #172b24;
+                  color: #d7ff3f;
+                  border-radius: 30px;
+                  padding: 14px 23px;
+                  text-decoration: none;
+                  font-size: 13px;
+                  font-weight: 600;
+                  line-height: 1.6;
+                "
+                >Run the experiment ↗</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section
+      style="
+        background: #172b24;
+        border-radius: 10px;
+        padding: clamp(25px, 4vw, 50px);
+        color: #f4f1e9;
+      "
+    >
+      <p
+        style="
+          font: 11px/1.7 monospace;
+          letter-spacing: 1px;
+          color: #d7ff3f;
+          margin: 0 0 20px;
+        "
+      >
+        THE METHOD / FROM QUESTION TO CODE
+      </p>
+      <h2
+        style="
+          font:
+            500 clamp(32px, 4vw, 52px) / 1.1 Arial,
+            sans-serif;
+          letter-spacing: -1.5px;
+          color: #f4f1e9;
+          margin: 20px 0;
+        "
+      >
+        The interesting part is<br />where the model breaks.
+      </h2>
+      <p
+        style="
+          font-size: 16px;
+          line-height: 1.85;
+          max-width: 65ch;
+          color: #536158;
+          margin: 15px 0;
+          color: #c3cdbc;
+        "
+      >
+        Every experiment starts with assumptions. Read them, test a boundary
+        case, and inspect the code before trusting a result.
+      </p>
+      <a
+        href="https://lab.yourcatalyst.in/experiments/learn.html"
+        style="
+          display: inline-block;
+          background: #d7ff3f;
+          color: #172b24;
+          border-radius: 30px;
+          padding: 14px 23px;
+          text-decoration: none;
+          font-size: 13px;
+          font-weight: 600;
+          line-height: 1.6;
+        "
+        >Read the field guide ↗</a
+      >
+      <div style="margin-top: 25px; font-size: 13px">
+        <a href="https://lab.yourcatalyst.in/" style="color: #d7ff3f"
+          >Related: JoSAA allocation audit ↗</a
+        >
+        &nbsp; · &nbsp;
+        <a
+          href="https://github.com/thetarocks/dao-sybil-resilience"
+          style="color: #d7ff3f"
+          >DAO Sybil resilience ↗</a
+        >
+      </div>
+    </section>
+  </div>
+  <footer
+    style="
+      max-width: 1340px;
+      margin: 50px auto 0;
+      padding: 25px 4%;
+      border-top: 1px solid #172b24;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      font:
+        11px/1.8 Arial,
+        sans-serif;
+    "
+  >
+    <span>YOUR CATALYST / IDEAS, UNDER EXAMINATION.</span
+    ><a style="color: #172b24" href="https://github.com/thetarocks/catalyst-lab"
+      >Open the source ↗</a
+    ><span>Synthetic models. Explicit assumptions.</span>
+  </footer>
+</div>
+</main></body></html>

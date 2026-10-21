@@ -33,3 +33,14 @@ def test_absence_of_justified_envy():
 
     assert results["P2"] == ["s1"]
     assert results["P1"] == ["s2"]
+
+
+def test_later_higher_priority_proposal_updates_retained_students_match():
+    from core.deferred_acceptance import Student, Program, run_student_proposing_da
+    higher = Student(id="higher",rank=1,preferences=["closed","P"])
+    lower = Student(id="lower",rank=2,preferences=["P"])
+    programs = {"closed":Program(id="closed",capacity=0),"P":Program(id="P",capacity=1)}
+    allocation = run_student_proposing_da([higher,lower],programs)
+    assert allocation["P"] == ["higher"]
+    assert higher.current_match == "P"
+    assert lower.current_match is None

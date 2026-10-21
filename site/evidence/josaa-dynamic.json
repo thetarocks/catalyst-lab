@@ -1,0 +1,630 @@
+{
+  "schema_version": 1,
+  "audit": "dynamic_freeze_float",
+  "seed": 1337,
+  "candidates": 80,
+  "programs": 17,
+  "paired_trials": 50,
+  "rounds_per_world": 2,
+  "worlds_per_trial": 2,
+  "assignment_runs": 201,
+  "target_id": "applicant_005",
+  "target_rank": 5,
+  "initial_match": "IIT Delhi - Computer Science and Engineering",
+  "eligible_upstream": 4,
+  "withdrawals_per_trial": 1,
+  "trials_with_missed_upgrade": 50,
+  "conditional_missed_upgrade_pct": 100.0,
+  "scope": "One selected applicant (the first allocated below their top choice), one synthetic OPEN-category cohort, and fixed-size sampled upstream withdrawals. This conditional two-round counterfactual is not a population regret rate, quota-specific finding, or Round-4 policy recommendation.",
+  "source_sha256": {
+    "scripts/benchmark_manipulability.py": "251c3caeaa3a6165ddc159829fcf3c3146c4d3f53ecdfff395db083274cce2ae",
+    "scripts/audit_dynamic_strategies.py": "df1b7ed30e306db7b29ef9c01b707356c3d30c94080d40d4006c096d454d1fd2",
+    "core/deferred_acceptance.py": "7e78d88281494be19b15807e4ee26815a0ba0f7eac5c7957a1c27cb763039a82",
+    "core/josaa_engine.py": "fb1920a5480c42e2119bb8094ee7630fe386db2975d2e87ad7ea22617f9b227f",
+    "core/agents.py": "b86b879e815ccd825d0ec5a2ff8a3028a523fa82a469df8d9a6f1c59f6655efc",
+    "core/market_builder.py": "bd715cc666eeb1b6f1f2f3dcdc6a69fbb50adc9e5b69c7056a61decd8447a1dc",
+    "data/raw/sample_josaa_cutoffs.csv": "7e0bd48f5ed19d080ccddf502b102f0f07dab1f3396ca12a0df506a80b4a3e46"
+  },
+  "trials": [
+    {
+      "trial": 1,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 2,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 3,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 4,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 5,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 6,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 7,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 8,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 9,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 10,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 11,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 12,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 13,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 14,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 15,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 16,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 17,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 18,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 19,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 20,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 21,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 22,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 23,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 24,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 25,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 26,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 27,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 28,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 29,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 30,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 31,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 32,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 33,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 34,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 35,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 36,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 37,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 38,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 39,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 40,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 41,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 42,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 43,
+      "withdrawn": [
+        "applicant_004"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 44,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 45,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 46,
+      "withdrawn": [
+        "applicant_003"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 47,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 48,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 49,
+      "withdrawn": [
+        "applicant_002"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    },
+    {
+      "trial": 50,
+      "withdrawn": [
+        "applicant_001"
+      ],
+      "float_match": "IIT Bombay - Computer Science and Engineering",
+      "freeze_match": "IIT Delhi - Computer Science and Engineering",
+      "float_preference_rank": 1,
+      "freeze_preference_rank": 2,
+      "missed_preference_tiers": 1,
+      "float_utility_advantage": 47.0
+    }
+  ]
+}

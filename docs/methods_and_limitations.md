@@ -1,17 +1,19 @@
-# JoSAA Mechanism Design Audit: Methods & Theoretical Foundations
+# Methods and limitations
 
-## 1. Mechanism Overview
-The Joint Seat Allocation Authority (JoSAA) allocates seats across IITs, NITs, and IIITs. While standard Gale-Shapley Deferred Acceptance (DA) guarantees weak dominant-strategy incentive compatibility (DSIC) in single-round settings, JoSAA operates dynamically across multiple rounds with:
-- **Freeze**: Candidate permanently locks into assigned seat and exits subsequent matching.
-- **Float**: Candidate accepts tentative match but upgrades if any higher-ranked choice across any institute opens up.
-- **Slide**: Candidate accepts tentative match but restricts upgrades strictly to choices within the same institute.
-- **Withdrawal**: Candidate forfeits seat, injecting an exogenous vacancy.
+## Established baseline
 
-## 2. Invariant & Strategy-Proofness Findings
-- **Static Baseline**: Under standard DA, truncation or rank-swapping cannot strictly improve a student's assigned utility.
-- **Dynamic Float vs Freeze**: Under stochastic seat surrenders (e.g. students exiting for state counselling, BITS, or foreign programs), floating weakly dominates freezing for monotonic preference lists.
-- **Slide Inefficiency**: Slide acts as a constrained search heuristic, mitigating relocation risk but introducing artificial blocking pairs relative to unconstrained stable matchings.
+Applicant-proposing deferred acceptance satisfies DSIC under the standard single-round assumptions of fixed priorities and responsive program choice. This project does not claim a new proof. The static benchmark tests selected preference changes in one synthetic market.
 
-## 3. Methodological Limitations
-1. **Unobserved Individual Preferences**: JoSAA publishes aggregate opening and closing ranks (OR/CR), not submitted preference vectors. Synthetic student cohorts are generated using revealed preference heuristics based on closing rank spreads.
-2. **Reservation Quota Partitioning**: The simulation currently isolates vertical quotas (OPEN, OBC-NCL, SC, ST) and abstracts complex horizontal/supernumerary allocations.
+## Multi-round model
+
+Freeze retains the assigned seat and stops upgrades; Float permits better choices; Slide restricts upgrades to the same institute. The paired audit compares Float and Freeze for the same selected applicant under identical withdrawals. Utility is generated from a synthetic ordering, and excludes relocation costs, risk preferences and deadlines. A model-level upgrade is not a comprehensive welfare claim.
+
+## Data
+
+`data/raw/sample_josaa_cutoffs.csv` contains sample opening/closing ranks without a recorded official URL or year. OPEN round-one rows generate capacities and synthetic preferences. The audit does not use actual submitted JoSAA preference lists and is not a validated reproduction of official allocation results.
+
+## Limits
+
+The static search is finite. Dynamic trials condition on one selected applicant and repeat four possible withdrawal sets; 50/50 is not a real-student incidence estimate. Vertical-quota fixtures are separate from the OPEN-only benchmark. Horizontal, home-state, supernumerary and other detailed rules are not fully modeled. Source hashes improve reproducibility, but cannot establish input provenance. CI passing does not establish complete test coverage.
+
+See [audit findings](audit_findings.md) and the [technical note](../site/artifacts/josaa-technical-note.pdf) for exact counts, implementation complexity and reproduction commands.
