@@ -847,3 +847,21 @@ body.guide-page header {
     gap: 0 18px;
   }
 }
+/* Code blocks stay scrollable inside the guide's grid at phone widths. */
+.guide-page .layout > * {
+  min-width: 0;
+}
+.guide-page pre {
+  max-width: 100%;
+}
+@media (max-width: 800px) {
+  .guide-page .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .guide-page .contents {
+    max-width: 100%;
+  }
+  .guide-page table {
+    overflow-wrap: anywhere;
+  }
+}
