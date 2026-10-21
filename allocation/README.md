@@ -2,6 +2,8 @@
 
 Open the [live simulator](https://lab.yourcatalyst.in/) or serve the repository root with `python3 -m http.server 8765`.
 
+![Populated allocation simulator](../docs/images/allocation-workbench.jpg)
+
 - `model.mjs`: strict-priority student-proposing DA, the three-applicant two-round scenario, feasibility / acceptable-assignment / baseline-envy checks, and a one-program merit-first quota choice.
 - `fixtures.mjs`: the six exact checks shown in the browser inspector.
 - `suite.mjs`: executes those checks on load and on demand, with scope labels and links to the separate Python evidence.
