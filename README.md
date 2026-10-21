@@ -23,6 +23,8 @@ The experiment workspaces include debounced live controls, contextual explanatio
 
 The interface uses original SVG studies of each mechanism, a working order-book preview, searchable experiment collections and a companion guide with section tracking and reading progress. Motion respects reduced-motion preferences. The illustrations are visual identities, separate from the numerical charts.
 
+![Research portfolio landing page](docs/images/portfolio-desktop.jpg)
+
 ## Research and evidence
 
 - **JoSAA:** 0 profitable deviations across **1,080** finite preference perturbations (60 synthetic applicants, 17 programs). DSIC for applicant-proposing DA in a single round is established theory; this is an implementation check, not a new proof.

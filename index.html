@@ -21,7 +21,7 @@
         Computational Audit of JoSAA Allocation Rules
       </h1>
       <p class="text-slate-400 text-sm md:text-base max-w-3xl leading-relaxed">
-        We formalize and audit the central pillars of India's Joint Seat Allocation Authority: sequential multi-round clearing under Freeze/Float/Slide, and legally mandated vertical reservation interleaving (Merit-First OPEN seats vs. Category Quotas).
+        A simplified model of applicant-proposing matching, multi-round Freeze/Float/Slide decisions and merit-first vertical quotas. Single-round applicant DSIC is established theory; this portfolio studies implementation and conditional multi-round outcomes.
       </p>
 
       <!-- Key Metrics -->
@@ -212,7 +212,7 @@
       <div>
         <h2 class="text-lg font-bold text-white">Module 2: Vertical Reservation Interleaving Audit</h2>
         <p class="text-xs text-slate-400 mt-1">
-          Under the Supreme Court mandate (Indra Sawhney / Sönmez-Yenmez), reserved category candidates must first consume OPEN merit capacity if their score qualifies, reserving category quotas for subsequent candidates.
+          This simplified quota example considers candidates for OPEN seats by common rank first, then eligible category seats. It omits several official allocation rules and is not a full JoSAA replica.
         </p>
       </div>
 
@@ -309,7 +309,7 @@
       const p3 = document.getElementById("pref-3").value;
       const userPrefs = [p1, p2, p3];
 
-      // Round 1 and Round 2 (Post-Cascade) Empirical Cutoffs
+      // Illustrative synthetic Round 1 and Round 2 cutoff scenarios
       const cutoffsR1 = {
         "IIT Bombay - Computer Science and Engineering": 68,
         "IIT Delhi - Electrical Engineering": 550,
