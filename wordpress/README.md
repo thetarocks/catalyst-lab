@@ -10,3 +10,9 @@ The main domain is hosted by WordPress.com; the interactive lab is served by Git
 The homepage links to the existing `/aboutme/` page. The previous `/about` and `/projects` links did not resolve when inspected. The new Projects page makes all six experiments and both existing research repositories discoverable.
 
 Simulation scripts stay on the lab subdomain. No WordPress plugin, account permissions, hosting plan or domain configuration needs to change.
+
+## Systems playground design
+
+Home, Projects and About use the same dark-green, electric-lime and warm-paper palette as the interactive lab. Original vector assets are versioned in `experiments/assets/` and served from GitHub Pages. Publish the Pages assets before the WordPress fragments so their images resolve immediately. WordPress uses inline styles and native disclosure controls; the lab adds the live market preview, search, filter controls and guide progress. `experiments/design.css` defines the shared lab presentation, and `lab-theme.css` carries the palette through the allocation audit.
+
+The Awwwards Sites of the Year collection informed the typography, visual emphasis and contrast. All illustrations were drawn in code for this project; no award-winning site's assets or layout were copied.

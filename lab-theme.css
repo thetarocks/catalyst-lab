@@ -1,28 +1,192 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap');
-body{background:#f7f5ef!important;color:#252b29!important;font-family:'DM Sans',system-ui,sans-serif!important;line-height:1.8}
-h1,h2,h3{font-family:'Libre Caslon Display',Georgia,serif!important;font-weight:400!important}
-h1{font-size:clamp(35px,4.5vw,56px)!important;line-height:1.12!important;max-width:850px}
-h2{font-size:25px!important;line-height:1.35!important}
-.font-mono{font-family:'DM Mono',monospace!important}
-[class~='bg-slate-950']{background-color:#f7f5ef!important}
-[class~='bg-slate-900'],[class~='bg-slate-900/90'],[class~='bg-slate-800']{background-color:#fffdf8!important}
-[class~='text-white'],[class~='text-slate-100'],[class~='text-slate-200']{color:#252b29!important}
-[class~='text-slate-300'],[class~='text-slate-400'],[class~='text-slate-500']{color:#5d6a5f!important}
-[class~='text-indigo-300'],[class~='text-indigo-400'],[class~='text-emerald-300'],[class~='text-emerald-400']{color:#286044!important}
-[class~='text-amber-300'],[class~='text-amber-400'],[class~='text-red-300'],[class~='text-red-400']{color:#985037!important}
-[class~='border-slate-800'],[class~='border-slate-700'],[class*='border-indigo-500/'],[class*='border-emerald-500/'],[class*='border-amber-500/']{border-color:#d5dbd0!important}
-[class~='bg-indigo-500/10'],[class~='bg-indigo-500/20'],[class~='bg-emerald-500/10'],[class~='bg-emerald-500/20']{background-color:#e8ede3!important}
-[class~='bg-amber-500/10'],[class~='bg-red-500/10']{background-color:#f2e8dd!important}
-[class~='bg-indigo-600'],[class~='bg-emerald-600']{background:#286044!important;color:white!important}
-button{transition:background .18s,transform .18s;min-height:38px;cursor:pointer}
-button:hover{transform:translateY(-1px)}
-input,select{border-radius:2px!important;min-height:41px;line-height:1.6}
-a{color:#286044;text-underline-offset:4px}
-.rounded-xl,.rounded-lg{border-radius:3px!important}
-.shadow-xl,.shadow-lg{box-shadow:4px 5px 0 #e5e9dd!important}
-.lab-nav{display:flex;flex-wrap:wrap;gap:15px 25px;align-items:center;padding:0 0 22px;border-bottom:1px solid #d5dbd0;font-size:12px}
-.lab-nav a{text-decoration:none}
-.lab-nav .lab-brand{font-weight:700;letter-spacing:1px;color:#252b29;margin-right:auto}
-.lab-footer{max-width:1024px;margin:0 auto 40px;padding:22px 16px;border-top:1px solid #d5dbd0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:15px;font-size:11px;color:#647065}
-:focus-visible{outline:3px solid #a64e36!important;outline-offset:3px}
-@media(prefers-reduced-motion:reduce){button{transition:none}button:hover{transform:none}.animate-pulse{animation:none!important}}
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Libre+Caslon+Display&display=swap");
+body {
+  background: #f7f5ef !important;
+  color: #252b29 !important;
+  font-family: "DM Sans", system-ui, sans-serif !important;
+  line-height: 1.8;
+}
+h1,
+h2,
+h3 {
+  font-family: "Libre Caslon Display", Georgia, serif !important;
+  font-weight: 400 !important;
+}
+h1 {
+  font-size: clamp(35px, 4.5vw, 56px) !important;
+  line-height: 1.12 !important;
+  max-width: 850px;
+}
+h2 {
+  font-size: 25px !important;
+  line-height: 1.35 !important;
+}
+.font-mono {
+  font-family: "DM Mono", monospace !important;
+}
+[class~="bg-slate-950"] {
+  background-color: #f7f5ef !important;
+}
+[class~="bg-slate-900"],
+[class~="bg-slate-900/90"],
+[class~="bg-slate-800"] {
+  background-color: #fffdf8 !important;
+}
+[class~="text-white"],
+[class~="text-slate-100"],
+[class~="text-slate-200"] {
+  color: #252b29 !important;
+}
+[class~="text-slate-300"],
+[class~="text-slate-400"],
+[class~="text-slate-500"] {
+  color: #5d6a5f !important;
+}
+[class~="text-indigo-300"],
+[class~="text-indigo-400"],
+[class~="text-emerald-300"],
+[class~="text-emerald-400"] {
+  color: #286044 !important;
+}
+[class~="text-amber-300"],
+[class~="text-amber-400"],
+[class~="text-red-300"],
+[class~="text-red-400"] {
+  color: #985037 !important;
+}
+[class~="border-slate-800"],
+[class~="border-slate-700"],
+[class*="border-indigo-500/"],
+[class*="border-emerald-500/"],
+[class*="border-amber-500/"] {
+  border-color: #d5dbd0 !important;
+}
+[class~="bg-indigo-500/10"],
+[class~="bg-indigo-500/20"],
+[class~="bg-emerald-500/10"],
+[class~="bg-emerald-500/20"] {
+  background-color: #e8ede3 !important;
+}
+[class~="bg-amber-500/10"],
+[class~="bg-red-500/10"] {
+  background-color: #f2e8dd !important;
+}
+[class~="bg-indigo-600"],
+[class~="bg-emerald-600"] {
+  background: #286044 !important;
+  color: white !important;
+}
+button {
+  transition:
+    background 0.18s,
+    transform 0.18s;
+  min-height: 38px;
+  cursor: pointer;
+}
+button:hover {
+  transform: translateY(-1px);
+}
+input,
+select {
+  border-radius: 2px !important;
+  min-height: 41px;
+  line-height: 1.6;
+}
+a {
+  color: #286044;
+  text-underline-offset: 4px;
+}
+.rounded-xl,
+.rounded-lg {
+  border-radius: 3px !important;
+}
+.shadow-xl,
+.shadow-lg {
+  box-shadow: 4px 5px 0 #e5e9dd !important;
+}
+.lab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 25px;
+  align-items: center;
+  padding: 0 0 22px;
+  border-bottom: 1px solid #d5dbd0;
+  font-size: 12px;
+}
+.lab-nav a {
+  text-decoration: none;
+}
+.lab-nav .lab-brand {
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #252b29;
+  margin-right: auto;
+}
+.lab-footer {
+  max-width: 1024px;
+  margin: 0 auto 40px;
+  padding: 22px 16px;
+  border-top: 1px solid #d5dbd0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 11px;
+  color: #647065;
+}
+:focus-visible {
+  outline: 3px solid #a64e36 !important;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+  button:hover {
+    transform: none;
+  }
+  .animate-pulse {
+    animation: none !important;
+  }
+}
+/* The allocation audit shares the lab's new palette and display typography. */
+body {
+  background: #f4f1e9 !important;
+  color: #172b24 !important;
+}
+h1,
+h2,
+h3 {
+  font-family: "DM Sans", Arial, sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -1.2px;
+}
+h1 {
+  font-size: clamp(38px, 5vw, 65px) !important;
+}
+[class~="bg-slate-950"] {
+  background-color: #f4f1e9 !important;
+}
+[class~="bg-indigo-600"],
+[class~="bg-emerald-600"] {
+  background: #172b24 !important;
+  color: #d7ff3f !important;
+  border-radius: 25px !important;
+}
+.rounded-xl,
+.rounded-lg {
+  border-radius: 10px !important;
+}
+.shadow-xl,
+.shadow-lg {
+  box-shadow: 5px 5px 0 #d6ddc6 !important;
+}
+.lab-nav .lab-brand {
+  font-size: 15px;
+  letter-spacing: -0.5px;
+  color: #172b24;
+}
+.lab-nav .lab-brand:before {
+  content: "✳ ";
+  color: #285b42;
+  font-size: 22px;
+}

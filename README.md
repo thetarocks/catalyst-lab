@@ -17,6 +17,8 @@ An open-source notebook connecting economic rules to inspectable algorithms, int
 
 The browser models use synthetic inputs and established theory. Each includes assumptions, a worked example, primary references, numerical exports and validation. The [companion guide](experiments/learn.html) also covers algorithms, complexity, interpretation and possible extensions. [Implementation and reproducibility notes](experiments/README.md) describe the kernels and the use of coding assistance.
 
+The interface uses original SVG studies of each mechanism, a working order-book preview, searchable experiment collections and a companion guide with section tracking and reading progress. Motion respects reduced-motion preferences. The illustrations are visual identities, separate from the numerical charts.
+
 ## Explore the repository
 
 - [Model kernels](experiments/models.mjs) and [numerical tests](experiments/models.test.mjs)

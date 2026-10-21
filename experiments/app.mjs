@@ -107,7 +107,7 @@ function network({ L, defaults }) {
 function index() {
   activeId = null;
   document.title = "Experiments · Your Catalyst";
-  main.innerHTML = `<section class="hero"><div><p class="eyebrow">YOUR CATALYST / THE EXPERIMENT NOTEBOOK</p><h1>Economics you<br>can experiment with.</h1><p class="lede">Six working models of markets, risk and incentives. Change an assumption, inspect the result, then open the mathematics behind it.</p><div class="hero-links"><a class="text-button" href="./learn.html">Read the maths & code guide →</a><a href="https://github.com/thetarocks/catalyst-lab/tree/main/experiments">Browse the source ↗</a></div></div><aside class="quick-preview" aria-label="Try a market order"></aside></section><div class="catalog-tools"><div class="filter-pills" role="group" aria-label="Filter experiments"><button type="button" data-filter="all" aria-pressed="true">All six</button><button type="button" data-filter="execution" aria-pressed="false">Market execution</button><button type="button" data-filter="risk-models" aria-pressed="false">Risk & networks</button><button type="button" data-filter="incentives" aria-pressed="false">Incentives</button></div><label class="model-search">Find a model<input id="model-search" type="search" placeholder="Search topics or methods…" autocomplete="off"></label></div><p id="filter-status" class="filter-status" role="status">6 experiments</p><p id="no-models" class="no-models" hidden>No matches. Try a different topic or clear the filters.</p>${[
+  main.innerHTML = `<section class="hero lab-hero"><div class="hero-copy"><p class="eyebrow">A PERSONAL LAB FOR ECONOMICS + CODE</p><h1>Small rules.<br>Big <em>effects.</em></h1><p class="lede">Markets are made of decisions. Pull one thread and see what changes.</p><div class="hero-links"><a class="text-button" href="#collection" data-scroll-collection>Explore the experiments <span>↘</span></a><a href="./learn.html">Inside the maths & code ↗</a></div><p class="hero-caption">06 interactive models / Open source / Built to be questioned</p></div><div class="hero-art"><img src="./assets/systems.svg" alt="A wireframe sphere crossed by a stepped price signal, an illustration of connected economic systems." width="720" height="440"><span class="art-caption">THE WORLD, WITH A FEW VARIABLES LEFT OPEN.</span></div></section><div class="ticker" aria-label="Areas of exploration"><span>MARKETS</span><span aria-hidden="true">✳</span><span>RISK</span><span aria-hidden="true">✳</span><span>INCENTIVES</span><span aria-hidden="true">✳</span><span>CODE</span><span aria-hidden="true">↗</span></div><section class="play-band"><div><p class="eyebrow">DON’T JUST READ. CHANGE SOMETHING.</p><h2>What does a<br>trade <em>really</em> cost?</h2><p>The price on the screen is only the start. Buy more shares and watch your order walk through the available liquidity.</p><p class="small">A working preview of experiment 01. The same matching engine powers the full simulation.</p></div><aside class="quick-preview" aria-label="Try a market order"></aside></section><section class="collection-intro" id="collection"><p class="eyebrow">THE EXPERIMENT COLLECTION / 01—06</p><h2>Choose a world.<br><em>Change its rules.</em></h2><p>Start with a question. Adjust the assumptions. Inspect what the model can—and cannot—tell you.</p></section><div class="catalog-tools"><div class="filter-pills" role="group" aria-label="Filter experiments"><button type="button" data-filter="all" aria-pressed="true">All six</button><button type="button" data-filter="execution" aria-pressed="false">Market execution</button><button type="button" data-filter="risk-models" aria-pressed="false">Risk & networks</button><button type="button" data-filter="incentives" aria-pressed="false">Incentives</button></div><label class="model-search">Find a model<input id="model-search" type="search" placeholder="Search topics or methods…" autocomplete="off"></label></div><p id="filter-status" class="filter-status" role="status">6 experiments</p><p id="no-models" class="no-models" hidden>No matches. Try a different topic or clear the filters.</p>${[
     [
       "execution",
       "Market execution",
@@ -133,7 +133,7 @@ function index() {
           .map((id) => {
             const e = experiments[id],
               t = topics[id];
-            return `<article class="experiment-card" data-model="${id}"><p class="tag">EXPERIMENT ${e.no} / ${t.cs}</p><h3><a href="#${id}">${t.name} <span aria-hidden="true">↗</span></a></h3><p class="card-question">${e.question}</p><p class="card-output"><strong>Explore:</strong> ${t.explore}</p><div class="card-bottom"><a href="#${id}">Run the experiment →</a><a href="./learn.html#${id}">Understand the model</a></div></article>`;
+            return `<article class="experiment-card" data-model="${id}"><a class="card-art" href="#${id}" tabindex="-1" aria-hidden="true"><img src="./assets/${id}.svg" width="720" height="440" alt="" loading="lazy"><span class="art-open">↗</span></a><p class="tag">EXPERIMENT ${e.no} / ${t.cs}</p><h3><a href="#${id}">${t.name} <span aria-hidden="true">↗</span></a></h3><p class="card-question">${e.question}</p><p class="card-output"><strong>Explore:</strong> ${t.explore}</p><div class="card-bottom"><a href="#${id}">Run the experiment →</a><a href="./learn.html#${id}">Understand the model</a></div></article>`;
           })
           .join("")}</div></section>`,
     )
@@ -141,6 +141,18 @@ function index() {
       "",
     )}<section class="index-note"><div><p class="section-label">How the notebook is built</p><h2>Inspect the mechanism.</h2></div><div><p>Each experiment includes explicit assumptions, a worked example, numerical checks and primary references. The <a href="./learn.html#architecture">implementation guide</a> explains the shared architecture and the algorithms inside each model.</p><p class="small">Related work: <a href="../">JoSAA allocation audit</a> · <a href="https://github.com/thetarocks/dao-sybil-resilience">DAO Sybil resilience</a></p></div></section>`;
   mountQuickPreview(main.querySelector(".quick-preview"));
+  main
+    .querySelector("[data-scroll-collection]")
+    .addEventListener("click", (event) => {
+      event.preventDefault();
+      main
+        .querySelector("#collection")
+        .scrollIntoView({
+          behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+            ? "instant"
+            : "smooth",
+        });
+    });
   let selectedCategory = "all";
   const search = main.querySelector("#model-search");
   function filterModels() {
