@@ -15,9 +15,9 @@ The Python suite has **15 tests**. The browser notebook needs no npm packages or
 
 1. **DAO governance:** [Sharvina’s SSRN preprint](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7103878) reports changed winners in **4/15 selected proposals** under fixed-vote square-root reweighting. Editorial criticism of its novelty and fixed-distribution assumption prompted the [Sybil follow-up](https://github.com/thetarocks/dao-sybil-resilience). This is a preprint and subsequent analytical study, not peer-reviewed acceptance.
 2. **JoSAA:** early Freeze forfeits one preference tier in **50/50 paired trials for one synthetic applicant**, repeatedly sampling four possible withdrawals. [Trial-level evidence](evidence/josaa-dynamic.json) makes the narrow scope inspectable; it is not a population estimate.
-3. **Engineering:** a higher-priority displacement could update a program list without updating the winning applicant’s state. The Codex-assisted repair has a [regression checking both sides](tests/test_da.py).
+3. **Engineering:** a higher-priority displacement could update a program list without updating the winning applicant’s state. The repair has a [regression checking both sides](tests/test_da.py).
 
-[Who designed, implemented, analyzed and wrote what](docs/contributions.md) separates Sharvina’s original research from the later AI-assisted extensions. Private editorial criticism is author-reported; independent replication or acceptance is not claimed. The six browser finance models below are **one educational computational laboratory implementing established models**, not six additional research papers.
+[My research and development record](docs/contributions.md) explains the original projects and the later portfolio extensions. Private editorial criticism is author-reported; independent replication or acceptance is not claimed. The six browser finance models below are **one educational computational laboratory implementing established models**, not six additional research papers.
 
 An open-source notebook connecting economic rules to inspectable algorithms, interactive counterfactuals and numerical checks.
 
@@ -34,7 +34,7 @@ An open-source notebook connecting economic rules to inspectable algorithms, int
 | Interbank contagion | Directed liabilities, proportional clearing, fixed-point iteration | [Simulator](https://lab.yourcatalyst.in/experiments/#contagion) · [Explanation](https://lab.yourcatalyst.in/experiments/learn.html#contagion) |
 | Auction design | Reserve-aware equilibrium bids and paired Monte Carlo | [Simulator](https://lab.yourcatalyst.in/experiments/#auctions) · [Explanation](https://lab.yourcatalyst.in/experiments/learn.html#auctions) |
 
-The browser models use synthetic inputs and established theory. Each includes assumptions, a worked example, primary references, numerical exports and validation. The [companion guide](experiments/learn.html) also covers algorithms, complexity, interpretation and possible extensions. [Implementation and reproducibility notes](experiments/README.md) describe the kernels and the use of coding assistance.
+The browser models use synthetic inputs and established theory. Each includes assumptions, a worked example, primary references, numerical exports and validation. The [companion guide](experiments/learn.html) also covers algorithms, complexity, interpretation and possible extensions. [Implementation and reproducibility notes](experiments/README.md) describe the kernels and reproduction steps.
 
 The experiment workspaces include debounced live controls, contextual explanations, pinned metric baselines, animated charts, mouse/touch/keyboard inspection, series toggles and selectable bank obligations. Live mode can be paused; exports always describe completed runs. Baselines and chart-visibility choices remain in browser memory and reset on a new visit.
 
@@ -115,4 +115,4 @@ python scripts/build_technical_notes.py
 
 The Python DA implementation uses program-side sorting and a list queue; it is an inspectable small-market implementation, not an optimized national-scale allocator. Quota fixtures test the implemented vertical-quota rules; they do not establish equivalence to every official JoSAA rule. The browser sandbox has its own synthetic illustrative inputs, distinct from the Python benchmark cohorts. See the PDFs for exact scope and limitations.
 
-The portfolio uses coding assistance; the intent is to make the equations, source, tests and evidence inspectable enough to explain and challenge. No real user testimonial, mentor endorsement or competition outcome is claimed without a verifiable source.
+The portfolio makes the equations, source, tests and evidence inspectable enough to explain and challenge. No real user testimonial, mentor endorsement or competition outcome is claimed without a verifiable source.

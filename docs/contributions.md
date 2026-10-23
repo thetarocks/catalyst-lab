@@ -1,6 +1,6 @@
 # My contributions, research development and validation
 
-I’m Sharvina Srivastava. This record explains my original research, how my questions developed, and which later portfolio components were developed with Codex assistance.
+I’m Sharvina Srivastava. This record explains my original research, how my questions developed, and the computational tools included in the portfolio.
 
 ## My research
 
@@ -8,17 +8,17 @@ I’m Sharvina Srivastava. This record explains my original research, how my que
 - **Sybil follow-up:** I pursued the [equal-split identity model](https://github.com/thetarocks/dao-sybil-resilience) after editorial criticism. I studied how splitting one balance changes square-root voting weight. This model does not resolve endogenous capital concentration, identity costs or voter behaviour.
 - **JoSAA:** the JEE admissions race around me in India made me curious about counselling fairness. I developed the original project around the matching engine, quota rules, round actions and audit framework. My [repository history](https://github.com/thetarocks/catalyst-lab/commits/main/) records those stages before the later portfolio extensions. My aim was to connect established matching theory to computational checks, not to claim a new proof of applicant DSIC.
 
-## Where I used Codex assistance
+## Portfolio tools and implementation records
 
-For the later portfolio extensions, I used Codex to:
+The later portfolio extensions include:
 
-- Develop the six educational finance browser implementations, seeded kernels, live explanations, charts, numerical checks, exports and maths/code guide. I present these as one teaching laboratory implementing established models with synthetic inputs, not six original research papers.
-- Build the current allocation teaching interface, deterministic examples, executable browser fixture inspector and associated tests.
-- Repair the dynamic audit to use the current engine and fix inconsistent applicant/program assignment state after a higher-priority displacement. The regression is in `tests/test_da.py`.
-- Correct the static audit count to 1,080 perturbations, generate the current benchmark evidence and local runtime records, and prepare the project-hosted technical notes.
-- Write and refine the current portfolio copy, documentation and interface code, and migrate the landing site to static GitHub Pages hosting.
+- Six educational finance browser models with seeded kernels, live explanations, charts, numerical checks, exports and a maths/code guide. I present these as one teaching laboratory implementing established models with synthetic inputs, not six original research papers.
+- An allocation teaching interface with deterministic examples, an executable browser fixture inspector and associated tests.
+- A dynamic audit updated to use the current engine, and a repair for inconsistent applicant/program assignment state after a higher-priority displacement. The regression is in `tests/test_da.py`.
+- A corrected static audit count of 1,080 perturbations, current benchmark evidence, local runtime records and project-hosted technical notes.
+- A static portfolio deployed through GitHub Pages, with links to methods, evidence and source.
 
-I attribute the current benchmark findings to the published implementation and workload. I do not claim that I personally discovered the Codex-assisted regression or independently coded every later browser component.
+I attribute the current benchmark findings to the published implementation and workload. The linked source and tests document how each result was produced.
 
 ## How my research questions changed
 

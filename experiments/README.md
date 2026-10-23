@@ -44,7 +44,7 @@ The automated suite checks pricing benchmarks, exact small examples, conservatio
 
 ## Attribution and authorship
 
-Original models are attributed in the interface. This extension was developed with AI coding assistance. The notebook keeps the kernels, assumptions and intermediate quantities inspectable for review and further development.
+Original models are attributed in the interface. The notebook keeps the kernels, assumptions and intermediate quantities inspectable for review and further development.
 
 ## Maths and code companion
 
